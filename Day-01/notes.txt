@@ -1,0 +1,167 @@
+
+
+Schedule
+    1 session - 1:30 Hrs
+    Tea Break - 20 mins
+    2 sessions - 1:30 Hrs
+    Lunch Break - 1 Hr
+    3 sessions - 1:30 Hrs
+    Tea Break - 20 mins
+    4 sessions - 1:30 Hrs
+
+
+Maintainable
+    EASY TO CHANGE
+        Bug fixes
+        New features
+        Remove dead features
+
+
+Patterns of Enterprise Application Architecture (PoEAA) (By Martin Fowler)
+    Architectural Patterns
+        UI
+            Model View Controller
+            Model View Presenter
+            Model View View-Model
+            Page Controller
+            Passive Controller
+
+        Data Access
+            Repository
+            Active Record
+
+Browser
+    Http Client
+    Render HTML Documents
+
+    Virtual OS (HTML5)
+        Data Storage
+            Local Storage
+            Session Storage
+            IndexedDB
+        Real time updates
+            Server Sent Events
+            Web Sockets
+        File System
+            File System API
+        Offline
+            Service Workers
+        Multithreading 
+            Web Workers
+
+
+
+
+    Data Persistance on the client?
+    Socket communication for realtime updates?
+    Access File System?
+    Peripheral Access?
+
+RIA (Rich Internet Applications)
+    UI layer (Controller + View + Model) pushed to the browser
+
+JavaScript (ES5) (Before 2015)
+    Data Types
+        number
+        string
+        boolean
+        undefined
+
+    Programming Constructs
+        var, if else, switch case, for, for in, while, try catch finally, throw, function
+
+    APIs
+        Math, Date, Error, Object, Error, RegEx, timer (setTimeout, setInterval, clearTimeout, clearInterval)
+
+    Unique Aspects
+        Object Based + Functional Language
+
+What is JavaScript?
+
+    Line Oriented
+    Procedural
+    Object Based (VB5/6)
+    Object Oriented 
+    Functional
+
+Functional Language
+    Functions are first-class citizens
+    Functions can be treated like data (object)
+
+
+    Creation
+        Object:
+            var obj = {}
+        Function:
+            var func = function() {};
+
+        Object:
+            var obj = new Object();
+        Function:
+            var func = new Function();
+            var func = new Function('console.log("func invoked")')
+            var add = new Function('x', 'y', 'return x + y;')
+
+    State
+        Object:
+            var obj = {}
+            obj.id = 100
+
+        Function:
+            var fn = function() {};
+            fn.id = 100
+
+    Behavior (Method)
+        Object:
+            obj.whoAmI = function(){
+                console.log('I am an object');
+            }
+            obj.whoAmI()
+
+        Function:
+            fn.whoAmI = function(){
+                console.log('I am a function');
+            }
+            fn.whoAmI()
+
+    As arguments
+        function printType(x){
+            console.log('typeof x is ', typeof x );
+        }
+
+        Object:   
+            var obj = {}
+            printType(obj)
+
+        Function:
+            var fn = function(){}
+            printType(fn)
+
+    As return values
+        Object:
+            function getEmp(){
+                var emp = {
+                    id : 100,
+                    name : 'Magesh',
+                    city : 'Bengaluru'
+                }
+                return emp;
+            }
+            var emp = getEmp()
+
+        Function:
+            function getAdder(){
+                var add = function(x,y){
+                    return x + y;
+                }
+                return add;
+            }
+            var adder = getAdder()
+            
+            typeof adder
+            
+            adder(100,200)
+            
+            getAdder()(10,20)
+
+
