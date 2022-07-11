@@ -84,84 +84,144 @@ What is JavaScript?
     Object Oriented 
     Functional
 
-Functional Language
-    Functions are first-class citizens
-    Functions can be treated like data (object)
+        Functional Language
+            Functions are first-class citizens
+            Functions can be treated like data (object)
 
 
-    Creation
-        Object:
-            var obj = {}
-        Function:
-            var func = function() {};
+            Creation
+                Object:
+                    var obj = {}
+                Function:
+                    var func = function() {};
 
-        Object:
-            var obj = new Object();
-        Function:
-            var func = new Function();
-            var func = new Function('console.log("func invoked")')
-            var add = new Function('x', 'y', 'return x + y;')
+                Object:
+                    var obj = new Object();
+                Function:
+                    var func = new Function();
+                    var func = new Function('console.log("func invoked")')
+                    var add = new Function('x', 'y', 'return x + y;')
 
-    State
-        Object:
-            var obj = {}
-            obj.id = 100
+            State
+                Object:
+                    var obj = {}
+                    obj.id = 100
 
-        Function:
-            var fn = function() {};
-            fn.id = 100
+                Function:
+                    var fn = function() {};
+                    fn.id = 100
 
-    Behavior (Method)
-        Object:
-            obj.whoAmI = function(){
-                console.log('I am an object');
-            }
-            obj.whoAmI()
+            Behavior (Method)
+                Object:
+                    obj.whoAmI = function(){
+                        console.log('I am an object');
+                    }
+                    obj.whoAmI()
 
-        Function:
-            fn.whoAmI = function(){
-                console.log('I am a function');
-            }
-            fn.whoAmI()
+                Function:
+                    fn.whoAmI = function(){
+                        console.log('I am a function');
+                    }
+                    fn.whoAmI()
 
-    As arguments
-        function printType(x){
-            console.log('typeof x is ', typeof x );
-        }
-
-        Object:   
-            var obj = {}
-            printType(obj)
-
-        Function:
-            var fn = function(){}
-            printType(fn)
-
-    As return values
-        Object:
-            function getEmp(){
-                var emp = {
-                    id : 100,
-                    name : 'Magesh',
-                    city : 'Bengaluru'
+            As arguments
+                function printType(x){
+                    console.log('typeof x is ', typeof x );
                 }
-                return emp;
-            }
-            var emp = getEmp()
 
-        Function:
-            function getAdder(){
-                var add = function(x,y){
-                    return x + y;
-                }
-                return add;
-            }
-            var adder = getAdder()
-            
-            typeof adder
-            
-            adder(100,200)
-            
-            getAdder()(10,20)
+                Object:   
+                    var obj = {}
+                    printType(obj)
+
+                Function:
+                    var fn = function(){}
+                    printType(fn)
+
+            As return values
+                Object:
+                    function getEmp(){
+                        var emp = {
+                            id : 100,
+                            name : 'Magesh',
+                            city : 'Bengaluru'
+                        }
+                        return emp;
+                    }
+                    var emp = getEmp()
+
+                Function:
+                    function getAdder(){
+                        var add = function(x,y){
+                            return x + y;
+                        }
+                        return add;
+                    }
+                    var adder = getAdder()
+                    
+                    typeof adder
+                    
+                    adder(100,200)
+                    
+                    getAdder()(10,20)
+
+            Higher Order Functions
+                Functions as arguments to other Functions
+                Function as return value from other Functions
+
+            First Order Functions
+                Functions that take other functions as arguments
+                Functions that return other functions
+
+    Static & Dynamic Languages
+        Dynamic
+            Object structure can be changed on the fly
+
+            var obj = {}
+
+            Adding an attribute dynamically
+            obj['id'] = 100
+
+            Removing an attribute dynamically
+            delete obj['id'] //DONT DO THIS
+
+    Loosely Typed Language
 
 
+
+
+JEST Setup
+    1. create a folder for the application
+    2. cd into the folder
+    3. npm init -y
+    4. npm install jest
+    5. create the following files in the 'language' folder
+        calculator.js
+        calculator.test.js
+
+    Sample Test 
+        test("should add 2 numbers", function(){
+            //Arrange
+            var expectedResult = 30
+
+            //Act
+            var actualResult = add(10,20)
+
+            //Assert
+            expect(actualResult).toBe(expectedResult)
+        })
+
+    Test Cases
+        add(10,20)                                                                                  //=> 30
+        add("10", 20)                                                                               //=> 30
+        add("abc", 20)                                                                              //=> 20
+        add([10,20], [30,40])                                                                       //=> 100
+        add([10,20], [30,"40"])                                                                     //=> 100
+        add([10,20], [30,"abc"])                                                                    //=> 60
+        add([10,20], [30,[40,50]])                                                                  //=> 150
+        add(function(){ return 10;}, function(){ return 20;})                                       //=> 30
+        add(function(){ return 10;}, function(){ return "20";})                                     //=> 30
+        add(function(){ return 10;}, function(){ return ["20", 30];})                               //=> 60
+        add()                                                                                       //=> 0
+        add(10,20,30,40,50)                                                                         //=> 150
+        add([function(){ return 10;}, function(){ return ["20", 30];}])                             //=> 60
+        add(function(){ return [function(){ return 10;}, function(){ return ["20", 30];}]})         //=> 60
