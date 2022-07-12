@@ -275,3 +275,40 @@ Functions
             - apply()
             - bind()
             - call()
+
+        Closures
+            Step-1 : Create an outer function
+            Step-2 : Create variable in the outer function
+            Step-3 : Create an inner function
+            Step-4 : The variable in the outer function is referred in the inner function
+            Step-5 : Extend the lifetime of the inner function beyond the lifetime of the outer function
+                        ex: return the inner function
+
+
+        Pure functions
+            - functions without side-effects
+            - function exclusively depends only on the given arguments
+            - functions always return the same output for the same input
+
+        A function is called as a pure function when the invocation of the function can be replaced with the result of the invocation without affecting the final outcome.
+
+        impure function
+            1. function communicates to external resources (database, network, file system, web api etc)
+            2. function depends on any data that is not explicitly passed as an argument
+
+
+        Advantages of Pure Functions
+            1. Predictable
+            2. Easy to test
+            3. Easy to scale
+            4. execution optimization
+
+        conver the following into a 'memoized' function
+            function isPrime(no){
+                console.log('processing ', no)
+                for ( var i = 2; i <= (no/2); i++ ){
+                    if (no % i === 0)
+                        return false;
+                }
+                return true;
+            }
