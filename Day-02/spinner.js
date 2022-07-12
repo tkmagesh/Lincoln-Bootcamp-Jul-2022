@@ -1,6 +1,38 @@
 //NO HTML / DOM
 
-var spinner = /* create the spinner object based on the below specification  */
+/* 
+var spinner = (function(){
+    var counter = 0;
+
+    function up(){
+        return ++counter;
+    }
+
+    function down(){
+        return --counter;
+    }
+
+    var spinner = {
+        up : up,
+        down : down
+    }
+
+    return spinner;
+})() 
+*/
+
+var spinner = (function(){
+    var counter = 0;
+    return {
+        up :  function up(){
+            return ++counter;
+        },
+        down : function down(){
+            return --counter;
+        }
+    };
+})()
+
 
 /* 
     spinner methods
@@ -35,4 +67,10 @@ var spinner = /* create the spinner object based on the below specification  */
 
 function add(x,y){
     return x + y
+}
+
+var emp = {
+    whoAmI : function(){
+
+    }
 }
