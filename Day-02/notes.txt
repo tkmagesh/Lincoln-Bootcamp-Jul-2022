@@ -79,3 +79,6 @@ Function Methods
                 return true;
             }
 
+        Commonality Variablity
+            Keep what is common together
+            Move out what is varying
