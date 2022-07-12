@@ -1,0 +1,41 @@
+Function invocation patterns (6 ways of invocation) (cont....)
+            * As a method of an obj
+                this -> obj
+
+            * As a function
+                this -> global object (window in browser)
+
+            * using the call() method of the function
+                var emp = {
+                    name : 'Magesh'
+                }
+                
+                function greet(salutation, message){
+                    console.log(salutation + this.name + ', ' + message);
+                }
+
+                greet.call(emp, 'Mr.', 'Have a nice day!')
+
+            * using the apply() method of the function
+                var emp = {
+                    name : 'Magesh'
+                }
+                
+                function greet(salutation, message){
+                    console.log(salutation + this.name + ', ' + message);
+                }
+
+                greet.apply(emp, ['Mr.', 'Have a nice day!'])
+
+            * Immediately Invoked Function Expression (IIFE)
+
+                (function fn(){
+                    console.log('fn invoked');
+                })()
+
+                (function add(x,y){
+                    return x + y;
+                })(100,200)
+
+
+Closure

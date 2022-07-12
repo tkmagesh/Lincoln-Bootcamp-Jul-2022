@@ -6,17 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Click Tracker</title>
     <script>
-        var numClick = 0;
-        function onBtnTrackClick(){
-            numClick++;
-            document.getElementById('divCounter').textContent = numClick;
-        }
-        function onDocumentLoad(){
-            var btnTrack = document.getElementById('btnTrack');
-            btnTrack.addEventListener('click', onBtnTrackClick);
-        }
-        window.addEventListener('load', onDocumentLoad);
-
+        (function myApp(){
+            var numClicks = 0;
+            function onBtnTrackClick(){
+                numClicks++;
+                document.getElementById('divCounter').textContent = numClicks;
+            }
+            function onDocumentLoad(){
+                var btnTrack = document.getElementById('btnTrack');
+                btnTrack.addEventListener('click', onBtnTrackClick);
+            }
+            window.addEventListener('load', onDocumentLoad);
+        })()
+        //myApp()
     </script>
 </head>
 <body>
