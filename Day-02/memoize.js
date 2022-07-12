@@ -28,3 +28,10 @@ function checkOddOrEven(no){
 }
 var isOddOrEven = memoize(checkOddOrEven);
   
+//Modify the memoize function to make this work
+function add(x,y){
+    return x + y;
+}
+
+var memoizedAdd = memoize(add)
+
