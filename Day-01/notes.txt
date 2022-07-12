@@ -211,17 +211,67 @@ JEST Setup
         })
 
     Test Cases
-        add(10,20)                                                                                  //=> 30
-        add("10", 20)                                                                               //=> 30
-        add("abc", 20)                                                                              //=> 20
-        add([10,20], [30,40])                                                                       //=> 100
-        add([10,20], [30,"40"])                                                                     //=> 100
-        add([10,20], [30,"abc"])                                                                    //=> 60
-        add([10,20], [30,[40,50]])                                                                  //=> 150
-        add(function(){ return 10;}, function(){ return 20;})                                       //=> 30
-        add(function(){ return 10;}, function(){ return "20";})                                     //=> 30
-        add(function(){ return 10;}, function(){ return ["20", 30];})                               //=> 60
-        add()                                                                                       //=> 0
-        add(10,20,30,40,50)                                                                         //=> 150
-        add([function(){ return 10;}, function(){ return ["20", 30];}])                             //=> 60
-        add(function(){ return [function(){ return 10;}, function(){ return ["20", 30];}]})         //=> 60
+       X add(10,20)                                                                                  //=> 30
+       X add("10", 20)                                                                               //=> 30
+       X add("abc", 20)                                                                              //=> 20
+       X add([10,20], [30,40])  (Hint: use Array.isArray())                                           //=> 100
+       X add([10,20], [30,"40"])                                                                     //=> 100
+       X add([10,20], [30,"abc"])                                                                    //=> 60
+       X add([10,20], [30,[40,50]])                                                                  //=> 150
+       X add(function(){ return 10;}, function(){ return 20;})                                       //=> 30
+       X add(function(){ return 10;}, function(){ return "20";})                                     //=> 30
+       X add(function(){ return 10;}, function(){ return ["20", 30];})                               //=> 60
+       X add()                                                                                       //=> 0
+       X add(10,20,30,40,50)                                                                         //=> 150
+       X add([function(){ return 10;}, function(){ return ["20", 30];}])                             //=> 60
+       X add(function(){ return [function(){ return 10;}, function(){ return ["20", 30];}]})         //=> 60
+
+
+Functions
+    Functions are variadic by default
+        can accept any number of arguments
+    
+    2 implicit arguments of function
+        arguments
+            - array LIKE object containing all the argument values passed to the function
+                arguments.length => # of the arguments passed to the function
+                arguments[0] => first argument passed to the function
+                arguments[1] => second argument passed to the function
+        this
+            IMPORTANT: It DOESNOT matter where a function is OR who owns the function
+                        What matters is HOW the function is invoked
+
+        Function invocation patterns (6 ways of invocation)
+            * As a method of an obj
+                this -> obj
+
+            * As a function
+                this -> global object (window in browser)
+
+            * using the call() method of the function
+                var emp = {
+                    name : 'Magesh'
+                }
+                
+                function greet(salutation, message){
+                    console.log(salutation + this.name + ', ' + message);
+                }
+
+                greet.call(emp, 'Mr.', 'Have a nice day!')
+
+            * using the apply() method of the function
+                var emp = {
+                    name : 'Magesh'
+                }
+                
+                function greet(salutation, message){
+                    console.log(salutation + this.name + ', ' + message);
+                }
+
+                greet.apply(emp, ['Mr.', 'Have a nice day!'])
+
+
+        Function Methods
+            - apply()
+            - bind()
+            - call()
