@@ -1,0 +1,39 @@
+var emp = {
+    name : 'Magesh'
+}
+
+function whoAmI(){
+    console.log('I am ', this.name);
+}
+
+whoAmI = whoAmI.bind(emp)
+whoAmI()
+
+
+var pen = {
+    name : 'Pen',
+    whoAmI : whoAmI
+}
+    
+
+pen.whoAmI()
+whoAmI.call(pen)
+whoAmI.apply(pen)
+
+//Another example
+
+function greet(salutation, message){
+    console.log(salutation + this.name + ', ' + message);
+}
+
+greet = greet.bind(emp)
+
+greet('Mr.', 'Have a nice day!')
+
+
+var john = {
+    name : 'John',
+    greet : greet
+}
+
+john.greet('Mr.', 'Have a good day!')
