@@ -56,8 +56,32 @@ describe('Sorting', function(){
     })
 
     describe('Generic Sort', function(){
+        function sort(list, comparer){
+            var comparerFn = null;
+            if (!comparer) return;
+            if (typeof comparer === 'function'){
+                comparerFn = comparer;
+            }
+            if (typeof comparer === 'string' /* by attrName */){
+                comparerFn = function(o1, o2){
+                    if (o1[comparer] < o2[comparer]) return -1;
+                    if (o1[comparer] > o2[comparer]) return 1;
+                    return 0;
+                }
+            }
+            if (!comparerFn) return;
+            for (var i=0; i<list.length-1; i++){
+                for(var j=i+1; j < list.length; j++){
+                    if (comparerFn(list[i], list[j]) > 0){
+                        var temp = list[i];
+                        list[i] = list[j];
+                        list[j] = temp
+                    }
+                }
+            }
+        }
         describe('By attribute name', function(){
-            function sort(list, attrName){
+            /* function sort(list, attrName){
                 for (var i=0; i<list.length-1; i++){
                     for(var j=i+1; j < list.length; j++){
                         if (list[i][attrName] > list[j][attrName]){
@@ -67,7 +91,7 @@ describe('Sorting', function(){
                         }
                     }
                 }
-            }
+            } */
             describe('Products By Name', function(){
                 sort(products, 'name')
                 console.table(products)
@@ -78,7 +102,7 @@ describe('Sorting', function(){
             })
         })
         describe('By any comparer', function(){
-            function sort(list, comparerFn){
+            /* function sort(list, comparerFn){
                 for (var i=0; i<list.length-1; i++){
                     for(var j=i+1; j < list.length; j++){
                         if (comparerFn(list[i], list[j]) > 0){
@@ -88,7 +112,7 @@ describe('Sorting', function(){
                         }
                     }
                 }
-            }
+            } */
             describe('Products By Value (value = cost * units)', function(){
                 var productsComparerByValue = function(p1, p2){
                     var p1Value = p1.cost * p1.units,
