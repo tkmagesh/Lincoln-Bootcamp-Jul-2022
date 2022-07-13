@@ -56,24 +56,51 @@ describe('Sorting', function(){
     })
 
     describe('Generic Sort', function(){
-        function sort(list, attrName){
-            for (var i=0; i<list.length-1; i++){
-                for(var j=i+1; j < list.length; j++){
-                    if (list[i][attrName] > list[j][attrName]){
-                        var temp = list[i];
-                        list[i] = list[j];
-                        list[j] = temp
+        describe('By attribute name', function(){
+            function sort(list, attrName){
+                for (var i=0; i<list.length-1; i++){
+                    for(var j=i+1; j < list.length; j++){
+                        if (list[i][attrName] > list[j][attrName]){
+                            var temp = list[i];
+                            list[i] = list[j];
+                            list[j] = temp
+                        }
                     }
                 }
             }
-        }
-        describe('Products By Name', function(){
-            sort(products, 'name')
-            console.table(products)
+            describe('Products By Name', function(){
+                sort(products, 'name')
+                console.table(products)
+            })
+            describe('Products By Cost', function(){
+                sort(products, 'cost')
+                console.table(products)
+            })
         })
-        describe('Products By Cost', function(){
-            sort(products, 'cost')
-            console.table(products)
+        describe('By any comparer', function(){
+            function sort(list, comparerFn){
+                for (var i=0; i<list.length-1; i++){
+                    for(var j=i+1; j < list.length; j++){
+                        if (comparerFn(list[i], list[j]) > 0){
+                            var temp = list[i];
+                            list[i] = list[j];
+                            list[j] = temp
+                        }
+                    }
+                }
+            }
+            describe('Products By Value (value = cost * units)', function(){
+                var productsComparerByValue = function(p1, p2){
+                    var p1Value = p1.cost * p1.units,
+                        p2Value = p2.cost * p2.units;
+                    if (p1Value < p2Value) return -1;
+                    if (p1Value > p2Value) return 1;
+                    return 0;
+                }
+                sort(products, productsComparerByValue);
+                console.table(products)
+            })
+           
         })
     })
 })
