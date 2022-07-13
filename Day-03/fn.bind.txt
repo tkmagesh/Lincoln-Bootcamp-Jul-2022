@@ -37,3 +37,19 @@ var john = {
 }
 
 john.greet('Mr.', 'Have a good day!')
+
+
+Day-03 Assignment
+
+Create a custom version of the bind function as follows:
+
+function bind(fn /*,.....*/){
+}
+
+whoAmI = bind(whoAmI, emp)
+
+whoAmI() //=> "I am Magesh"
+
+greet = bind(greet, emp)
+
+greet('Mr.', 'Have a nice day!') //=> "Mr. Magesh, Have a nice day!"
