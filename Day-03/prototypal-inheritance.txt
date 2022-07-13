@@ -1,0 +1,39 @@
+function Product(id, name, cost){
+    //this => new object
+    if (!(this instanceof Product)){
+        return new Product(id, name, cost)
+    }
+    this['id'] = id;
+    this['name'] = name;
+    this['cost'] = cost;
+    //this => returned by default
+}
+
+typeof Product.prototype
+
+Product.prototype.__proto__ === Object.prototype
+
+var pen = new Product(100, 'Pen', 10)
+
+pen.__proto__ === Product.prototype
+
+var productBase = Product.prototype
+
+productBase.__proto__ === Object.prototype
+
+Object.prototype['type'] = 'root Object'
+
+
+Product.prototype.type
+
+pen.type
+
+var pencil = new Product(200, 'Pencil', 5)
+
+pencil.type 
+
+Product.prototype.type = 'Product Object'
+
+pen.type
+
+pencil.type

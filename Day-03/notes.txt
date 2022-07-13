@@ -22,4 +22,10 @@ Create a constructor function 'Spinner'
     spinner.down() //=> 1
     spinner.down() //=> 0
     spinner.down() //=> -1
-    
+
+
+Inheritance in JavaScript
+    Prototypal Inheritance
+        One object acts as a base object for a family of objects
+        OR
+        A family of objects inherit from ONE base object
