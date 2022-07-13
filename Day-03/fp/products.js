@@ -152,21 +152,48 @@ describe('Filter', function(){
             }
             return result;
         }
-        
-        describe('Costly Products [cost > 50 ]', function(){
+        function negate(predicate){
+            return function(){
+                return !predicate.apply(this, arguments);
+            }
+        }
+        describe('Products by cost', function(){
             var costlyProductPredicate = function(product){
                 return product.cost > 50;
             };
-            var costlyProducts = filter(products, costlyProductPredicate);
-            console.table(costlyProducts);
-        });
+            describe('Costly Products [cost > 50 ]', function(){
+                var costlyProducts = filter(products, costlyProductPredicate);
+                console.table(costlyProducts);
+            });
 
-        describe('Understocked products [units < 50 ]', function(){
-            var understockedProductPredicate = function(product){
+            describe('Affordable Products (!costly products)', function(){
+                /* var affordableProductPredicate = function(product){
+                    return !costlyProductPredicate(product);
+                } */
+                var affordableProductPredicate = negate(costlyProductPredicate);
+                var affordableProducts = filter(products, affordableProductPredicate)
+                console.table(affordableProducts);
+            });
+        })
+        describe('Products by units', function(){
+             var understockedProductPredicate = function(product){
                 return product.units < 50;
             }
-            var understockedProducts = filter(products, understockedProductPredicate);
-            console.table(understockedProducts)
+            describe('Understocked products [units < 50 ]', function(){
+                var understockedProducts = filter(products, understockedProductPredicate);
+                console.table(understockedProducts)
+            });
+
+            describe('Wellstocked products (!understocked products)', function(){
+                /* var wellstockedProductPredicate = function(product){
+                    return !understockedProductPredicate(product);
+                } */
+                var wellstockedProductPredicate = negate(understockedProductPredicate);
+                var wellstockedProducts = filter(products, wellstockedProductPredicate);
+                console.table(wellstockedProducts);
+            })
+
         });
-    })
-})
+
+    });
+});
