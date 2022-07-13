@@ -9,31 +9,31 @@ function Product(id, name, cost){
     //this => returned by default
 }
 
-typeof Product.prototype
+console.log(typeof Product.prototype)
 
-Product.prototype.__proto__ === Object.prototype
+console.log(Product.prototype.__proto__ === Object.prototype)
 
 var pen = new Product(100, 'Pen', 10)
 
-pen.__proto__ === Product.prototype
+console.log(pen.__proto__ === Product.prototype)
 
 var productBase = Product.prototype
 
-productBase.__proto__ === Object.prototype
+console.log(productBase.__proto__ === Object.prototype)
 
 Object.prototype['type'] = 'root Object'
 
 
-Product.prototype.type
+console.log(Product.prototype.type)
 
-pen.type
+console.log(pen.type)
 
 var pencil = new Product(200, 'Pencil', 5)
 
-pencil.type 
+console.log(pencil.type )
 
 Product.prototype.type = 'Product Object'
 
-pen.type
+console.log(pen.type)
 
-pencil.type
+console.log(pencil.type)
