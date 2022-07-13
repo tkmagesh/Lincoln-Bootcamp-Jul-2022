@@ -1,0 +1,25 @@
+Constructor Functions
+    functions that behave like classes
+    No syntax difference
+    Invoked with the 'new' keyword
+    Conventions - Constructor Functions name should start with a capital letter
+
+
+Function invocation patterns (6 ways of invocation) (cont....)
+    6. using the 'new' keyword
+        when invoked using the 'new' keyword
+            this => new object
+            this => returned by default
+
+
+Create a constructor function 'Spinner'
+    var spinner = new Spinner()
+    spinner.up() //=> 1
+    spinner.up() //=> 2
+    spinner.up() //=> 3
+
+    spinner.down() //=> 2
+    spinner.down() //=> 1
+    spinner.down() //=> 0
+    spinner.down() //=> -1
+    
