@@ -28,34 +28,55 @@ var products = [
         DO NOT USE the builtin Array Methods
 */
 
-console.group('Initial List')
-console.table(products)
-console.groupEnd()
-
-console.group('Sorting')
-console.group('Products By Id')
-function sortProductsById(){
-    /* sorting the products by Id */
-
+function describe(title, fn){
+    console.group(title)
+       fn()
+    console.groupEnd()
 }
-sortProductsById()
-console.table(products)
-console.groupEnd()
 
-console.group('Generic Sort')
-function sort(/* ...... */){
+describe('Initial List', function(){
+    console.table(products)
+});
 
-}
-console.group('Products By Name')
-//sorting
-console.table(products)
-console.groupEnd()
-console.group('Products By Cost')
-//sorting
-console.table(products)
-console.groupEnd()
-console.groupEnd()
-console.groupEnd()
+describe('Sorting', function(){
+    describe('Products By Id', function(){
+        function sortProductsById(){
+            for (var i=0; i<products.length-1; i++){
+                for(var j=i+1; j < products.length; j++){
+                    if (products[i].id > products[j].id){
+                        var temp = products[i];
+                        products[i] = products[j];
+                        products[j] = temp
+                    }
+                }
+            }
+        }
+        sortProductsById()
+        console.table(products)
+    })
+
+    describe('Generic Sort', function(){
+        function sort(list, attrName){
+            for (var i=0; i<list.length-1; i++){
+                for(var j=i+1; j < list.length; j++){
+                    if (list[i][attrName] > list[j][attrName]){
+                        var temp = list[i];
+                        list[i] = list[j];
+                        list[j] = temp
+                    }
+                }
+            }
+        }
+        describe('Products By Name', function(){
+            sort(products, 'name')
+            console.table(products)
+        })
+        describe('Products By Cost', function(){
+            sort(products, 'cost')
+            console.table(products)
+        })
+    })
+})
 /* 
 console.group('Filter')
 console.group('Costly Products [cost > 1000 ]')
