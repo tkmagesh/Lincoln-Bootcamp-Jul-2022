@@ -143,17 +143,29 @@ describe('Filter', function(){
         console.table(stationaryProducts)
     })
     describe('any list by any criteria', function(){
-        function filter(/*  */){
-            return []
+        function filter(list, predicate){
+            var result = [];
+            for (var i = 0; i < list.length; i++){
+                if (predicate(list[i])){
+                    result.push(list[i])
+                }
+            }
+            return result;
         }
         
-        describe('Costly Products [cost > 1000 ]', function(){
-            var costlyProducts = filter(/*  */);
+        describe('Costly Products [cost > 50 ]', function(){
+            var costlyProductPredicate = function(product){
+                return product.cost > 50;
+            };
+            var costlyProducts = filter(products, costlyProductPredicate);
             console.table(costlyProducts);
         });
 
         describe('Understocked products [units < 50 ]', function(){
-            var understockedProducts = filter(/*  */);
+            var understockedProductPredicate = function(product){
+                return product.units < 50;
+            }
+            var understockedProducts = filter(products, understockedProductPredicate);
             console.table(understockedProducts)
         });
     })
