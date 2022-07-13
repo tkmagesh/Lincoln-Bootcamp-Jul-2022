@@ -29,3 +29,13 @@ Inheritance in JavaScript
         One object acts as a base object for a family of objects
         OR
         A family of objects inherit from ONE base object
+
+
+    Prototype Hopping happens ONLY when an attribute is READ
+    Whan an attribute value is SET (WRITTEN), NO prototype hopping will occur
+
+    One is not supposed to use the __proto__ in their code
+        1. why __proto__ is accessible?
+            Hiding is costly in JavaScript
+        
+        2. How will I access the base object?
