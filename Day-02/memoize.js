@@ -1,14 +1,14 @@
 
 function memoize(pureFn){
     var cache = {};
+    return function(){
+        var key = JSON.stringify(arguments)
+        if (key in cache)
+            return cache[key];
 
-    return function(no){
-        if (no in cache)
-            return cache[no];
-
-        console.log('processing ', no)
-        cache[no] = pureFn(no)
-        return cache[no]
+        console.log('processing ', arguments)
+        cache[key] = pureFn.apply(this, arguments)
+        return cache[key]
     }
 }
 
