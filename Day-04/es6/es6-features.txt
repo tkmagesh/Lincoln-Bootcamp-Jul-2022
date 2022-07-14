@@ -1,0 +1,132 @@
+ES6 features
+
+1. let
+
+2. const
+
+3. Array destructuring
+    var nos = [3,1,4,2,5]
+    var [x, y] = nos
+
+4. Rest operator (array)
+    var nos = [3,1,4,2,5]
+    var [x, y, ...z] = nos
+
+5. Spread operator (array)
+    var nos = [10,20]
+    function add(x,y){
+        return x + y
+    }
+    add(...nos)
+
+    OR
+
+    var newNos = [...nos, 100, 200]
+
+6. Object destructuring
+    var emp = {
+        id : 100,
+        name : 'Magesh',
+        city : 'Bangalore',
+        org : 'Lincoln Financials'
+    }
+    var {name, city} = emp
+    OR
+    var {city :x, id : y} = emp;
+
+7. Rest Operator (object)
+    var emp = {
+        id : 100,
+        name : 'Magesh',
+        city : 'Bangalore',
+        org : 'Lincoln Financials'
+    }
+    var {city:x, id:y, ...z} = emp
+
+8. Spread Operator (object)
+    var emp = {
+        id : 100,
+        name : 'Magesh',
+        city : 'Bangalore',
+        org : 'Lincoln Financials'
+    }
+    var newEmp = {...emp, salary : 10000}
+
+9. object construction enhancement
+    var id = 100, name = 'Magesh', city = 'Bengaluru'
+    var emp = { id , name , city  }
+
+10. default parameters
+    function add(x = 10,y = 20){
+        return x + y;
+    }
+
+    add()
+    30
+    add(100)
+    120
+    add(undefined, 200)
+    210
+    add(100,200)
+    300
+
+11. arrow functions
+    /*
+    //function statement
+    function add(x,y){
+        return x + y;
+    }
+
+    //function expression
+    var add = function(x,y){
+        return x + y;
+    }
+
+    //arrow function
+    var add = (x,y) => {
+        return x + y;
+    }
+    */
+    var add = (x,y) => x + y;
+    var isEven = n => n % 2 === 0;
+
+12. iterator (for of)
+    var nos = [10,20,30,40]
+    
+    for (let no of nos)
+        console.log(no)
+
+13. template strings
+    let name = 'Magesh'
+    let city = 'Bangalore'
+    let msg = `Hello ${name}, you are from ${city}`
+
+14. classes
+    class Employee{
+        id = 0;
+        name = '';
+        city = '';
+
+        constructor(id, name, city){
+            this.id = id;
+            this.name = name;
+            this.city = city;
+        }
+
+        display(){
+            return `id = ${this.id}, name = ${this.name}, city = ${this.city}`;
+        }
+    }
+
+15. class inheritence
+    class FulltimeEmployee extends Employee {
+        benefits = '';
+        constructor(id, name, city, benefits){
+            super(id, name, city);
+            this.benefits = benefits;
+        }
+        display(){
+            return `${super.display()}, benefits = ${this.benefits}`;
+        }
+    }
+
