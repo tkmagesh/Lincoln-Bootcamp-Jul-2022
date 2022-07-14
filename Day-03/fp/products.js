@@ -352,8 +352,19 @@ describe('map', function(){
 describe("group", function(){
     describe("grouping products by category", function(){
         function groupProductsByCategory(){
-            /*  */
+            var result = {};
+            for (var i = 0; i < products.length; i++){
+                var product = products[i],
+                    category = product.category;
+                if (!(category in result)){
+                    result[category] = [];
+                }
+                result[category].push(product)
+            }
+            return result;
         }
+        var productsByCategory = groupProductsByCategory();
+        console.log(productsByCategory);
     })
     describe('grouping any list by any ....', function(){
         function group(/*  */){
