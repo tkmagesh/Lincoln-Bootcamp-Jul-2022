@@ -23,7 +23,7 @@ var radio = (function(){
         var subscriptions = this.__subscriptions;
         for (var i = 0; i < subscriptions.length; i++){
             var fn = subscriptions[i];
-            fn();
+            fn.apply(this, arguments);
         }
         return this;
     }
