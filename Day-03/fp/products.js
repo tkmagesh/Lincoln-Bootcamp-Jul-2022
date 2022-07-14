@@ -372,10 +372,8 @@ describe("group", function(){
             for (var i = 0; i < list.length; i++){
                 var item = list[i],
                     key = keySelectorFn(item);
-                if (!(key in result)){
-                    result[key] = [];
-                }
-                result[key].push(item)
+                result[key] = result[key] || [];
+                result[key].push(item);
             }
             return result;
         }

@@ -43,7 +43,10 @@ Day-03 Assignment
 
 Create a custom version of the bind function as follows:
 
-function bind(fn /*,.....*/){
+function bind(fn, ctx){
+    return function(){
+        return fn.apply(ctx, arguments);
+    }
 }
 
 whoAmI = bind(whoAmI, emp)

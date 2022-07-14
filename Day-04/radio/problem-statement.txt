@@ -1,0 +1,42 @@
+
+
+use case : 1 (subscription)
+	radio('product-added')
+		.subscribe(subscriptionFn);
+
+use case : 2 (publish)
+	radio('product-added')
+		.broadcast(data)  // subscriptionFn should be invoked with the data as argument
+
+use case : 3
+	more than one subscriber
+
+	radio('product-added')
+		.subscribe(fn1);
+
+	radio('product-added')
+		.subscribe(fn2);
+
+	and when the event is broadcast, all the subscribers should be notified (fn1 and fn2 should be invoked)
+
+
+use case : 4 (Optional)
+	multiple subscriptions in one shot
+
+	radio('product-added')
+		.subscribe(fn1, fn2);
+
+use case : 5
+	unsubscribe (one or more subscriptions)
+
+	radio('product-added')
+		.unsubscribe(fn1)
+
+
+use case : 6 (Optional)
+	operation chaining
+
+	radio('product-added')
+		.subscribe(fn1)
+		.broadcast(data)
+		.unsubscribe(fn1)
