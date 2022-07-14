@@ -33,6 +33,49 @@ var products = [
                 Create a new list of products with the 10% discount applied on the cost
         - group
 
+            Use Case 1: Grouping the products by category
+            Outcome
+                {
+                    "stationary" : [
+                        {id : 6, name : 'Pen', cost : 50, units : 20, category : 'stationary'},
+	                    {id : 9, name : 'Ten', cost : 70, units : 70, category : 'stationary'}
+                    ],
+                    "grocery" : [
+                        {id : 3, name : 'Len', cost : 60, units : 60, category : 'grocery'},
+	                    {id : 5, name : 'Zen', cost : 30, units : 30, category : 'grocery'}
+                    ],
+                    "utencil" : [
+                        {id : 1, name : 'Ken', cost : 20, units : 80, category : 'utencil'}
+                    ],
+                    "electronics" : [
+                        {id : 7, name : 'Mouse', cost : 100, units : 20, category : 'electronics'}
+                    ]
+
+                }
+
+            Use case 2: Group products by cost (costly / affordable)
+            Outcome
+                {
+                    "costly" : [
+
+                    ],
+                    "affordable" : [
+
+                    ]
+                }
+            
+                 Use case 3: Group products by units (understocked / wellstocked)
+            Outcome
+                {
+                    "understocked" : [
+
+                    ],
+                    "wellstocked" : [
+                        
+                    ]
+                }
+
+
     IMPORTANT:
         DO NOT USE the builtin Array Methods
 */
@@ -259,3 +302,72 @@ describe('map', function(){
         console.table(productsWithDiscount);
     });
 });
+
+/* 
+    - group
+
+            Use Case 1: Grouping the products by category
+            Outcome
+                {
+                    "stationary" : [
+                        {id : 6, name : 'Pen', cost : 50, units : 20, category : 'stationary'},
+	                    {id : 9, name : 'Ten', cost : 70, units : 70, category : 'stationary'}
+                    ],
+                    "grocery" : [
+                        {id : 3, name : 'Len', cost : 60, units : 60, category : 'grocery'},
+	                    {id : 5, name : 'Zen', cost : 30, units : 30, category : 'grocery'}
+                    ],
+                    "utencil" : [
+                        {id : 1, name : 'Ken', cost : 20, units : 80, category : 'utencil'}
+                    ],
+                    "electronics" : [
+                        {id : 7, name : 'Mouse', cost : 100, units : 20, category : 'electronics'}
+                    ]
+
+                }
+
+            Use case 2: Group products by cost (costly / affordable)
+            Outcome
+                {
+                    "costly" : [
+
+                    ],
+                    "affordable" : [
+
+                    ]
+                }
+            
+                 Use case 3: Group products by units (understocked / wellstocked)
+            Outcome
+                {
+                    "understocked" : [
+
+                    ],
+                    "wellstocked" : [
+                        
+                    ]
+                }
+
+*/
+describe("group", function(){
+    describe("grouping products by category", function(){
+        function groupProductsByCategory(){
+            /*  */
+        }
+    })
+    describe('grouping any list by any ....', function(){
+        function group(/*  */){
+            /*  */
+        }
+        describe('products by category', function(){
+            var productsByCategory = group(/*  */);
+
+        })
+        describe('products by cost (costly / affordable)', function(){
+            var productsByCost = group(/*  */)
+        })
+        describe('products by units (understocked / wellstocked)', function(){
+            var productsByUnits = group(/*  */)
+        })
+    })
+})
