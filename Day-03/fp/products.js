@@ -366,19 +366,38 @@ describe("group", function(){
         var productsByCategory = groupProductsByCategory();
         console.log(productsByCategory);
     })
-    describe('grouping any list by any ....', function(){
-        function group(/*  */){
-            /*  */
+    describe('grouping any list by any key', function(){
+        function group(list, keySelectorFn){
+            var result = {};
+            for (var i = 0; i < list.length; i++){
+                var item = list[i],
+                    key = keySelectorFn(item);
+                if (!(key in result)){
+                    result[key] = [];
+                }
+                result[key].push(item)
+            }
+            return result;
         }
         describe('products by category', function(){
-            var productsByCategory = group(/*  */);
+            var productsByCategory = group(products, function(product){
+                return product.category;
+            })
+            console.log(productsByCategory)
 
         })
         describe('products by cost (costly / affordable)', function(){
-            var productsByCost = group(/*  */)
+            var productsByCost = group(products, function(product){
+                return product.cost <= 50 ? 'affordable' : 'costly'; 
+            });
+            console.log(productsByCost);
         })
-        describe('products by units (understocked / wellstocked)', function(){
-            var productsByUnits = group(/*  */)
+
+         describe('products by units (understocked / wellstocked)', function(){
+            var productsByUnits = group(products, function(product){
+                return product.units < 50 ? 'understocked' : 'wellstocked'
+            })
+            console.log(productsByUnits);
         })
     })
 })
