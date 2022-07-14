@@ -22,6 +22,15 @@ var products = [
 
         - forEach
         - map
+            Transformation
+                [v1, v2, v3, v4] => [t1, t2, t3, t4]
+
+                transformationFn(v) => t
+
+            map(list, transformationFn) //=> [t1, t2, t3, t4]
+
+            Use case:
+                Create a new list of products with the 10% discount applied on the cost
         - group
 
     IMPORTANT:
@@ -195,5 +204,58 @@ describe('Filter', function(){
 
         });
 
+    });
+});
+
+describe('forEach', function(){
+    function forEach(list, fn){
+         for (var i = 0; i < products.length; i++){
+            var product = products[i];
+            fn(product)
+        }
+    }
+    describe('Print Name and Value', function(){
+        /* for (var i = 0; i < products.length; i++){
+            var product = products[i];
+            console.log(product.name, product.cost * product.units)
+        } */
+        forEach(products, function(product){
+            console.log(product.name, product.cost * product.units)
+        });
+    })
+    describe('Print Name and Category', function(){
+        /* for (var i = 0; i < products.length; i++){
+            var product = products[i];
+            console.log(product.name, product.category)
+        } */
+        forEach(products, function(product){
+            console.log(product.name, product.category)
+        });
+    })
+})
+
+describe('map', function(){
+    function map(list, transformationFn){
+        var result = [];
+        for (var i = 0; i < list.length; i++){
+            var item = list[i];
+            var transformedItem = transformationFn(item);
+            result.push(transformedItem)
+        }
+        return result;
+    }
+
+    describe('Products with 10% discount', function(){
+        function transformProductWithDiscount(product){
+            return {
+                id : product.id,
+                name : product.name,
+                cost : product.cost * 0.9,
+                units : product.units,
+                category : product.category
+            }
+        }
+        var productsWithDiscount = map(products, transformProductWithDiscount);
+        console.table(productsWithDiscount);
     });
 });
