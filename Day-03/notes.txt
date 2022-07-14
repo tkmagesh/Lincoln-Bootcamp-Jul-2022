@@ -39,3 +39,13 @@ Inheritance in JavaScript
             Hiding is costly in JavaScript
         
         2. How will I access the base object?
+
+
+    x || y
+        => returns x if x is truthy else returns y (irrespective of the value of y)
+
+    truthy
+        the boolean equivalent of a value is true 
+    false
+        the boolean equivalent of a value is false
+            0, '', null, undefined, NaN, false
