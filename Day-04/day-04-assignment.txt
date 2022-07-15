@@ -10,10 +10,28 @@ var products = [
 Solve the below problems without using a for loop (using the array methods)
 
 1. filter all stationary products
+	let stationaryProducts = products.filter(product => product.category === 'stationary');
+
 2. apply 10% discount to all products
+	products.forEach(product => product.cost = product.cost * 0.9);
+	OR
+	let discountedProducts = products.map(product => ({...product, cost : product.cost * 0.9}));
+
 3. find the min cost from the product list
+	products.reduce((result, product) => product.cost < result ? product.cost : result, Number.MAX_SAFE_VALUE)
+
 4. find the max cost from the product list
+	products.reduce((result, product) => product.cost > result ? product.cost : result, Number.MIN_SAFE_VALUE)
+
 5. find the total product value (cost * units) from the product list
+	products.reduce((result, product) => result + product.cost * product.units, 0)
+	
 6. find the cheapest product
+	let cheapest = products.reduce((p1, p2) => p1.cost < p2.cost ? p1 : p2);
+
 7. create a new product list with only the name, cost & category of the products
+	let transformedProducts = products.map(product => ({name : product.name, cost : product.cost, category : product.category}));
+	let transformedProducts = products.map(({name, cost, category}) => ({name, cost, category}));
+
 8. find the first grocery product in the list
+	products.find(product => product.category === 'grocery')
