@@ -1,0 +1,81 @@
+
+//JavaScript
+function add(x, y) {
+  if (typeof x !== 'number' || typeof y !== 'number') {
+    throw new Error('add: x and y must be numbers');
+  }
+  return x + y;
+}
+
+//C#
+class Calculator{
+    public static int add(int x, int y){
+        return x + y;
+    }
+}
+
+//TypeScript
+
+var no : number = 12
+
+function add(x: number, y: number): number {
+  return x + y;
+}
+
+add("10",20)
+
+    |
+    V
+
+    TypeScript compiler
+
+    |
+    V
+
+function add(x, y) {
+  return x + y;
+}
+
+
+
+
+TypeScript = javascript + type safety
+            = superset of javascript
+                any javascript code is valid typescript code
+
+    Features
+        1. Access modifiers (public, private, protected)
+        2. Static members (static methods, static properties)
+        3. Classes
+        4. Interfaces
+        5. Enums
+        6. Generics
+
+
+    Setup
+        Create a folder (ts-app)
+
+        cd ts-app
+
+        npm init -y
+            Create the package.json file with defaults
+
+        npm install typescript
+            installs the typescript compiler
+
+        .\node_modules\.bin\tsc --init
+            creates a configuration file for the typescript compiler with default settings
+
+        modify the package.json file to include the following in the "scripts"
+            "compile" : "tsc ./*.ts"
+
+        Create a test.ts file
+
+        npm run compile
+            will compile the .ts files to javascript
+
+        modify the package.json file to include the following in the "scripts"
+             "start" : "node test.js"
+
+        npm run start
+            to execute the test.js file
