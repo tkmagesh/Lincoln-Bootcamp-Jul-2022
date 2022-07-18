@@ -290,6 +290,34 @@ class MyList {
         }
         return result;
     }
+    //sort?
+    sort(comparer) {
+        for (var i = 0; i < this.collection.length - 1; i++) {
+            for (var j = i + 1; j < this.collection.length; j++) {
+                if (comparer(this.collection[i], this.collection[j]) > 0) {
+                    var temp = this.collection[i];
+                    this.collection[i] = this.collection[j];
+                    this.collection[j] = temp;
+                }
+            }
+        }
+    }
+    //forEach?
+    forEach(fn) {
+        for (let item of this.collection) {
+            fn(item);
+        }
+    }
+    //map
+    map(transformationFn) {
+        var result = new MyList();
+        for (var i = 0; i < this.collection.length; i++) {
+            var item = this.collection[i];
+            var transformedItem = transformationFn(item);
+            result.add(transformedItem);
+        }
+        return result;
+    }
 }
 let numList = new MyList();
 numList.add(10);
@@ -299,3 +327,6 @@ books.add({ id: 2, title: 'React', isbn: '34682649789', cost: 49.99 });
 books.add({ id: 3, title: 'TypeScript', isbn: '809038388', cost: 29.99 });
 let cheapBooks = books.filter(book => book.cost < 50);
 console.log(cheapBooks.values);
+let discountedBooks = books.map(book => ({ title: book.title, cost: book.cost * 0.9 }));
+console.log("Discounted Books");
+console.log(discountedBooks);
