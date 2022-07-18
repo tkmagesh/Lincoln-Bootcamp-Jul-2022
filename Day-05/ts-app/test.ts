@@ -385,6 +385,17 @@ class MyList<T>{
     public pop() : T | undefined {
         return this.collection.pop()
     }
+
+    //filter?
+    public filter(predicate : (t : T) => boolean) : MyList<T> {
+        let result = new MyList<T>
+        for (let item of this.collection){
+            if (predicate(item)){
+                result.add(item)
+            }
+        }
+        return result
+    }
 } 
 
 let numList = new MyList<number>()
@@ -396,8 +407,12 @@ interface Book {
     isbn : string, 
     cost : number
 }
+
 let books = new MyList<Book>()
 books.add({id : 1, title : 'Angular', isbn : '34723198474', cost : 59.99})
 books.add({id : 2, title : 'React', isbn : '34682649789', cost : 49.99})
 books.add({id : 3, title : 'TypeScript', isbn : '809038388', cost : 29.99})
+
+let cheapBooks = books.filter(book => book.cost < 50)
+console.log(cheapBooks.values)
 

@@ -280,6 +280,16 @@ class MyList {
     pop() {
         return this.collection.pop();
     }
+    //filter?
+    filter(predicate) {
+        let result = new MyList;
+        for (let item of this.collection) {
+            if (predicate(item)) {
+                result.add(item);
+            }
+        }
+        return result;
+    }
 }
 let numList = new MyList();
 numList.add(10);
@@ -287,3 +297,5 @@ let books = new MyList();
 books.add({ id: 1, title: 'Angular', isbn: '34723198474', cost: 59.99 });
 books.add({ id: 2, title: 'React', isbn: '34682649789', cost: 49.99 });
 books.add({ id: 3, title: 'TypeScript', isbn: '809038388', cost: 29.99 });
+let cheapBooks = books.filter(book => book.cost < 50);
+console.log(cheapBooks.values);
