@@ -150,6 +150,36 @@ class Rectangle {
         this.height = height;
         this.width = width;
     }
+    area() {
+        return this.height * this.width;
+    }
+    perimeter() {
+        return 2 * (this.height + this.width);
+    }
+}
+class Circle {
+    constructor(radius) {
+        this.radius = radius;
+    }
+    area() {
+        return (22 / 7) * this.radius * this.radius;
+    }
+    perimeter() {
+        return 2 * (22 / 7) * this.radius;
+    }
+}
+function printStats( /*  */) {
+    /* ..... ? ..... */
 }
 let box = new Rectangle(10, 11);
-console.log(box.height);
+/*
+console.log("Area = ", box.area())
+console.log("Perimiter = ", box.perimeter())
+*/
+printStats(box);
+let circle = new Circle(12);
+/*
+console.log("Area = ", circle.area())
+console.log("Perimiter = ", circle.perimeter())
+*/
+printStats(circle);

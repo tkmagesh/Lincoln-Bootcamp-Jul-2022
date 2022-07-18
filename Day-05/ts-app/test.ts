@@ -159,7 +159,7 @@ class Employee{
 
     readonly city : string = ''
     #salary : number = 0;
-    
+
     set id(val : number){
         console.log('id (set) invoked')
         if (val <= 0){
@@ -218,10 +218,50 @@ class Rectangle{
     constructor(public height : number, public width : number){
 
     }
+
+    area() : number {
+        return this.height * this.width;
+    }
+
+    perimeter() : number {
+        return 2 * (this.height + this.width)
+    }
+
+}
+
+class Circle{
+    constructor(public radius : number){
+
+    }
+
+    area() : number {
+        return (22/7) * this.radius * this.radius 
+    }
+
+    perimeter() : number {
+        return 2 * (22/7) * this.radius
+    }
+}
+
+function printStats(/*  */){
+    /* ..... ? ..... */
 }
 
 let box : Rectangle = new Rectangle(10, 11)
-console.log(box.height)
+/* 
+console.log("Area = ", box.area())
+console.log("Perimiter = ", box.perimeter()) 
+*/
+
+printStats(box);
+
+let circle : Circle = new Circle(12)
+/* 
+console.log("Area = ", circle.area())
+console.log("Perimiter = ", circle.perimeter()) 
+*/
+
+printStats(circle)
 
 
 

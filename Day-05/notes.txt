@@ -101,3 +101,18 @@ Enhance JS features
 
 
 
+TypeScript  Assignment
+Create a Circle class 
+    Property 
+        - radius
+    methods
+        - Area() : number 
+        - Perimeter() : number
+
+Create a Rectangle class
+    Property 
+        - length
+        - width
+    methods
+        - Area() : number 
+        - Perimeter() : number
