@@ -134,8 +134,25 @@ newEmp.display();
 //newEmp.id = -200 // => throws an error
 newEmp.id = 200;
 console.log(newEmp.id);
-class Rectangle {
-    constructor(height, width) {
+/*
+class Rectangle{
+    public height : number = 0;
+    public width : number = 0;
+
+    constructor(height : number, width : number){
+        this.height = height;
+        this.width = width;
+    }
+}
+*/
+class ShapeBase {
+    constructor(name) {
+        this.name = name;
+    }
+}
+class Rectangle extends ShapeBase {
+    constructor(name, height, width) {
+        super(name);
         this.height = height;
         this.width = width;
     }
@@ -146,8 +163,9 @@ class Rectangle {
         return 2 * (this.height + this.width);
     }
 }
-class Circle {
-    constructor(radius) {
+class Circle extends ShapeBase {
+    constructor(name, radius) {
+        super(name);
         this.radius = radius;
     }
     area() {
@@ -158,18 +176,21 @@ class Circle {
     }
 }
 function printStats(obj) {
+    console.log('Name = ', obj.name);
+    //let objAsShape = (obj as unknown) as Shape;
     console.log("Area = ", obj.area());
     console.log("Perimiter = ", obj.perimeter());
 }
-let box = new Rectangle(10, 11);
+let box = new Rectangle("rectangle", 10, 11);
 /*
 console.log("Area = ", box.area())
 console.log("Perimiter = ", box.perimeter())
 */
 printStats(box);
-let circle = new Circle(12);
+let circle = new Circle("circle", 12);
 /*
 console.log("Area = ", circle.area())
 console.log("Perimiter = ", circle.perimeter())
 */
 printStats(circle);
+let sb = new ShapeBase();

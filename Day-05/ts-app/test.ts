@@ -214,14 +214,25 @@ class Rectangle{
 } 
 */
 
+abstract class ShapeBase implements Shape{
+    
+    constructor(public name : string){
+
+    }
+
+    abstract area(): number;
+    abstract perimeter(): number;
+
+}
+
 interface Shape{
     area() : number,
     perimeter() : number
 }
 
-class Rectangle implements Shape{
-    constructor(public height : number, public width : number){
-
+class Rectangle extends ShapeBase implements Shape {
+    constructor(name : string, public height : number, public width : number){
+        super(name)
     }
 
     area() : number {
@@ -234,9 +245,9 @@ class Rectangle implements Shape{
 
 }
 
-class Circle implements Shape{
-    constructor(public radius : number){
-
+class Circle extends ShapeBase implements Shape{
+    constructor(name : string, public radius : number){
+        super(name)
     }
 
     area() : number {
@@ -250,12 +261,14 @@ class Circle implements Shape{
 
 
 
-function printStats(obj : Shape){
+function printStats(obj : ShapeBase){
+    console.log('Name = ', obj.name)
+    //let objAsShape = (obj as unknown) as Shape;
     console.log("Area = ", obj.area())
     console.log("Perimiter = ", obj.perimeter()) 
 }
 
-let box : Rectangle = new Rectangle(10, 11)
+let box : Rectangle = new Rectangle("rectangle", 10, 11)
 /* 
 console.log("Area = ", box.area())
 console.log("Perimiter = ", box.perimeter()) 
@@ -263,7 +276,7 @@ console.log("Perimiter = ", box.perimeter())
 
 printStats(box);
 
-let circle : Circle = new Circle(12)
+let circle : Circle = new Circle("circle", 12)
 /* 
 console.log("Area = ", circle.area())
 console.log("Perimiter = ", circle.perimeter()) 
@@ -273,5 +286,5 @@ printStats(circle)
 
 
 
-
+let sb : ShapeBase = new ShapeBase()
 
