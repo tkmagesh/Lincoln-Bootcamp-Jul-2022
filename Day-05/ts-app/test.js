@@ -134,17 +134,6 @@ newEmp.display();
 //newEmp.id = -200 // => throws an error
 newEmp.id = 200;
 console.log(newEmp.id);
-/*
-class Rectangle{
-    public height : number = 0;
-    public width : number = 0;
-
-    constructor(height : number, width : number){
-        this.height = height;
-        this.width = width;
-    }
-}
-*/
 class Rectangle {
     constructor(height, width) {
         this.height = height;
@@ -168,8 +157,9 @@ class Circle {
         return 2 * (22 / 7) * this.radius;
     }
 }
-function printStats( /*  */) {
-    /* ..... ? ..... */
+function printStats(obj) {
+    console.log("Area = ", obj.area());
+    console.log("Perimiter = ", obj.perimeter());
 }
 let box = new Rectangle(10, 11);
 /*

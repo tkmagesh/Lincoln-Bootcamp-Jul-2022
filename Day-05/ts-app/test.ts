@@ -214,7 +214,12 @@ class Rectangle{
 } 
 */
 
-class Rectangle{
+interface Shape{
+    area() : number,
+    perimeter() : number
+}
+
+class Rectangle implements Shape{
     constructor(public height : number, public width : number){
 
     }
@@ -229,7 +234,7 @@ class Rectangle{
 
 }
 
-class Circle{
+class Circle implements Shape{
     constructor(public radius : number){
 
     }
@@ -243,8 +248,11 @@ class Circle{
     }
 }
 
-function printStats(/*  */){
-    /* ..... ? ..... */
+
+
+function printStats(obj : Shape){
+    console.log("Area = ", obj.area())
+    console.log("Perimiter = ", obj.perimeter()) 
 }
 
 let box : Rectangle = new Rectangle(10, 11)
