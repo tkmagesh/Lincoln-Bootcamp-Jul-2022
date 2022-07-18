@@ -156,6 +156,10 @@ class Rectangle extends ShapeBase {
         this.height = height;
         this.width = width;
     }
+    //static method
+    static From(dimensions) {
+        return new Rectangle(Rectangle.shapeName, dimensions[0], dimensions[1]);
+    }
     area() {
         return this.height * this.width;
     }
@@ -163,10 +167,16 @@ class Rectangle extends ShapeBase {
         return 2 * (this.height + this.width);
     }
 }
+//static field
+Rectangle.shapeName = "rectangle";
 class Circle extends ShapeBase {
     constructor(name, radius) {
         super(name);
         this.radius = radius;
+    }
+    //static method
+    static From(r) {
+        return new Circle(Circle.shapeName, r);
     }
     area() {
         return (22 / 7) * this.radius * this.radius;
@@ -175,6 +185,8 @@ class Circle extends ShapeBase {
         return 2 * (22 / 7) * this.radius;
     }
 }
+// static field
+Circle.shapeName = "circle";
 function printStats(obj) {
     console.log('Name = ', obj.name);
     //let objAsShape = (obj as unknown) as Shape;
@@ -193,4 +205,85 @@ console.log("Area = ", circle.area())
 console.log("Perimiter = ", circle.perimeter())
 */
 printStats(circle);
-let sb = new ShapeBase();
+//static members
+// => members that are accessible with the 'class' reference (not with the instance)
+let r1 = Rectangle.From([10, 20]);
+printStats(r1);
+let c1 = Circle.From(10);
+printStats(c1);
+//Generic
+//let list : number[] = [];
+/* class NumberList{
+    private collection : number[] = [];
+
+    public add(no : number) : void {
+        this.collection.push(no);
+    }
+
+    public get values() : number[] {
+        return [...this.collection]
+    }
+
+    public pop() : number | undefined {
+        return this.collection.pop()
+    }
+}
+
+let numList : NumberList = new NumberList()
+numList.add(10)
+numList.add(20)
+numList.add(30)
+console.log("numList values = ", numList.values)
+
+class StringList{
+    private collection : string[] = [];
+
+    public add(no : string) : void {
+        this.collection.push(no);
+    }
+
+    public get values() : string[] {
+        return [...this.collection]
+    }
+
+    public pop() : string | undefined {
+        return this.collection.pop()
+    }
+} */
+/*
+class MyList{
+    private collection : any[] = [];
+
+    public add(no : any) : void {
+        this.collection.push(no);
+    }
+
+    public get values() : any[] {
+        return [...this.collection]
+    }
+
+    public pop() : any | undefined {
+        return this.collection.pop()
+    }
+}
+*/
+class MyList {
+    constructor() {
+        this.collection = [];
+    }
+    add(no) {
+        this.collection.push(no);
+    }
+    get values() {
+        return [...this.collection];
+    }
+    pop() {
+        return this.collection.pop();
+    }
+}
+let numList = new MyList();
+numList.add(10);
+let books = new MyList();
+books.add({ id: 1, title: 'Angular', isbn: '34723198474', cost: 59.99 });
+books.add({ id: 2, title: 'React', isbn: '34682649789', cost: 49.99 });
+books.add({ id: 3, title: 'TypeScript', isbn: '809038388', cost: 29.99 });

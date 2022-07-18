@@ -230,9 +230,18 @@ interface Shape{
     perimeter() : number
 }
 
-class Rectangle extends ShapeBase implements Shape {
+class Rectangle extends ShapeBase  {
+
+    //static field
+    static shapeName : string = "rectangle";
+
     constructor(name : string, public height : number, public width : number){
         super(name)
+    }
+
+    //static method
+    static From(dimensions : number[]) : Rectangle{
+        return new Rectangle(Rectangle.shapeName, dimensions[0], dimensions[1])
     }
 
     area() : number {
@@ -245,9 +254,18 @@ class Rectangle extends ShapeBase implements Shape {
 
 }
 
-class Circle extends ShapeBase implements Shape{
+class Circle extends ShapeBase {
+
+    // static field
+    static shapeName :string = "circle";
+
     constructor(name : string, public radius : number){
         super(name)
+    }
+
+    //static method
+    static From(r : number) : Circle {
+        return new Circle(Circle.shapeName, r)
     }
 
     area() : number {
@@ -284,7 +302,102 @@ console.log("Perimiter = ", circle.perimeter())
 
 printStats(circle)
 
+//static members
+    // => members that are accessible with the 'class' reference (not with the instance)
+
+let r1 = Rectangle.From([10, 20])
+printStats(r1)
+
+let c1 = Circle.From(10)
+printStats(c1)
 
 
-let sb : ShapeBase = new ShapeBase()
+//Generic
+
+//let list : number[] = [];
+/* class NumberList{
+    private collection : number[] = [];
+
+    public add(no : number) : void {
+        this.collection.push(no);
+    }
+
+    public get values() : number[] {
+        return [...this.collection]
+    }
+
+    public pop() : number | undefined {
+        return this.collection.pop()
+    }
+}
+
+let numList : NumberList = new NumberList()
+numList.add(10)
+numList.add(20)
+numList.add(30)
+console.log("numList values = ", numList.values)
+
+class StringList{
+    private collection : string[] = [];
+
+    public add(no : string) : void {
+        this.collection.push(no);
+    }
+
+    public get values() : string[] {
+        return [...this.collection]
+    }
+
+    public pop() : string | undefined {
+        return this.collection.pop()
+    }
+} */
+
+/* 
+class MyList{
+    private collection : any[] = [];
+
+    public add(no : any) : void {
+        this.collection.push(no);
+    }
+
+    public get values() : any[] {
+        return [...this.collection]
+    }
+
+    public pop() : any | undefined {
+        return this.collection.pop()
+    }
+} 
+*/
+
+class MyList<T>{
+    private collection : T[] = [];
+
+    public add(no : T) : void {
+        this.collection.push(no);
+    }
+
+    public get values() : T[] {
+        return [...this.collection]
+    }
+
+    public pop() : T | undefined {
+        return this.collection.pop()
+    }
+} 
+
+let numList = new MyList<number>()
+numList.add(10)
+
+interface Book { 
+    id : number, 
+    title : string, 
+    isbn : string, 
+    cost : number
+}
+let books = new MyList<Book>()
+books.add({id : 1, title : 'Angular', isbn : '34723198474', cost : 59.99})
+books.add({id : 2, title : 'React', isbn : '34682649789', cost : 49.99})
+books.add({id : 3, title : 'TypeScript', isbn : '809038388', cost : 29.99})
 
