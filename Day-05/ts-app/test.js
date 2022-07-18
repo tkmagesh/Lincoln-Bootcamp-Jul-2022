@@ -86,8 +86,39 @@ let emp = { id: 100, name: 'Magesh', city: 'Bangalore' };
 let addOperation = (x, y) => x + y;
 let multiplyOperation = (x, y) => x * y; //type inference
 let calc = {
+    result: 0,
     add: (x, y) => x + y,
     subtract: (x, y) => x - y,
     multiply: (x, y) => x * y,
     divide: (x, y) => x / y,
 };
+//Classes
+class Employee {
+    constructor(id, name, city) {
+        this._id = 0;
+        this.name = '';
+        this.city = '';
+        this._id = id;
+        this.name = name;
+        this.city = city;
+    }
+    set id(val) {
+        console.log('id (set) invoked');
+        if (val <= 0) {
+            throw new Error('id cannot be zero or negative value');
+        }
+        this._id = val;
+    }
+    get id() {
+        console.log('id (get) invoked');
+        return this._id;
+    }
+    display() {
+        console.log(`id = ${this._id}, name = ${this.name}, city = ${this.city}`);
+    }
+}
+let newEmp = new Employee(100, 'Magesh', 'Bangalore');
+newEmp.display();
+//newEmp.id = -200 // => throws an error
+newEmp.id = 200;
+console.log(newEmp.id);

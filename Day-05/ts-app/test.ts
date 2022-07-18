@@ -136,16 +136,60 @@ let addOperation : MathOperation = (x : number, y : number) : number => x + y;
 let multiplyOperation : MathOperation = (x,y) => x * y  //type inference
 
 //
-interface Calculator {
+interface MathCalculator {
+    result : number,
     add : MathOperation,
     subtract : MathOperation,
     multiply :MathOperation,
     divide : MathOperation
 }
 
-let calc : Calculator = {
+let calc : MathCalculator = {
+    result : 0,
     add : (x,y) => x + y,
     subtract : (x,y) => x - y,
     multiply : (x,y) => x * y,
     divide : (x,y) => x / y,
 }
+
+//Classes
+class Employee{
+    private _id : number = 0;
+    name : string = '';
+    city : string = ''
+
+    set id(val : number){
+        console.log('id (set) invoked')
+        if (val <= 0){
+            throw new Error('id cannot be zero or negative value')
+        }
+        this._id = val;
+    }
+
+    get id() : number {
+        console.log('id (get) invoked')
+        return this._id;
+    }
+
+    constructor(id : number, name : string, city : string){
+        this._id = id;
+        this.name = name;
+        this.city = city;
+    }
+
+    display(){
+        console.log(`id = ${this._id}, name = ${this.name}, city = ${this.city}`)
+    }
+}
+
+let newEmp : Employee = new Employee(100, 'Magesh', 'Bangalore')
+newEmp.display()
+//newEmp.id = -200 // => throws an error
+newEmp.id = 200
+console.log(newEmp.id)
+
+
+
+
+
+
