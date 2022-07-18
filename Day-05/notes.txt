@@ -79,3 +79,25 @@ TypeScript = javascript + type safety
 
         npm run start
             to execute the test.js file
+
+Microsoft - Internet Explorer
+Mozilla - Firefox
+Apple - Safari
+Google - Chrome
+
+
+Dart (Replace JavaScript)
+
+Highlevel languages that compile to JavaScript
+    
+    CoffeeScript
+    Java to JS Compiler
+    Script# (C# to JavaScript)
+    TypeScript
+
+Enhance JS features
+    ES6
+
+
+
+
