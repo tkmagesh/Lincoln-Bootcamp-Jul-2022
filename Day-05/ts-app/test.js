@@ -1,4 +1,5 @@
 "use strict";
+var _Employee_salary;
 console.log("Hi there");
 let no = 10;
 function add(x, y) {
@@ -96,9 +97,10 @@ let calc = {
 class Employee {
     constructor(id, name, city) {
         this._id = 0;
-        this.name = '';
+        this._name = '';
         this.city = '';
-        this._id = id;
+        _Employee_salary.set(this, 0);
+        this.id = id;
         this.name = name;
         this.city = city;
     }
@@ -113,12 +115,41 @@ class Employee {
         console.log('id (get) invoked');
         return this._id;
     }
+    get name() {
+        return this._name;
+    }
+    set name(val) {
+        if (val === '') {
+            throw new Error('Name cannot be empty');
+        }
+        this._name = val;
+    }
     display() {
         console.log(`id = ${this._id}, name = ${this.name}, city = ${this.city}`);
     }
 }
+_Employee_salary = new WeakMap();
 let newEmp = new Employee(100, 'Magesh', 'Bangalore');
 newEmp.display();
 //newEmp.id = -200 // => throws an error
 newEmp.id = 200;
 console.log(newEmp.id);
+/*
+class Rectangle{
+    public height : number = 0;
+    public width : number = 0;
+
+    constructor(height : number, width : number){
+        this.height = height;
+        this.width = width;
+    }
+}
+*/
+class Rectangle {
+    constructor(height, width) {
+        this.height = height;
+        this.width = width;
+    }
+}
+let box = new Rectangle(10, 11);
+console.log(box.height);

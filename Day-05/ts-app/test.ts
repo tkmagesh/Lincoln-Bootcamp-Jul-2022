@@ -155,9 +155,11 @@ let calc : MathCalculator = {
 //Classes
 class Employee{
     private _id : number = 0;
-    name : string = '';
-    city : string = ''
+    private _name : string = '';
 
+    readonly city : string = ''
+    #salary : number = 0;
+    
     set id(val : number){
         console.log('id (set) invoked')
         if (val <= 0){
@@ -171,8 +173,19 @@ class Employee{
         return this._id;
     }
 
+    public get name() : string {
+        return this._name
+    }
+
+    private set name (val : string){
+        if (val === ''){
+            throw new Error('Name cannot be empty')
+        }
+        this._name = val;
+    }
+
     constructor(id : number, name : string, city : string){
-        this._id = id;
+        this.id = id;
         this.name = name;
         this.city = city;
     }
@@ -188,6 +201,27 @@ newEmp.display()
 newEmp.id = 200
 console.log(newEmp.id)
 
+
+/* 
+class Rectangle{
+    public height : number = 0;
+    public width : number = 0;
+
+    constructor(height : number, width : number){
+        this.height = height;
+        this.width = width;
+    }
+} 
+*/
+
+class Rectangle{
+    constructor(public height : number, public width : number){
+
+    }
+}
+
+let box : Rectangle = new Rectangle(10, 11)
+console.log(box.height)
 
 
 
