@@ -35,6 +35,7 @@ function doSomething() {
     console.log('doing something');
 }
 doSomething();
+//Day-06
 //Enum //collection of named values
 /*
 red = 1

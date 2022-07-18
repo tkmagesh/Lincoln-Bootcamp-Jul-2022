@@ -49,6 +49,9 @@ function doSomething() : void {
 }
 doSomething()
 
+
+//Day-06
+
 //Enum //collection of named values
 
 /* 
