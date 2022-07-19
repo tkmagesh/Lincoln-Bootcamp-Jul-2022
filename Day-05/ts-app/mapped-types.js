@@ -35,3 +35,4 @@ let nullableAddress = {
     city: "Bangalure",
     zipcode: 560043
 };
+// Utility Type Reference : https://www.typescriptlang.org/docs/handbook/utility-types.html

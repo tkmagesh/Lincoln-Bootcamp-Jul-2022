@@ -174,3 +174,22 @@ interface PartialProduct {
     manufactorur? : string
 }
 
+Day-07 assignment:
+    Create a typed version of the "group" function (discussed in the functional programming section)
+
+Modules
+
+Legacy Standard
+    AMD (Asynchronous Module Definition)
+
+    CommonJS (Common Javascript)
+        Used in node.js
+
+    ES6 Module System (ES6) (inspired from typescript)
+
+
+ES6 Module System
+    Anything defined in a (js/ts) file is considered PRIVATE by default
+    All public entities have to be explicitly EXPORTed
+    Any public entity from another file has to explicitly IMPORTed
+

@@ -150,7 +150,7 @@ type NameType = Record<LivingThingType, string>
 type Ageless = Exclude<keyof Human, "age">
 
 
-
+// Utility Type Reference : https://www.typescriptlang.org/docs/handbook/utility-types.html
 
 
 
