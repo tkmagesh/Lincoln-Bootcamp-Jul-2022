@@ -237,4 +237,13 @@ let readOnlyEmployee = readOnly({
     city : 'Bangalure'
 })
 
-readOnlyEmployee.id = 200
+//optional (?)
+interface Address{
+    doorNo : string,
+    line1 : string,
+    line2? : string,
+    city : string,
+    zipcode : number
+}
+
+let address : Address = { doorNo : "102-A", line1 : "", city : "Bangalure", zipcode : 560043}

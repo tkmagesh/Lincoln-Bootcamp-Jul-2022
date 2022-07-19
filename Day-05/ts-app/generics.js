@@ -154,4 +154,4 @@ let readOnlyEmployee = readOnly({
     name: 'Magesh',
     city: 'Bangalure'
 });
-readOnlyEmployee.id = 200;
+let address = { doorNo: "102-A", line1: "", city: "Bangalure", zipcode: 560043 };

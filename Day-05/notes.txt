@@ -116,3 +116,61 @@ Create a Rectangle class
     methods
         - Area() : number 
         - Perimeter() : number
+
+
+REST (Representational State Transfer)
+
+    Data as a resource
+
+What Data? (URL)
+    http://myapi.com/products
+    http://myapi.com/products/P-101
+    http://myapi.com/categories
+    http://myapi.com/categories/stationary
+    http://myapi.com/categories/stationary/products
+
+Operation? HTTP Verbs (Methods)
+    GET (Read)
+    
+    DELETE (Remove)
+        http://myApi.com/products/P-101
+
+    POST (Insert)
+    
+    PUT (Update)
+        http://myApi.com/products/P-101
+
+    PATCH (Partial Update)
+        http://myApi.com/products/P-101
+
+    PATCH
+    {
+        cost : 9, (updated)  
+    }
+
+interface Product {
+    id : number,
+    name : string,
+    cost : number,
+    units : number,
+    category : string,
+    manufacturer : string
+}
+
+POST (Insert)
+    Product
+
+PUT (Update)
+    Product
+
+PATCH (Partial Update)
+
+interface PartialProduct {
+    id? : number,
+    name? : string,
+    cost? : number,
+    units? : number,
+    category? : string,
+    manufactorur? : string
+}
+
