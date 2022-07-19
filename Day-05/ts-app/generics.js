@@ -139,19 +139,15 @@ printProps(penObj, ['id']);
     Name : id, Value : 6
 */
 printProps(penObj, ['cost', 'units']);
-let pencilObj = { id: 9, name: 'Ten', cost: 70, units: 70, category: 'stationary', manufacturer: 'IBM', discount: 10 };
-console.log(pencilObj);
-/* let readOnlyEmployee : ReadOnlyType<EmployeeType> = {
-    id : 100,
-    name : 'Magesh',
-    city : 'Bangalure'
+/*
+    Name : cost, Value : 50
+    Name : units, Value : 20
+*/
+//Index Signature
+/* interface Product {
+    id : number,
+    name : string,
+    cost : number,
+    units : number,
+    category : string
 } */
-function readOnly(obj) {
-    return Object.freeze(obj);
-}
-let readOnlyEmployee = readOnly({
-    id: 100,
-    name: 'Magesh',
-    city: 'Bangalure'
-});
-let address = { doorNo: "102-A", line1: "", city: "Bangalure", zipcode: 560043 };
