@@ -185,4 +185,45 @@ printProps(penObj, ['cost', 'units'])
 */
 
 
+//Index Signature
 
+/* interface Product {
+    id : number,
+    name : string,
+    cost : number,
+    units : number,
+    category : string
+} */
+
+/* A product is a type with the keys as strings and values as strings or numbers */
+
+interface ProductType {
+    readonly [key : string] : number | string
+}
+
+let pencilObj : ProductType = {id : 9, name : 'Ten', cost : 70, units : 70, category : 'stationary', manufacturer : 'IBM', discount : 10}
+
+console.log(pencilObj)
+
+interface EmployeeType{
+    id : number,
+    name : string,
+    city : string
+}
+
+/* 
+interface ReadOnlyEmployeeType {
+    readonly id : number,
+    readonly name : string,
+    readonly city : string
+} 
+*/
+
+type ReadOnlyType<T> = { readonly [key in keyof T] : T[key] };
+
+let readOnlyEmployee : ReadOnlyType<EmployeeType> = {
+    id : 100,
+    name : 'Magesh',
+    city : 'Bangalure'
+}
+ 

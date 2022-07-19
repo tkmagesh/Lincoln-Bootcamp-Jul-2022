@@ -139,7 +139,10 @@ printProps(penObj, ['id']);
     Name : id, Value : 6
 */
 printProps(penObj, ['cost', 'units']);
-/*
-    Name : cost, Value : 50
-    Name : units, Value : 20
-*/
+let pencilObj = { id: 9, name: 'Ten', cost: 70, units: 70, category: 'stationary', manufacturer: 'IBM', discount: 10 };
+console.log(pencilObj);
+let readOnlyEmployee = {
+    id: 100,
+    name: 'Magesh',
+    city: 'Bangalure'
+};
