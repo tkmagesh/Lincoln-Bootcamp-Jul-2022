@@ -127,6 +127,24 @@ type AddressInput = {
 type AddressInput = Record<keyof Address, string>
 
 
+//7. Extract (Alows us to extract from a set of types the one that is common in another type)
+
+interface Animal {
+    name : string,
+    sound : string,
+    age : number
+}
+
+interface Human {
+    name : string,
+    nickname : string,
+    age : number
+}
+
+type LivingThingType = Extract<keyof Animal, keyof Human>
+
+type NameType = Record<LivingThingType, string>
+
 
 
 
