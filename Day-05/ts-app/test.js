@@ -269,7 +269,8 @@ class MyList{
 */
 class MyList {
     constructor() {
-        this.collection = [];
+        //private collection : T[] = [];
+        this.collection = new Array();
     }
     add(no) {
         this.collection.push(no);
@@ -318,15 +319,30 @@ class MyList {
         }
         return result;
     }
+    group(keySelectorFn) {
+        var _a;
+        var result = new Map();
+        for (var i = 0; i < this.collection.length; i++) {
+            var item = this.collection[i], key = keySelectorFn(item);
+            if (!result.has(key))
+                result.set(key, []);
+            (_a = result.get(key)) === null || _a === void 0 ? void 0 : _a.push(item);
+        }
+        return result;
+    }
 }
 let numList = new MyList();
 numList.add(10);
 let books = new MyList();
-books.add({ id: 1, title: 'Angular', isbn: '34723198474', cost: 59.99 });
-books.add({ id: 2, title: 'React', isbn: '34682649789', cost: 49.99 });
-books.add({ id: 3, title: 'TypeScript', isbn: '809038388', cost: 29.99 });
+books.add({ id: 1, title: 'Angular', isbn: '34723198474', cost: 59.99, subject: "FrontEnd" });
+books.add({ id: 2, title: 'React', isbn: '34682649789', cost: 49.99, subject: "FrontEnd" });
+books.add({ id: 3, title: 'TypeScript', isbn: '809038388', cost: 29.99, subject: "FrontEnd" });
+books.add({ id: 4, title: 'Nodejs', isbn: '809038388', cost: 29.99, subject: "Backend" });
 let cheapBooks = books.filter(book => book.cost < 50);
 console.log(cheapBooks.values);
 let discountedBooks = books.map(book => ({ title: book.title, cost: book.cost * 0.9 }));
 console.log("Discounted Books");
 console.log(discountedBooks);
+let titles = books.map(book => book.title);
+let booksBySubject = books.group(book => book.subject);
+console.log(booksBySubject);
