@@ -37,15 +37,24 @@ class List {
 let numberList = new List(); //=> restricted only to handle numbers
 let stringList = new List(); //=> restricted only to handle strings
 let nos = new Array();
-//generic function
-function addItem(list, item) {
-    return [...list, item];
+/*
+function addItem<T>(list : T[], item : T) : T[] {
+    return [...list, item]
 }
+*/
+//the above function implementation as an arrow function
+const addItem = (list, item) => ([...list, item]);
 let nums = [10, 20, 30];
+/*
+let newNums = addItem<number>(nums, 40)
+newNums = addItem<number>(newNums, 'something' ) //=> should not be allowed
+*/
+//generic inference
 let newNums = addItem(nums, 40);
-newNums = addItem(newNums, 'something'); //=> should not be allowed
+//newNums = addItem(newNums, 'something' ) //=> should not be allowed
 console.log(newNums);
 let productNames = ['Pen', 'Pencil', 'Marker'];
 let newProductNames = addItem(productNames, 'Scribble-Pad');
-newProductNames = addItem(newProductNames, 1000); //should not be allowed
+//newProductNames = addItem(newProductNames, 1000) //should not be allowed
 console.log(newProductNames);
+//write a type-safe generic "find" function that will return the first item that satisfies the given criteria (predicate)
