@@ -109,6 +109,26 @@ type AddressLines = Omit<Address, "doorNo" | "city" | "zipcode">
 
 
 
+//6. Record (To create a type containing all the attributes of the same type)
+type Dummy = Record<"m1" | "m2" | "m3", string>
+
+/* 
+type AddressInput = {
+    doorNo : string,
+    line1 : string,
+    line2? : string,
+    city : string,
+    zipcode : string
+} 
+*/
+
+//type AddressInput = Record<"doorNo" | "line1" | "line2" | "city" | "zipcode", string>
+
+type AddressInput = Record<keyof Address, string>
+
+
+
+
 
 
 
