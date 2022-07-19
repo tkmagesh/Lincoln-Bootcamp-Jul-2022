@@ -145,6 +145,11 @@ type LivingThingType = Extract<keyof Animal, keyof Human>
 
 type NameType = Record<LivingThingType, string>
 
+//8. Exclude (takes all the properties from the given type except the specified one)
+
+type Ageless = Exclude<keyof Human, "age">
+
+
 
 
 
