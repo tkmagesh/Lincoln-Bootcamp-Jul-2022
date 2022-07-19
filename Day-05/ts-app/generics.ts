@@ -112,7 +112,7 @@ function map<T1,T2>(sourceList : T1[], transformationFn : (item : T1) => T2) : T
 }
 
 // type constraint
-function print<T extends number | string >(x : T, y : T) : T {
+function print<T extends number | string >(x : T, y : T) : void {
     console.log(x,y)
 }
 
@@ -167,16 +167,18 @@ let products = [
 ]
 
 //problem
-function printProps(/*  */) {
-
+function printProps<T, Key extends keyof T>(obj : T, attrs : Key[]) : void {
+    for (let key of attrs){
+        console.log(`Name = ${String(key)}, Value = ${obj[key]}`)
+    }
 }
 
-let pen = {id : 6, name : 'Pen', cost : 50, units : 20, category : 'stationary'}
-printProps(pen, ['id'])
+let penObj = {id : 6, name : 'Pen', cost : 50, units : 20, category : 'stationary'}
+printProps(penObj, ['id'])
 /* 
     Name : id, Value : 6
 */
-printProps(pen, ['cost', 'units'])
+printProps(penObj, ['cost', 'units'])
 /* 
     Name : cost, Value : 50
     Name : units, Value : 20

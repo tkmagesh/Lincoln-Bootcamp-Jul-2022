@@ -128,14 +128,17 @@ let products = [
     { id: 7, name: 'Mouse', cost: 100, units: 20, category: 'electronics' }
 ];
 //problem
-function printProps( /*  */) {
+function printProps(obj, attrs) {
+    for (let key of attrs) {
+        console.log(`Name = ${String(key)}, Value = ${obj[key]}`);
+    }
 }
-let pen = { id: 6, name: 'Pen', cost: 50, units: 20, category: 'stationary' };
-printProps(pen, ['id']);
+let penObj = { id: 6, name: 'Pen', cost: 50, units: 20, category: 'stationary' };
+printProps(penObj, ['id']);
 /*
     Name : id, Value : 6
 */
-printProps(pen, ['cost', 'units']);
+printProps(penObj, ['cost', 'units']);
 /*
     Name : cost, Value : 50
     Name : units, Value : 20
