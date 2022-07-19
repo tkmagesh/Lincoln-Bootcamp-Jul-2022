@@ -35,10 +35,3 @@ let nullableAddress = {
     city: "Bangalure",
     zipcode: 560043
 };
-/*
-type CustomPick<T, K extends keyof T> = {
-    [key in K] : T[key]
-}
-
-type ShortAddress2 = CustomPick<Address, "doorNo" | "line1">
-*/

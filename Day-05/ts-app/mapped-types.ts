@@ -89,10 +89,10 @@ let nullableAddress : Nullable<Address> = {
      zipcode : 560043
 };
 
+
+
 //4. Pick (Creating a subtype from an existing type)
 //ShortAddress = ONLY doorNo, city, zipcode 
-
-
 
 type ShortAddress = Pick<Address, "doorNo" | "city" | "zipcode">
 
@@ -103,6 +103,11 @@ type CustomPick<T, K extends keyof T> = {
 
 type ShortAddress2 = CustomPick<Address, "doorNo" | "line1"> 
 */
+
+//5. Omit (Creating a subtype with all the attributes except the given ones)
+type AddressLines = Omit<Address, "doorNo" | "city" | "zipcode">
+
+
 
 
 
