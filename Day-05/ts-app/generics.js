@@ -57,4 +57,30 @@ let productNames = ['Pen', 'Pencil', 'Marker'];
 let newProductNames = addItem(productNames, 'Scribble-Pad');
 //newProductNames = addItem(newProductNames, 1000) //should not be allowed
 console.log(newProductNames);
-//write a type-safe generic "find" function that will return the first item that satisfies the given criteria (predicate)
+function find(list, predicateFn) {
+    for (let val of list) {
+        if (predicateFn(val)) {
+            return val;
+        }
+    }
+    return undefined;
+}
+//write a type-safe generic filter function
+function filter(list, predicateFn) {
+    let result = [];
+    for (let val of list) {
+        if (predicateFn(val)) {
+            result.push(val);
+        }
+    }
+    return result;
+}
+//handling multiple types
+function map(sourceList /*list of sourceType*/, transformationFn /* (sourceType) => targetType*/) {
+    let result /* : targetType[] */ = [];
+    for (let val of sourceList) {
+        let transformedVal = transformationFn(val);
+        result.push(transformedVal);
+    }
+    return result;
+}

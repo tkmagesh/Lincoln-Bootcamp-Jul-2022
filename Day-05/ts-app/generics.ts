@@ -79,8 +79,36 @@ console.log(newProductNames)
 
 //write a type-safe generic "find" function that will return the first item that satisfies the given criteria (predicate)
 
+type predicate<T> = (item : T) => boolean
 
+function find<T>(list : T[], predicateFn : predicate<T>) : T | undefined {
+    for (let val of list){
+        if (predicateFn(val)) {
+            return val
+        }
+    }
+    return undefined;
+}
 
+//write a type-safe generic filter function
+function filter<T>(list : T[], predicateFn : predicate<T>) : T[] {
+    let result : T[] = [];
+    for (let val of list){
+        if (predicateFn(val)) {
+            result.push(val)
+        }
+    }
+    return result;
+}
 
+//handling multiple types
+function map(sourceList /*list of sourceType*/, transformationFn /* (sourceType) => targetType*/) /*targetList - list of targetType*/ {
+    let result /* : targetType[] */ = [];
+    for (let val of sourceList){
+        let transformedVal = transformationFn(val);
+        result.push(transformedVal);
+    }
+    return result
+}
 
 
