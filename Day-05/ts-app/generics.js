@@ -141,8 +141,17 @@ printProps(penObj, ['id']);
 printProps(penObj, ['cost', 'units']);
 let pencilObj = { id: 9, name: 'Ten', cost: 70, units: 70, category: 'stationary', manufacturer: 'IBM', discount: 10 };
 console.log(pencilObj);
-let readOnlyEmployee = {
+/* let readOnlyEmployee : ReadOnlyType<EmployeeType> = {
+    id : 100,
+    name : 'Magesh',
+    city : 'Bangalure'
+} */
+function readOnly(obj) {
+    return Object.freeze(obj);
+}
+let readOnlyEmployee = readOnly({
     id: 100,
     name: 'Magesh',
     city: 'Bangalure'
-};
+});
+readOnlyEmployee.id = 200;

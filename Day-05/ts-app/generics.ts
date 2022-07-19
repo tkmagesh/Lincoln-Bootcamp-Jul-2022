@@ -221,9 +221,20 @@ interface ReadOnlyEmployeeType {
 
 type ReadOnlyType<T> = { readonly [key in keyof T] : T[key] };
 
-let readOnlyEmployee : ReadOnlyType<EmployeeType> = {
+/* let readOnlyEmployee : ReadOnlyType<EmployeeType> = {
     id : 100,
     name : 'Magesh',
     city : 'Bangalure'
-}
+} */
  
+function readOnly<T>(obj : T) : ReadOnlyType<T> {
+    return Object.freeze(obj);
+}
+
+let readOnlyEmployee = readOnly({
+    id : 100,
+    name : 'Magesh',
+    city : 'Bangalure'
+})
+
+readOnlyEmployee.id = 200
