@@ -76,11 +76,54 @@ function filter(list, predicateFn) {
     return result;
 }
 //handling multiple types
-function map(sourceList /*list of sourceType*/, transformationFn /* (sourceType) => targetType*/) {
-    let result /* : targetType[] */ = [];
+function map(sourceList, transformationFn) {
+    let result = [];
     for (let val of sourceList) {
         let transformedVal = transformationFn(val);
         result.push(transformedVal);
     }
     return result;
 }
+// type constraint
+function print(x, y) {
+    console.log(x, y);
+}
+console.log(print(10, 20));
+console.log(print('pen', 'Pencil'));
+function sortByComparer(list, comparer) {
+    for (let i = 0; i < list.length - 1; i++)
+        for (let j = i + 1; j < list.length; j++) {
+            if (comparer(list[i], list[j]) > 0) {
+                [list[i], list[j]] = [list[j], list[i]];
+            }
+        }
+}
+/* function sortByAttr(list , attrName ) {
+    for (let i = 0; i < list.length-1; i++)
+        for (let j = i + 1; j < list.length; j++){
+            if (list[i][attrName] > list[j][attrName]) {
+                [list[i], list[j]] = [list[j], list[i]]
+            }
+        }
+} */
+//products = [] { id, name, cost}
+//sortByAttr(products, 'id')
+//sortByAttr(products, 'name')
+//sortByAttr(products, 'cost')
+//sortByAttr(products, 'category')
+function sortByAttr(list, attrName) {
+    for (let i = 0; i < list.length - 1; i++)
+        for (let j = i + 1; j < list.length; j++) {
+            if (list[i][attrName] > list[j][attrName]) {
+                [list[i], list[j]] = [list[j], list[i]];
+            }
+        }
+}
+let products = [
+    { id: 6, name: 'Pen', cost: 50, units: 20, category: 'stationary' },
+    { id: 9, name: 'Ten', cost: 70, units: 70, category: 'stationary' },
+    { id: 3, name: 'Len', cost: 60, units: 60, category: 'grocery' },
+    { id: 5, name: 'Zen', cost: 30, units: 30, category: 'grocery' },
+    { id: 1, name: 'Ken', cost: 20, units: 80, category: 'utencil' },
+    { id: 7, name: 'Mouse', cost: 100, units: 20, category: 'electronics' }
+];
