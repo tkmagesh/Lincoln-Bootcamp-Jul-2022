@@ -1,0 +1,201 @@
+<!-- 
+    01. initial implementation
+    02. Seperate UI and NON UI responsibilities
+    03. View updating the model based on when the data is available
+    04. Model informing the view whenever the salary is changing
+    05. Introducing setter, getter and onChange for 'basic' in the model
+    06. Introducing setter, getter and subscribe for all the attributes
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salary Calculator</title>
+    <style>
+        body{
+            margin-left: 50px;
+        }
+        .field{
+            margin-bottom: 10px;
+        }
+        label{
+            display: block;
+        }
+        td{
+            padding-right: 10px;
+            font-size: 18pt;
+        }
+    </style>
+    <script src="jquery-3.6.0.js"></script>
+    <script>
+        /* state & behavior */
+        class SalaryCalculatorModel {
+            //state
+            _basic = 0; //
+            _hra = 0;
+            _da = 0;
+            _tax = 0;
+            _salary = 0;
+            
+            _callbacks = {
+                basic : null,
+                hra : null,
+                da : null,
+                tax : null,
+                salary : null
+            };
+
+            subscribe(attrName, callbackFn){
+                this._callbacks[attrName] = callbackFn;
+            }
+
+            get basic(){
+                return this._basic;
+            }
+
+            set basic(val){
+                this._basic = val;
+                let callbackFn = this._callbacks['basic'];
+                if (typeof callbackFn === 'function')
+                    callbackFn();
+            }
+
+            get hra() {
+                return this._hra;
+            }
+
+            set hra(val) {
+                this._hra = val;
+                let callbackFn = this._callbacks['hra'];
+                if (typeof callbackFn === 'function')
+                    callbackFn();
+            }
+
+            get da() {
+                return this._da;
+            }
+
+            set da(val) {
+                this._da = val;
+                let callbackFn = this._callbacks['da'];
+                if (typeof callbackFn === 'function')
+                    callbackFn();
+            }
+
+            get tax() {
+                return this._tax;
+            }
+
+            set tax(val) {
+                this._tax = val;
+                let callbackFn = this._callbacks['tax'];
+                if (typeof callbackFn === 'function')
+                    callbackFn();
+            }
+
+            get salary() {
+                return this._salary;
+            }
+
+            set salary(val){
+                this._salary = val;
+                let callbackFn = this._callbacks['salary'];
+                if (typeof callbackFn === 'function')
+                    callbackFn();
+            }
+            
+            //behavior
+            calculate(){
+                let gross = this.basic + this.hra + this.da,
+                    net = gross * ((100-this.tax)/100);
+                this.salary = net;
+                
+            }
+        }
+
+        //View
+        $(function(){
+            //DO NOT DO THIS IN PRODUCTION
+            window['model'] = new SalaryCalculatorModel();
+
+            $('#txtBasic').change(function(){
+                model.basic = parseInt($(this).val());
+            });
+
+            $('#txtHra').change(function () {
+                model.hra = parseInt($(this).val());
+            });
+
+            $('#txtDa').change(function () {
+                model.da = parseInt($(this).val());
+            });
+
+            $('#rangeTax').change(function () {
+                model.tax = parseInt($(this).val());
+            });
+
+            $('#btnCalculate').click(function () {
+                model.calculate();
+            });
+
+            model.subscribe('salary', function(){
+                $('#tdSalary').text(model.salary);
+            });
+
+            model.subscribe('basic', function(){
+                $('#tdBasic').text(model.basic);
+            });
+
+            model.subscribe('hra', function () {
+                $('#tdHra').text(model.hra);
+            });
+
+            model.subscribe('da', function () {
+                $('#tdDa').text(model.da);
+            });
+
+            model.subscribe('tax', function () {
+                $('#tdTax').text(model.tax);
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Salary Calculator</h1>
+    <hr>
+    <div class="field">
+        <label for="">Basic :</label>
+        <input type="number" name="" id="txtBasic">
+    </div>
+    <div class="field">
+        <label for="">HRA :</label>
+        <input type="number" name="" id="txtHra">
+    </div>
+    <div class="field">
+        <label for="">DA :</label>
+        <input type="number" name="" id="txtDa">
+    </div>
+    <div class="field">
+        <label for="">Tax :</label>
+        <input type="range" name="" id="rangeTax" min="0" max="30" value="0">
+    </div>
+    <div class="field">
+        <button id="btnCalculate">Calculate</button>
+    </div>
+    <div class="field">
+        <table>
+            <tbody>
+                <tr>
+                    <td id="tdBasic">[basic]</td>
+                    <td id="tdHra">[hra]</td>
+                    <td id="tdDa">[da]</td>
+                    <td id="tdTax">[tax]</td>
+                    <td id="tdSalary">[salary]</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
