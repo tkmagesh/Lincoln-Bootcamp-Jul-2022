@@ -1,0 +1,23 @@
+Angular
+    Framework for building RIA / SPA
+    Helps us to build the RIA that are MAINTAINABLE
+
+SALARY CALCULATOR
+    Salary = Basic + HRA + DA - TAX(%)
+
+to get the value of a textbox, checkbox, range, dropdown, etc.
+    $('#txtBasic').val()
+
+to set the value of a textbox etc
+    $('#txtBasic').val(20000)
+
+to get the text displayed in an element
+    $('#tdBasic').text()
+
+to change the text displayed in an element
+    $('#tdBasic').text('10000')
+
+to subscribe to events of an element
+    $('#btnCalculate').click(function(){
+        console.log('calculate button clicked');
+    })
