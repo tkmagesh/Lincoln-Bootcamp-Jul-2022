@@ -7,6 +7,7 @@
     06. Introducing setter, getter and subscribe for all the attributes
     07. refactoring to avoid duplication (introducing 'set' and 'get' methods)
     08. adding provisions to accommodate more than one subscriber
+    09. Creating reusable views (encapsulating 'presentation' + 'User Interaction' responsibilities)
  -->
 <!DOCTYPE html>
 <html lang="en">
@@ -76,7 +77,16 @@
             }
         }
 
+        //View 
+        //Presentation (template)
+        //User interaction
+        //Reflecting model changes in the presentation
 
+        /* 
+            Careful:
+                Any event binding should happen only on the $root
+                DO NOT manipulate any domNode outside the view ($root)
+        */
         class SalaryCalculator {
             model = null;
             _template = `
@@ -140,24 +150,36 @@
                 });
 
                 //Reacting to model changes
+                let that = this;
+
                 model.subscribe('salary', function () {
-                    $('#tdSalary', this.$root).text(model.get('salary'));
+                    let val = model.get('salary');
+                    $('#tdSalary', that.$root).text(val);
+                    
                 });
 
                 model.subscribe('basic', function () {
-                    $('#tdBasic', this.$root).text(model.get('basic'));
+                    let val = model.get('basic');
+                    $('#tdBasic', that.$root).text(val);
+                    $('#txtBasic', that.$root).val(val);
                 });
 
                 model.subscribe('hra', function () {
-                    $('#tdHra', this.$root).text(model.get('hra'));
+                    let val = model.get('hra');
+                    $('#tdHra', that.$root).text(val);
+                    $('#txtHra', that.$root).val(val);
                 });
 
                 model.subscribe('da', function () {
-                    $('#tdDa', this.$root).text(model.get('da'));
+                    let val = model.get('da');
+                    $('#tdDa', that.$root).text(val);
+                    $('#txtDa', that.$root).val(val);
                 });
 
                 model.subscribe('tax', function () {
-                    $('#tdTax', this.$root).text(model.get('tax'));
+                    let val = model.get('tax');
+                    $('#tdTax', that.$root).text(val);
+                    $('#rangeTax', that.$root).val(val);
                 });
 
             }
@@ -167,13 +189,18 @@
                 return this;
             }
         }
-        //View
+
+        //Startup
         $(function(){
             //DO NOT DO THIS IN PRODUCTION
             window['model'] = new SalaryCalculatorModel();
 
-            //Reacting to user actions
-        });
+            let view1 = new SalaryCalculator(model)
+            view1.render().$root.appendTo(document.body)
+            
+            let view2 = new SalaryCalculator(model)
+            view2.render().$root.appendTo(document.body)
+        })
     </script>
 </head>
 <body>
