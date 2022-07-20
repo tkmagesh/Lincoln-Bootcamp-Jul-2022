@@ -1,9 +1,8 @@
 <!-- 
     01. initial implementation
-
+    02. Seperate UI and NON UI responsibilities
  -->
- 
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -27,25 +26,45 @@
     </style>
     <script src="jquery-3.6.0.js"></script>
     <script>
+        /* state & behavior */
+        class SalaryCalculatorModel {
+            //state
+            basic = 0;
+            hra = 0;
+            da = 0;
+            tax = 0;
+            salary = 0;
+
+            //behavior
+            calculate(){
+                let gross = this.basic + this.hra + this.da,
+                    net = gross * ((100-this.tax)/100);
+                this.salary = net;
+            }
+        }
+
+
         $(function(){
+            
+            let model = new SalaryCalculatorModel();
+
             $('#btnCalculate').click(function () {
                 //get the data from the controls
-                let basic = parseInt($('#txtBasic').val()),
-                    hra = parseInt($('#txtHra').val()),
-                    da = parseInt($('#txtDa').val()),
-                    tax = parseInt($('#rangeTax').val());
+                model.basic = parseInt($('#txtBasic').val());
+                model.hra = parseInt($('#txtHra').val());
+                model.da = parseInt($('#txtDa').val());
+                model.tax = parseInt($('#rangeTax').val());
 
                 
                 //process the data
-                let gross = basic + hra + da,
-                    net = gross * ((100-tax)/100);
+                model.calculate();
                 
                 //display the result in the ui
-                $('#tdBasic').text(basic);
-                $('#tdHra').text(hra);
-                $('#tdDa').text(da);
-                $('#tdTax').text(tax);
-                $('#tdSalary').text(net);
+                $('#tdBasic').text(model.basic);
+                $('#tdHra').text(model.hra);
+                $('#tdDa').text(model.da);
+                $('#tdTax').text(model.tax);
+                $('#tdSalary').text(model.salary);
             });
         });
     </script>
