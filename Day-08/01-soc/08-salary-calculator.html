@@ -6,6 +6,7 @@
     05. Introducing setter, getter and onChange for 'basic' in the model
     06. Introducing setter, getter and subscribe for all the attributes
     07. refactoring to avoid duplication (introducing 'set' and 'get' methods)
+    08. adding provisions to accommodate more than one subscriber
  -->
 <!DOCTYPE html>
 <html lang="en">
@@ -32,6 +33,7 @@
     <script src="jquery-3.6.0.js"></script>
     <script>
         /* state & behavior */
+        /* observable model */
         class SalaryCalculatorModel {
             //state
             _data = {
@@ -43,15 +45,16 @@
             };
             
             _callbacks = {
-                basic : null,
-                hra : null,
-                da : null,
-                tax : null,
-                salary : null
+                basic : [],
+                hra : [],
+                da : [],
+                tax : [],
+                salary : []
             };
 
             subscribe(attrName, callbackFn){
-                this._callbacks[attrName] = callbackFn;
+                if (typeof callbackFn !== 'function') return;
+                this._callbacks[attrName].push(callbackFn);
             }
 
             get(attrName){
@@ -60,9 +63,8 @@
 
             set(attrName, val){
                 this._data[attrName] = val;
-                let callbackFn = this._callbacks[attrName];
-                if (typeof callbackFn === 'function')
-                    callbackFn();
+                let callbackFns = this._callbacks[attrName];
+                callbackFns.forEach(callbackFn => callbackFn())
             }
             
             //behavior
