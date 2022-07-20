@@ -35,12 +35,15 @@
             tax = 0;
             salary = 0;
             
+            onSalaryChange = null;
 
             //behavior
             calculate(){
                 let gross = this.basic + this.hra + this.da,
                     net = gross * ((100-this.tax)/100);
                 this.salary = net;
+                if (typeof this.onSalaryChange === 'function')
+                    this.onSalaryChange()
             }
         }
 
@@ -69,15 +72,19 @@
 
                 //process the data
                 model.calculate();
-               
+                
                 
                 //display the result in the ui
                 $('#tdBasic').text(model.basic);
                 $('#tdHra').text(model.hra);
                 $('#tdDa').text(model.da);
                 $('#tdTax').text(model.tax);
-                $('#tdSalary').text(model.salary);
+                
             });
+
+            model.onSalaryChange = function(){
+                $('#tdSalary').text(model.salary);
+            };
         });
     </script>
 </head>
