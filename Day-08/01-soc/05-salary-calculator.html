@@ -1,0 +1,144 @@
+<!-- 
+    01. initial implementation
+    02. Seperate UI and NON UI responsibilities
+    03. View updating the model based on when the data is available
+    04. Model informing the view whenever the salary is changing
+    05. Introducing setter, getter and onChange for 'basic' in the model
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salary Calculator</title>
+    <style>
+        body{
+            margin-left: 50px;
+        }
+        .field{
+            margin-bottom: 10px;
+        }
+        label{
+            display: block;
+        }
+        td{
+            padding-right: 10px;
+            font-size: 18pt;
+        }
+    </style>
+    <script src="jquery-3.6.0.js"></script>
+    <script>
+        /* state & behavior */
+        class SalaryCalculatorModel {
+            //state
+            _basic = 0; //
+            hra = 0;
+            da = 0;
+            tax = 0;
+            salary = 0;
+            
+            onSalaryChange = null;
+            onBasicChange = null;
+
+            get basic(){
+                return this._basic;
+            }
+
+            set basic(val){
+                this._basic = val;
+                if (typeof this.onBasicChange === 'function')
+                    this.onBasicChange();
+            }
+            //behavior
+            calculate(){
+                let gross = this.basic + this.hra + this.da,
+                    net = gross * ((100-this.tax)/100);
+                this.salary = net;
+                if (typeof this.onSalaryChange === 'function')
+                    this.onSalaryChange()
+            }
+        }
+
+        //View
+        $(function(){
+            //DO NOT DO THIS IN PRODUCTION
+            window['model'] = new SalaryCalculatorModel();
+
+            $('#txtBasic').change(function(){
+                model.basic = parseInt($(this).val());
+            });
+
+            $('#txtHra').change(function () {
+                model.hra = parseInt($(this).val());
+            });
+
+            $('#txtDa').change(function () {
+                model.da = parseInt($(this).val());
+            });
+
+            $('#rangeTax').change(function () {
+                model.tax = parseInt($(this).val());
+            });
+
+            $('#btnCalculate').click(function () {
+
+                //process the data
+                model.calculate();
+                
+                
+                //display the result in the ui
+                
+                $('#tdHra').text(model.hra);
+                $('#tdDa').text(model.da);
+                $('#tdTax').text(model.tax);
+                
+            });
+
+            model.onSalaryChange = function(){
+                $('#tdSalary').text(model.salary);
+            };
+
+            model.onBasicChange = function(){
+                $('#tdBasic').text(model.basic);
+            };
+        });
+    </script>
+</head>
+<body>
+    <h1>Salary Calculator</h1>
+    <hr>
+    <div class="field">
+        <label for="">Basic :</label>
+        <input type="number" name="" id="txtBasic">
+    </div>
+    <div class="field">
+        <label for="">HRA :</label>
+        <input type="number" name="" id="txtHra">
+    </div>
+    <div class="field">
+        <label for="">DA :</label>
+        <input type="number" name="" id="txtDa">
+    </div>
+    <div class="field">
+        <label for="">Tax :</label>
+        <input type="range" name="" id="rangeTax" min="0" max="30" value="0">
+    </div>
+    <div class="field">
+        <button id="btnCalculate">Calculate</button>
+    </div>
+    <div class="field">
+        <table>
+            <tbody>
+                <tr>
+                    <td id="tdBasic">[basic]</td>
+                    <td id="tdHra">[hra]</td>
+                    <td id="tdDa">[da]</td>
+                    <td id="tdTax">[tax]</td>
+                    <td id="tdSalary">[salary]</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
