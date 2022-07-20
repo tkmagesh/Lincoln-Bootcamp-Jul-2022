@@ -21,3 +21,10 @@ to subscribe to events of an element
     $('#btnCalculate').click(function(){
         console.log('calculate button clicked');
     })
+
+
+Assumptions (Salary Calculator)
+    * no need for any validations
+    * deployment team will take care of organizing the js and css in their respective files
+
+    * the current implementation meets 100% expectations of the application owner (sponsor)

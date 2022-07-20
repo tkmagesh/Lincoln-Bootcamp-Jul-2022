@@ -25,11 +25,24 @@
         $(function(){
             $('#btnCalculate').click(function () {
                 //get the data from the controls
-                //process the data
-                //display the result in the ui
-            })
+                let basic = parseInt($('#txtBasic').val()),
+                    hra = parseInt($('#txtHra').val()),
+                    da = parseInt($('#txtDa').val()),
+                    tax = parseInt($('#rangeTax').val());
 
-        })
+                
+                //process the data
+                let gross = basic + hra + da,
+                    net = gross * ((100-tax)/100);
+                
+                //display the result in the ui
+                $('#tdBasic').text(basic);
+                $('#tdHra').text(hra);
+                $('#tdDa').text(da);
+                $('#tdTax').text(tax);
+                $('#tdSalary').text(net);
+            });
+        });
     </script>
 </head>
 <body>
