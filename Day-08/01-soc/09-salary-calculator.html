@@ -1,0 +1,184 @@
+<!-- 
+    01. initial implementation
+    02. Seperate UI and NON UI responsibilities
+    03. View updating the model based on when the data is available
+    04. Model informing the view whenever the salary is changing
+    05. Introducing setter, getter and onChange for 'basic' in the model
+    06. Introducing setter, getter and subscribe for all the attributes
+    07. refactoring to avoid duplication (introducing 'set' and 'get' methods)
+    08. adding provisions to accommodate more than one subscriber
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salary Calculator</title>
+    <style>
+        body{
+            margin-left: 50px;
+        }
+        .field{
+            margin-bottom: 10px;
+        }
+        label{
+            display: block;
+        }
+        td{
+            padding-right: 10px;
+            font-size: 18pt;
+        }
+    </style>
+    <script src="jquery-3.6.0.js"></script>
+    <script>
+        /* state & behavior */
+        /* observable model */
+        class SalaryCalculatorModel {
+            //state
+            _data = {
+                basic : 0,
+                hra : 0,
+                da : 0,
+                tax : 0,
+                salary : 0
+            };
+            
+            _callbacks = {
+                basic : [],
+                hra : [],
+                da : [],
+                tax : [],
+                salary : []
+            };
+
+            subscribe(attrName, callbackFn){
+                if (typeof callbackFn !== 'function') return;
+                this._callbacks[attrName].push(callbackFn);
+            }
+
+            get(attrName){
+                return this._data[attrName];
+            }
+
+            set(attrName, val){
+                this._data[attrName] = val;
+                let callbackFns = this._callbacks[attrName];
+                callbackFns.forEach(callbackFn => callbackFn())
+            }
+            
+            //behavior
+            calculate(){
+                let gross = this.get('basic') + this.get('hra') + this.get('da'),
+                    net = gross * ((100-this.get('tax'))/100);
+                this.set('salary', net);
+                
+            }
+        }
+
+
+        class SalaryCalculator {
+            model = null;
+            _template = `
+                <div class="field">
+                    <label for="">Basic :</label>
+                    <input type="number" name="" id="txtBasic">
+                </div>
+                <div class="field">
+                    <label for="">HRA :</label>
+                    <input type="number" name="" id="txtHra">
+                </div>
+                <div class="field">
+                    <label for="">DA :</label>
+                    <input type="number" name="" id="txtDa">
+                </div>
+                <div class="field">
+                    <label for="">Tax :</label>
+                    <input type="range" name="" id="rangeTax" min="0" max="30" value="0">
+                </div>
+                <div class="field">
+                    <button id="btnCalculate">Calculate</button>
+                </div>
+                <div class="field">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td id="tdBasic">[basic]</td>
+                                <td id="tdHra">[hra]</td>
+                                <td id="tdDa">[da]</td>
+                                <td id="tdTax">[tax]</td>
+                                <td id="tdSalary">[salary]</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            `;
+            
+            $root = $('<div></div>');
+
+            constructor(model){
+                this.model = model;
+                
+                this.$root.on('change', '#txtBasic', function () {
+                    model.set('basic', parseInt($(this).val()));
+                });
+
+                this.$root.on('change', '#txtHra', function () {
+                    model.set('hra', parseInt($(this).val()));
+                });
+
+                this.$root.on('change', '#txtDa', function () {
+                    model.set('da', parseInt($(this).val()));
+                });
+
+                this.$root.on('change', '#rangeTax', function () {
+                    model.set('tax', parseInt($(this).val()));
+                });
+
+                this.$root.on('click', '#btnCalculate', function () {
+                    model.calculate();
+                });
+
+                //Reacting to model changes
+                model.subscribe('salary', function () {
+                    $('#tdSalary', this.$root).text(model.get('salary'));
+                });
+
+                model.subscribe('basic', function () {
+                    $('#tdBasic', this.$root).text(model.get('basic'));
+                });
+
+                model.subscribe('hra', function () {
+                    $('#tdHra', this.$root).text(model.get('hra'));
+                });
+
+                model.subscribe('da', function () {
+                    $('#tdDa', this.$root).text(model.get('da'));
+                });
+
+                model.subscribe('tax', function () {
+                    $('#tdTax', this.$root).text(model.get('tax'));
+                });
+
+            }
+        
+            render(){
+                this.$root.html(this._template);
+                return this;
+            }
+        }
+        //View
+        $(function(){
+            //DO NOT DO THIS IN PRODUCTION
+            window['model'] = new SalaryCalculatorModel();
+
+            //Reacting to user actions
+        });
+    </script>
+</head>
+<body>
+    <h1>Salary Calculator</h1>
+    <hr>
+    
+</body>
+</html>
