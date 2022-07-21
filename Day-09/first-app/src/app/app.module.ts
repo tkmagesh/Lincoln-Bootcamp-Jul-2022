@@ -20,6 +20,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
   bootstrap: [
     /* top most components */
     AppComponent
+    , SpinnerComponent
   ]
 })
 export class AppModule { }
