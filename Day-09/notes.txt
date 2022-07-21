@@ -56,5 +56,14 @@ Package.json
             will NOT be a part of the application build
 
 
+Exercise
+    Create a Greeter component with the following template and render it in the application
+    <div>
+        <h3>Greeter</h3>
+        <hr>
+        <label for="">User Name :</label>
+        <button>Greet</button>
+        <div>[message]</div>
+    </div>
 
 
