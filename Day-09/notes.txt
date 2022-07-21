@@ -1,0 +1,60 @@
+Angular Building Blocks
+    Modules
+        Logical grouping of components, directives, pipes and services.
+        There has to be a minimum of one module in an application.
+        Modules are the starting point of the application (bootstrap).
+
+    Components
+        Represents ONE UI aspect of the application
+        Encapsulates Presentation (template) + UI Interaction + State
+        Application is a composition of components
+
+    Directives
+        DOM Manipulation
+        ex, change the style of an element
+            show or hide an element
+
+    Pipes
+        Data transformation logic for PRESENTATION
+        ex Date -> dd-mmm-yyyy OR dd/mmm/yyyy OR dd/mm/yyyy
+
+    Services
+        Represents any NON-UI responsibility of the application
+
+Angular CLI
+    Tool to perform all development activities for an angular application
+    NPM package
+
+    Install CLI
+        npm install -g @angular/cli
+
+    To use yarn as package manager
+        ng config -g cli.packageManager yarn
+
+
+Package.json
+    Manifest file for any javascript project
+    Contains meta-data information about the project
+        name
+        version
+        author
+        description
+        keywords
+        repository
+        license
+        scripts
+        dependencies
+            dependencies that are needed for the project to run
+            These will be a part of the application build 
+
+        devDependencies
+            dependencies that are needed for perform development activities
+                ex, development web server
+                    test runner
+                    unit testing framework
+                    typescript compiler           
+            will NOT be a part of the application build
+
+
+
+
