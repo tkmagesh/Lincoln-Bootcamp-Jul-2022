@@ -9,6 +9,8 @@ import { Component } from "@angular/core";
 export class DirectivesComponent{
     applyStyle : boolean = false;
     show : boolean = false;
-    
+
     classNames =  ['first', 'second', 'third', 'fourth'];
+
+    productNames = ['pen', 'pencil', 'marker']
 }

@@ -23,3 +23,12 @@
     No content!!
 </ng-template>
 <hr>
+
+<h4>Dynamic list</h4>
+<ul>
+    <li *ngFor="let productName of productNames">{{productName}}</li>
+   <!-- 
+    <li>Pencil</li>
+    <li>Marker</li> 
+    -->
+</ul>
