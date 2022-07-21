@@ -9,7 +9,7 @@ export class AppComponent {
 
   //state
   title = 'first-app';
-  
+
   /* 
   constructor(){
     setTimeout(() => {
@@ -17,4 +17,9 @@ export class AppComponent {
     }, 5000);
   } 
   */
+
+  onChangeTitle(){
+    this.title = 'Angular-App'
+  }
+  
 }
