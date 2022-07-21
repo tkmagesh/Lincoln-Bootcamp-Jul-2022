@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { Calculator2Component } from './calculator-2/calculator-2.component';
 import { CalculatorComponent } from './calculator/calculator.component';
+import { DirectivesComponent } from './directives/directives.component';
 import { GreeterComponent } from './greeter/greeter.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 
@@ -15,7 +16,9 @@ import { SpinnerComponent } from './spinner/spinner.component';
     , GreeterComponent
     , CalculatorComponent
     , Calculator2Component
+    , DirectivesComponent
   ],
+
   imports: [
     /* Dependency modules */
     BrowserModule
@@ -25,11 +28,12 @@ import { SpinnerComponent } from './spinner/spinner.component';
   ],
   bootstrap: [
     /* top most components */
-    AppComponent
+   /* AppComponent
     , SpinnerComponent
     , GreeterComponent
     , CalculatorComponent
-    , Calculator2Component
+    , Calculator2Component */
+     DirectivesComponent
   ]
 })
 export class AppModule { }

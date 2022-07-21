@@ -2,8 +2,6 @@
     <h3>Calculator-2</h3>
     <hr>
     <input type="number" (change) = "n1 = $any($event.target).valueAsNumber">
-    {{n1}}
-
     <select (change) = "operation = $any($event.target).value">
         <option value="">---Select---</option>
         <option value="add">Add</option>
@@ -11,7 +9,6 @@
         <option value="multiply">Multiply</option>
         <option value="divide">Divide</option>
     </select>
-    {{operation}}
     <input type="number" (input) = "n2 = $any($event.target).valueAsNumber">
     <button (click)="onCalculateClick()">Calculate</button>
     <div>{{result}}</div>
