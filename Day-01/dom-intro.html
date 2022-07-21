@@ -5,6 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DOM Intro</title>
+    <script>
+        function onBtnClick(){
+            console.log(arguments);
+            console.log('button clicked')
+        }
+        function onDocumentLoad(){
+            document.getElementById('btnClick').addEventListener('click', onBtnClick)
+        }
+        window.addEventListener('load', onDocumentLoad)
+    </script>
 </head>
 <body>
     <h1 id="heading-1">Hello World</h1>

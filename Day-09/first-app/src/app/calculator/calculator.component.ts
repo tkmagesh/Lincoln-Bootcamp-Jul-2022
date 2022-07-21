@@ -7,23 +7,29 @@ import { Component } from "@angular/core";
 })
 export class CalculatorComponent{
     result : number = 0;
-    n1 : string = "";
-    n2 : string = "";
+    n1 : number = 0;
+    n2 : number = 0;
+
+    /* 
+    onDummyClick(event : Event){
+        console.log((event.target as HTMLButtonElement).innerText)
+    } 
+    */
 
     onAddClick(){
-        this.result = parseInt(this.n1) + parseInt(this.n2)
+        this.result = this.n1 + this.n2
     }
 
     onSubtractClick(){
-        this.result = parseInt(this.n1) - parseInt(this.n2)
+        this.result = this.n1 - this.n2
     }
 
     onMultiplyClick(){
-        this.result = parseInt(this.n1) * parseInt(this.n2)
+        this.result = this.n1 * this.n2
     }
 
     onDivideClick(){
-        this.result = parseInt(this.n1) / parseInt(this.n2)
+        this.result = this.n1 / this.n2
     }
 }
 

@@ -1,9 +1,14 @@
 <div>
     <h3>Calculator-1</h3>
     <hr>
-    <input type="number" #txtNumber1 (input)="n1 = txtNumber1.value">
-    <input type="number" #txtNumber2 (input)="n2 = txtNumber2.value">
+    <!-- 
+        <input type="number" #txtNumber1 (input)="n1 = txtNumber1.valueAsNumber">
+        <input type="number" #txtNumber2 (input)="n2 = txtNumber2.valueAsNumber"> 
+    -->
+    <input type="number" (input)="n1 = $any($event.target).valueAsNumber">
+    <input type="number" (input)="n2 = $any($event.target).valueAsNumber">
     <br>
+    <!-- <button (click)="onDummyClick($event)">Dummy</button> -->
     <button (click)="onAddClick()" >Add</button>
     <button (click)="onSubtractClick()" >Subtract</button>
     <button (click)="onMultiplyClick()" >Multiply</button>
