@@ -67,3 +67,18 @@ Exercise
     </div>
 
 
+Exercise
+    Create a Calculator component with the following template and render it in the application
+
+    <div>
+        <h3>Calculator-1</h3>
+        <hr>
+        <input type="number" name="" id="">
+        <input type="number" name="" id="">
+        <br>
+        <button>Add</button>
+        <button>Subtract</button>
+        <button>Multiply</button>
+        <button>Divide</button>
+        <div>[result]</div>
+    </div>
