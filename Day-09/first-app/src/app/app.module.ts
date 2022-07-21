@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { CalculatorComponent } from './calculator/calculator.component';
 import { GreeterComponent } from './greeter/greeter.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 
@@ -11,6 +12,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     AppComponent
     , SpinnerComponent
     , GreeterComponent
+    , CalculatorComponent
   ],
   imports: [
     /* Dependency modules */
@@ -24,6 +26,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     AppComponent
     , SpinnerComponent
     , GreeterComponent
+    , CalculatorComponent
   ]
 })
 export class AppModule { }
