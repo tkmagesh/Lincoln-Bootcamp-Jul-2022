@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { GreeterComponent } from './greeter/greeter.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
@@ -9,6 +10,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     /* declare the all the UI entities (Components, Directives & Pipes) that a part of this module */
     AppComponent
     , SpinnerComponent
+    , GreeterComponent
   ],
   imports: [
     /* Dependency modules */
@@ -21,6 +23,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     /* top most components */
     AppComponent
     , SpinnerComponent
+    , GreeterComponent
   ]
 })
 export class AppModule { }
