@@ -1,12 +1,25 @@
 <h3>Directives</h3>
 <hr>
-<h4>Conditional Styles</h4>
+<h4>Conditional Styles / Display</h4>
 
-<button (click)="applyStyle = true">Apply Style</button>
-<button (click)="applyStyle = false">Remove Style</button>
-
-
-<div [ngClass]="{ highlight : applyStyle }">Do excepteur voluptate excepteur in. Voluptate quis est deserunt eu ex fugiat. Exercitation ex proident anim reprehenderit amet irure sunt mollit cupidatat et aliqua laborum magna quis. Magna minim officia anim est et deserunt.
-
+<!-- 
+    <button (click)="applyStyle = true">Apply Style</button>
+    <button (click)="applyStyle = false">Remove Style</button> 
+-->
+<div>
+    <label for="">Apply Style : </label>
+    <input type="checkbox" (change)="applyStyle = $any($event.target).checked">
 </div>
+<div>
+    <label for="">Show : </label>
+    <input type="checkbox" (change)="show = $any($event.target).checked">
+</div>
+
+<div 
+    *ngIf="show ; else noContent"
+    [ngClass]="{ highlight : applyStyle }">Do excepteur voluptate excepteur in. Voluptate quis est deserunt eu ex fugiat. Exercitation ex proident anim reprehenderit amet irure sunt mollit cupidatat et aliqua laborum magna quis. Magna minim officia anim est et deserunt.
+</div>
+<ng-template #noContent>
+    No content!!
+</ng-template>
 <hr>

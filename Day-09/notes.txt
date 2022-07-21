@@ -14,6 +14,18 @@ Angular Building Blocks
         ex, change the style of an element
             show or hide an element
 
+        Types:
+            Attribute Directive
+                Changes the attribute of an existing dom node
+                Does not change the dom structure 
+                Used with []
+                ex: ngClass, ngStyle
+
+            Structural Directive
+                Changes the structure by adding or removing dom nodes
+                Used with * prefix
+                ex: ngIf, ngSwitch, ngFor
+                
     Pipes
         Data transformation logic for PRESENTATION
         ex Date -> dd-mmm-yyyy OR dd/mmm/yyyy OR dd/mm/yyyy
@@ -98,3 +110,5 @@ Exercise
         <button>Calculate</button>
         <div>[result]</div>
     </div>
+
+
