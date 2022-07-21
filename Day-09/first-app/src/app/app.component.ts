@@ -9,7 +9,7 @@ export class AppComponent {
 
   //state
   title = 'first-app';
-  counter = 100;
+  
 
   /* 
   constructor(){
@@ -23,11 +23,5 @@ export class AppComponent {
     this.title = 'Angular-App'
   }
 
-  onDecrement(){
-    this.counter--
-  }
-
-  onIncrement(){
-    this.counter++
-  }
+  
 }

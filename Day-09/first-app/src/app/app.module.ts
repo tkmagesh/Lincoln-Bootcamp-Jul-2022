@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   declarations: [
     /* declare the all the UI entities (Components, Directives & Pipes) that a part of this module */
     AppComponent
+    , SpinnerComponent
   ],
   imports: [
     /* Dependency modules */
