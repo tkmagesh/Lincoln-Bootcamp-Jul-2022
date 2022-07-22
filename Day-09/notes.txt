@@ -25,7 +25,7 @@ Angular Building Blocks
                 Changes the structure by adding or removing dom nodes
                 Used with * prefix
                 ex: ngIf, ngSwitch, ngFor
-                
+
     Pipes
         Data transformation logic for PRESENTATION
         ex Date -> dd-mmm-yyyy OR dd/mmm/yyyy OR dd/mm/yyyy
@@ -112,3 +112,25 @@ Exercise
     </div>
 
 
+Exercise:
+    Create a 'Products' component with the following template.
+    Use cases:
+        Add a new Product
+        List the added products
+        Delete a product
+
+    <h3>Products</h3>
+    <hr>
+    <label for="">Product Name :</label>
+    <input type="text" name="" id="">
+    <button>Add</button>
+    <ul>
+        <li>
+            <span>Product - 1</span>
+            <button> X </button>
+        </li>
+        <li>
+            <span>Product - 2</span>
+            <button> X </button>
+        </li>
+    </ul>
