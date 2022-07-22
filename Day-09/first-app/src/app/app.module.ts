@@ -6,6 +6,7 @@ import { Calculator2Component } from './calculator-2/calculator-2.component';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { DirectivesComponent } from './directives/directives.component';
 import { GreeterComponent } from './greeter/greeter.component';
+import { PipesComponent } from './pipes/pipes.component';
 import { ProductsComponent } from './products/products.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 
@@ -19,6 +20,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     , Calculator2Component
     , DirectivesComponent
     , ProductsComponent
+    , PipesComponent
   ],
 
   imports: [

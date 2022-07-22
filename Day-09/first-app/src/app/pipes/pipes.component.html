@@ -1,0 +1,41 @@
+<h3>Pipes</h3>
+<h4>Currency Converter</h4>
+<label for="">Currency In $:</label>
+<input type="number">
+<select name="" id="">
+    <option value=""></option>
+    <option value="">US Dollar</option>
+    <option value="">Euro</option>
+    <option value="">Indian Rupee</option>
+    <option value="">Japanese Yen</option>
+    <option value="">Chinese Yuan</option>
+    <option value="">British Pounds</option>
+</select>
+<div>{{100 | currency:'EUR'}}</div>
+
+<h4>Date Pipe</h4>
+<div>{{ currentDate | date }}</div>
+<div>{{ currentDate | date:'long' }}</div>
+<div>{{ currentDate | date:'dd-MMM-yyyy' }}</div>
+<div>{{ currentDate | date:'hh:mm:ss a' }}</div>
+
+<h4>JSON Pipe</h4>
+<span>Product : </span>
+{{product | json}}
+
+<h4>Slice Pipe</h4>
+<h5>Products</h5>
+<label for="">Page Size :</label>
+<select name="" id="">
+    <option value="5">5</option>
+    <option value="10">10</option>
+    <option value="15">15</option>
+    <option value="20">20</option>
+</select>
+<div>Current Page : 1  Total Pages : 10</div>
+<ul>
+    <li *ngFor="let product of products | slice:5:10">
+        {{product}}
+    </li>
+</ul>
+<button> << </button><button> < </button><button> > </button><button> >> </button>
