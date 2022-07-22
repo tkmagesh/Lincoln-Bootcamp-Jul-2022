@@ -8,6 +8,7 @@ import { DirectivesComponent } from './directives/directives.component';
 import { GreeterComponent } from './greeter/greeter.component';
 import { PipesComponent } from './pipes/pipes.component';
 import { ProductsComponent } from './products/products.component';
+import { SalaryCalculatorComponent } from './salary-calculator/salaryCalculator.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
@@ -21,6 +22,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     , DirectivesComponent
     , ProductsComponent
     , PipesComponent
+    , SalaryCalculatorComponent
   ],
 
   imports: [

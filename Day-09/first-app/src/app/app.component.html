@@ -7,6 +7,7 @@
 <button (click)="userChoice = 'Calculator-2'">Calculator-2</button>
 <button (click)="userChoice = 'Products'">Products</button>
 <button (click)="userChoice = 'Pipes'">Pipes</button>
+<button (click)="userChoice = 'SalaryCalculator'">Salary Calculator</button>
 <hr />
 <!-- 
     <app-spinner *ngIf="userChoice == 'Spinner'"></app-spinner>
@@ -21,6 +22,6 @@
     <app-calculator *ngSwitchCase="'Calculator'"></app-calculator>
     <app-calculator-2 *ngSwitchCase="'Calculator-2'"></app-calculator-2>
     <app-products *ngSwitchCase="'Products'"></app-products>
-    <app-pipes *ngSwitchCase="'Pipes'"></app-pipes>
+    <app-salary-calculator *ngSwitchCase="'SalaryCalculator'"></app-salary-calculator>
     <div *ngSwitchDefault>Make a choice:</div>
 </div>

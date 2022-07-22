@@ -1,0 +1,34 @@
+<h3>Salary Calculator</h3>
+<hr>
+<div class="field">
+    <label for="">Basic :</label>
+    <input type="number" (input)="model.basic = $any($event.target).valueAsNumber">
+</div>
+<div class="field">
+    <label for="">HRA :</label>
+    <input type="number" (input)="model.hra = $any($event.target).valueAsNumber">
+</div>
+<div class="field">
+    <label for="">DA :</label>
+    <input type="number" (input)="model.da = $any($event.target).valueAsNumber">
+</div>
+<div class="field">
+    <label for="">Tax :</label>
+    <input type="range" (input)="model.tax = $any($event.target).valueAsNumber" min="0" max="30" value="0">
+</div>
+<div class="field">
+    <button (click)="model.calculate()">Calculate</button>
+</div>
+<div class="field">
+    <table>
+        <tbody>
+            <tr>
+                <td>{{model.basic}}</td>
+                <td>{{model.hra}}</td>
+                <td>{{model.da}}</td>
+                <td>{{model.tax}}</td>
+                <td>{{model.salary | currency}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

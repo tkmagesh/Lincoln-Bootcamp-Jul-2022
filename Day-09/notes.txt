@@ -134,3 +134,12 @@ Exercise:
             <button> X </button>
         </li>
     </ul>
+
+
+Exercises
+    1. Currency Converter
+        Conver the given value in USD to any of the list of currencies based on user choice
+
+    2. Implement Pagination
+
+    3. Create a SalaryCalculator component
