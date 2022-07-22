@@ -9,7 +9,7 @@ export class AppComponent {
 
   //state
   title = 'first-app';
-  
+  userChoice = '';
 
   /* 
   constructor(){

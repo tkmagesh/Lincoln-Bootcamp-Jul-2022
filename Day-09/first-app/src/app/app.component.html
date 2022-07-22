@@ -1,9 +1,24 @@
 <h1>{{ title }} app is running!</h1>
 <button (click)="onChangeTitle()">Change Title</button>
-
-
+<hr/>
+<button (click)="userChoice = 'Spinner'">Spinner</button>
+<button (click)="userChoice = 'Greeter'">Greeter</button>
+<button (click)="userChoice = 'Calculator'">Calculator</button>
+<button (click)="userChoice = 'Calculator-2'">Calculator-2</button>
+<button (click)="userChoice = 'Products'">Products</button>
+<hr />
 <!-- 
-  <app-spinner></app-spinner>
-  <app-spinner></app-spinner>
-  <app-spinner></app-spinner> 
+    <app-spinner *ngIf="userChoice == 'Spinner'"></app-spinner>
+    <app-greeter *ngIf="userChoice == 'Greeter'"></app-greeter>
+    <app-calculator *ngIf="userChoice == 'Calculator'"></app-calculator>
+    <app-calculator-2 *ngIf="userChoice == 'Calculator-2'"></app-calculator-2> 
+    <app-products *ngIf="userChoice == 'Products'"></app-products> 
 -->
+<div [ngSwitch]="userChoice">
+    <app-spinner *ngSwitchCase="'Spinner'"></app-spinner>
+    <app-greeter *ngSwitchCase="'Greeter'"></app-greeter>
+    <app-calculator *ngSwitchCase="'Calculator'"></app-calculator>
+    <app-calculator-2 *ngSwitchCase="'Calculator-2'"></app-calculator-2>
+    <app-products *ngSwitchCase="'Products'"></app-products>
+    <div *ngSwitchDefault>Make a choice:</div>
+</div>

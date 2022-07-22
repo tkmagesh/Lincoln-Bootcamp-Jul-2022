@@ -29,15 +29,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     /* non UI entities (Services) are registered here */
   ],
   bootstrap: [
-    /* top most components */
-   /* AppComponent
-    , SpinnerComponent
-    , GreeterComponent
-    , CalculatorComponent
-    , Calculator2Component
-     DirectivesComponent
-     */
-    ProductsComponent
+    AppComponent
   ]
 })
 export class AppModule { }
