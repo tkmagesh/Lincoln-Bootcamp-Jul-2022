@@ -18,18 +18,25 @@ Create a new angular app (bug-tracker-app)
             - key/value store
             - key has to be unique
             - both key & value must be strings
+                Hint:
                 key - use bug.id as the key (ex, `bug-{bug.id}`)
                 value - use JSON.stringify(bug) as the value
             - ~10 MB of storage space
             - CANNOT be accessed from any domain ( Same Origin Policy)
             - API
             ==========
-                * setItem(key, value)
+                * setItem(key, value) //=> insert / update the value for the key
                 * getItem(key) (use JSON.parse(value) to get the value as an object from the string)
                 * removeItem(key) 
                 * clear()
                 * key(index) => key @ index
                 * length => number of key/value pairs in the store
+
+            Requirement:
+            Save the bug in the storage whenever a new bug is created
+            Update the bug in the storag whenever a bug is toggled
+            Remove the bug from the storage whenever a bug is removed
+            Load all the bugs from the storage whenever the app is loaded
 
         9. Display 'createdAt' for each bug
         10. Persist the bugs in the server
