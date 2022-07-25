@@ -37,4 +37,10 @@ export class BugsComponent{
             }
         }
     }
+
+    //TO BE FIXED
+    getClosedCount() : number {
+        //return this.bugs.filter(bug => bug.isClosed).length
+        return this.bugs.reduce((result, bug) => bug.isClosed ? result + 1 : result, 0)
+    }
 }
