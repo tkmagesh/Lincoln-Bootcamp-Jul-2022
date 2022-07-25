@@ -1,10 +1,10 @@
 Create a new angular app (bug-tracker-app)
-    Use the given template to create a "BugsComponent" with the following functionaliy
+    Use the given template (bug-tracker-template.html) to create a "BugsComponent" with the following functionaliy
     Use Cases:
         1. Add new bugs
         2. List the added bugs
-        3. Toggle the 'closed' status of any bug
-        4. Remove any bug
+        3. Remove any bug
+        4. Toggle the 'closed' status of any bug
         5. Remove 'all closed' bugs
         6. Display stats ( # of closed bugs / total # of bugs )
         7. Improvise 'Bug' display
@@ -17,3 +17,6 @@ Create a new angular app (bug-tracker-app)
         13. Implement 'Authentication'
         14. Write test cases
         15. Package & Deploy
+
+
+ng new bug-tracker-app
