@@ -154,3 +154,10 @@ Services
         1. Create a class
         2. Register the class as a 'Provider' in the module
         3. Inject the class as a dependency in the component (constructor)
+
+Dependency Inversion Principle
+    Dependencies should NOT be created and used in the same place
+    Creation should be separated from the usage
+
+A well maintainable code is easy to test
+An easy to test code is well maintainable
