@@ -68,8 +68,9 @@ function calculatorModelFactory(){
     /* SalaryCalculatorModel */
     /* { provide : SalaryCalculatorModel, useClass : SalaryCalculatorModel2} */
     /* {provide : SalaryCalculatorModel, useValue : calculator} */
-    { provide : SalaryCalculatorModel, useFactory : calculatorModelFactory}
+    /* { provide : SalaryCalculatorModel, useFactory : calculatorModelFactory} */
 
+    //Also use @Injectable in the class
   ],
   bootstrap: [
     AppComponent
