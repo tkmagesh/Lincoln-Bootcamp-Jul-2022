@@ -7,11 +7,30 @@ Create a new angular app (bug-tracker-app)
         (done) 4. Toggle the 'closed' status of any bug
         (done) 5. Remove 'all closed' bugs
         (done) 6. Display stats ( # of closed bugs / total # of bugs )
-        7. Improvise 'Bug' display
+        (done) 7. Improvise 'Bug' display
             If the bug name is too long ( > 40 characters), 
                 display the first 40 characters and add an ellipsis
         8. Sort the bugs
+
         9. Persist the bugs in the browser local storage
+            window.localStorage (object)
+            ====================================
+            - key/value store
+            - key has to be unique
+            - both key & value must be strings
+                key - use bug.id as the key (ex, `bug-{bug.id}`)
+                value - use JSON.stringify(bug) as the value
+            - ~10 MB of storage space
+            - CANNOT be accessed from any domain ( Same Origin Policy)
+            - API
+            ==========
+                * setItem(key, value)
+                * getItem(key) (use JSON.parse(value) to get the value as an object from the string)
+                * removeItem(key) 
+                * clear()
+                * key(index) => key @ index
+                * length => number of key/value pairs in the store
+
         9. Display 'createdAt' for each bug
         10. Persist the bugs in the server
         11. Implement 'Projects' module
