@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { Bug } from "./models/bug.model";
+import { BugOperationsService } from "./services/bugOperations.service";
 
 @Component({
     selector : 'app-bugs',
@@ -8,17 +9,14 @@ import { Bug } from "./models/bug.model";
 })
 export class BugsComponent{
 
-    private _currentBugId : number = 0;
-
     bugs : Bug[] = [];
+    
+    constructor(private bugOperations : BugOperationsService){
+
+    }
 
     onAddNew(newBugName : string){
-        const newBug : Bug = {
-            id : ++this._currentBugId,
-            name : newBugName,
-            isClosed : false,
-            createdAt : new Date()
-        }
+        const newBug = this.bugOperations.createNew(newBugName);
         this.bugs.push(newBug);
     }
 
@@ -27,7 +25,7 @@ export class BugsComponent{
     }
 
     onToggle(bugToToggle : Bug){
-        bugToToggle.isClosed = !bugToToggle.isClosed;
+        this.bugOperations.toggle(bugToToggle);
     }
 
     onRemoveClosed(){
