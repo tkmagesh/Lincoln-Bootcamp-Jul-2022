@@ -23,7 +23,7 @@
                 class="bugname"
                 (click)="onToggle(bug)"
                 [ngClass]="{ closed : bug.isClosed }"
-            >{{ bug.name | trimText }}</span>
+            >{{ bug.name | trimText:30 }}</span>
             <div class="datetime">[createdAt]</div>
             <button (click)="onRemove(bug)">Remove</button>
         </li>
