@@ -4,7 +4,10 @@ import { SalaryCalculatorModel } from "./salaryCalculator.model";
 @Component({
     selector : 'app-salary-calculator',
     templateUrl : 'salaryCalculator.component.html',
-    styleUrls : ['salaryCalculator.component.css']
+    styleUrls : ['salaryCalculator.component.css'],
+    providers : [
+        SalaryCalculatorModel //each component instance will get its own instance of the SalaryCalculatorModel
+    ]
 })
 export class SalaryCalculatorComponent{
 
