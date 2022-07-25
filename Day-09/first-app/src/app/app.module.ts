@@ -10,6 +10,7 @@ import { PipesComponent } from './pipes/pipes.component';
 import { ProductsComponent } from './products/products.component';
 import { SalaryCalculatorComponent } from './salary-calculator/salaryCalculator.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { SalaryCalculatorModel } from './salary-calculator/salaryCalculator.model';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,9 @@ import { SpinnerComponent } from './spinner/spinner.component';
   ],
   providers: [
     /* non UI entities (Services) are registered here */
+    { provide : SalaryCalculatorModel, useClass : SalaryCalculatorModel },
+    /* SalaryCalculatorModel */
+
   ],
   bootstrap: [
     AppComponent

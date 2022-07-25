@@ -8,6 +8,17 @@ import { SalaryCalculatorModel } from "./salaryCalculator.model";
 })
 export class SalaryCalculatorComponent{
 
-    model : SalaryCalculatorModel = new SalaryCalculatorModel();
+    //model : SalaryCalculatorModel = new SalaryCalculatorModel();
+
+    /* 
+    model : SalaryCalculatorModel;
+
+    constructor(model : SalaryCalculatorModel){
+        this.model = model;
+    } 
+    */
     
+    constructor(public model : SalaryCalculatorModel){
+        
+    }
 }

@@ -142,4 +142,15 @@ Exercises
 
     2. Implement Pagination
 
-    3. Create a SalaryCalculator component
+    3. Create a SalaryCalculator component (done)
+
+    4. Angular Material (https://material.angular.io/)
+
+Services
+    Non UI responsibilities
+    Instantiation and Injection is taken care of by angular
+
+    Steps:
+        1. Create a class
+        2. Register the class as a 'Provider' in the module
+        3. Inject the class as a dependency in the component (constructor)
