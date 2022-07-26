@@ -39,18 +39,18 @@ Create a new angular app (bug-tracker-app)
             Remove the bug from the storage whenever a bug is removed
             Load all the bugs from the storage whenever the app is loaded
 
-        (Done) 9. Display 'createdAt' for each bug
+        (Done) 10. Display 'createdAt' for each bug
             ng add moment
             
             import * as moment from 'moment';
             console.log(moment('2022-07-26T14:29:42.771Z').fromNow());
 
-        10. Persist the bugs in the server
-        11. Implement 'Projects' module
-        12. Implement Routing
-        13. Implement 'Authentication'
-        14. Write test cases
-        15. Package & Deploy
+        11. Persist the bugs in the server
+        12. Implement 'Projects' module
+        13. Implement Routing
+        14. Implement 'Authentication'
+        15. Write test cases
+        16. Package & Deploy
 
 
 ng new bug-tracker-app
