@@ -10,6 +10,7 @@ import { BugOperationsService } from "./services/bugOperations.service";
 export class BugsComponent{
 
     bugs : Bug[] = [];
+    sortAttr : string = '';
     
     constructor(private bugOperations : BugOperationsService){
         this.bugs = this.bugOperations.getAll();
