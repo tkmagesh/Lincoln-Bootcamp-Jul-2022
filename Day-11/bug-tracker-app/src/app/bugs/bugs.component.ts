@@ -37,11 +37,14 @@ export class BugsComponent{
     }
 
     onRemoveClosed(){
-        for (let index = this.bugs.length-1 ; index >= 0; index--){
+        /* for (let index = this.bugs.length-1 ; index >= 0; index--){
             if (this.bugs[index].isClosed){
                 this.onRemove(this.bugs[index]);
             }
-        }
+        } */
+        this.bugs
+            .filter(bug => bug.isClosed)
+            .forEach(closedBug => this.onRemove(closedBug))
     }
 
     //TO BE FIXED
