@@ -11,6 +11,7 @@ export class BugsComponent{
 
     bugs : Bug[] = [];
     sortAttr : string = '';
+    sortDesc : boolean = false;
     
     constructor(private bugOperations : BugOperationsService){
         this.bugs = this.bugOperations.getAll();
