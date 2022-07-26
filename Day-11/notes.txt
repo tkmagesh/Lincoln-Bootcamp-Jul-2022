@@ -54,3 +54,18 @@ Create a new angular app (bug-tracker-app)
 
 
 ng new bug-tracker-app
+
+
+Refactoring the trimText, sort & elapsed pipes into a module (utils)
+    src/app
+        /utils
+            utils.module.ts (Define the Utils module)
+            /pipes
+                trimText.pipe.ts (Define the TrimTextPipe)
+                sort.pipe.ts (Define the SortPipe)
+                elapsed.pipe.ts (Define the ElapsedPipe)
+
+            Register the pipes in the utils module
+
+    Import the utils module in the app module
+        Use the pipes from the utils module
