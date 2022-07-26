@@ -12,7 +12,7 @@ export class BugsComponent{
     bugs : Bug[] = [];
     
     constructor(private bugOperations : BugOperationsService){
-
+        this.bugs = this.bugOperations.getAll();
     }
 
     onAddNew(newBugName : string){
@@ -21,6 +21,7 @@ export class BugsComponent{
     }
 
     onRemove(bugToRemove : Bug){
+        this.bugOperations.remove(bugToRemove);
         this.bugs.splice(this.bugs.indexOf(bugToRemove), 1)
     }
 
@@ -31,7 +32,7 @@ export class BugsComponent{
     onRemoveClosed(){
         for (let index = this.bugs.length-1 ; index >= 0; index--){
             if (this.bugs[index].isClosed){
-                this.bugs.splice(index, 1);
+                this.onRemove(this.bugs[index]);
             }
         }
     }

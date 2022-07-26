@@ -10,6 +10,7 @@ Create a new angular app (bug-tracker-app)
         (done) 7. Improvise 'Bug' display
             If the bug name is too long ( > 40 characters), 
                 display the first 40 characters and add an ellipsis
+                
         8. Sort the bugs
 
         9. Persist the bugs in the browser local storage
