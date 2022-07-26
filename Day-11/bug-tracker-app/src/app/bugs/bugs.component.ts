@@ -14,15 +14,23 @@ export class BugsComponent{
     sortAttr : string = '';
     sortDesc : boolean = false;
 
-    newBugName : string = '';
+   
 
     constructor(private bugOperations : BugOperationsService){
         this.bugs = this.bugOperations.getAll();
     }
 
+    //the following has been moved to the bugEdit.component.ts
+    /* 
     onAddNew(){
         const newBug = this.bugOperations.createNew(this.newBugName);
         //this.bugs.push(newBug);
+        this.bugs = [...this.bugs, newBug];
+    } 
+    */
+
+    //subscription to the 'bugAdded' event of the BugEdit component (refer to the template for usage)
+    onNewBugAdded(newBug : Bug){
         this.bugs = [...this.bugs, newBug];
     }
 

@@ -14,13 +14,12 @@
     <label for="">Descending ? :</label>
     <input type="checkbox" (change)="sortDesc = $any($event.target).checked">
 </section>
+
+
 <!-- BugEdit -->
-<section class="edit">
-    <label for="">Bug Name :</label>
-    <input type="text" (input)="newBugName = $any($event.target).value">
-    <span> [ {{newBugName.length}} ] </span>
-    <button (click)="onAddNew()">Add New</button>
-</section>
+<app-bug-edit (bugAdded)="onNewBugAdded($event)"></app-bug-edit>
+
+
 <!-- BugList -->
 <section class="list">
     <ol>
@@ -31,7 +30,12 @@
                 [ngClass]="{ closed : bug.isClosed }"
             >{{ bug.name | trimText:30 }}</span>
             <small>[{{bug.id}}]</small>
-            <div class="datetime">[{{bug.createdAt | elapsed}}]</div>
+            <div 
+                class="datetime"
+                [title]="bug.createdAt | date:'dd-MMM-yyyy hh:mm:ss a'"
+            >
+                [{{bug.createdAt | elapsed}}]
+            </div>
             <button (click)="onRemove(bug)">Remove</button>
         </li>
     </ol>
