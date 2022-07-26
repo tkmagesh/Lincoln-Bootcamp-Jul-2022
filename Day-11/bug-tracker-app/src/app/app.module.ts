@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { BugsComponent } from './bugs/bugs.component';
+import { BugStatsComponent } from './bugs/components/bugStats/bugStats.component';
 import { ClosedCountPipe } from './bugs/pipes/closedCount.pipe';
 import { UtilsModule } from './utils/utils.module';
 
@@ -11,6 +12,7 @@ import { UtilsModule } from './utils/utils.module';
     AppComponent,
     BugsComponent,
     ClosedCountPipe,
+    BugStatsComponent
   ],
   imports: [
     BrowserModule,

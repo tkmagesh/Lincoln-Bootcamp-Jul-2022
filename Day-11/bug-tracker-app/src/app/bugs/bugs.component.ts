@@ -10,6 +10,7 @@ import { BugOperationsService } from "./services/bugOperations.service";
 export class BugsComponent{
 
     bugs : Bug[] = [];
+    
     sortAttr : string = '';
     sortDesc : boolean = false;
 
