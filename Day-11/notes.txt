@@ -11,9 +11,9 @@ Create a new angular app (bug-tracker-app)
             If the bug name is too long ( > 40 characters), 
                 display the first 40 characters and add an ellipsis
                 
-        8. Sort the bugs
+        (done) 8. Sort the bugs
 
-        9. Persist the bugs in the browser local storage
+        (done) 9. Persist the bugs in the browser local storage
             window.localStorage (object)
             ====================================
             - key/value store
@@ -39,7 +39,12 @@ Create a new angular app (bug-tracker-app)
             Remove the bug from the storage whenever a bug is removed
             Load all the bugs from the storage whenever the app is loaded
 
-        9. Display 'createdAt' for each bug
+        (Done) 9. Display 'createdAt' for each bug
+            ng add moment
+            
+            import * as moment from 'moment';
+            console.log(moment('2022-07-26T14:29:42.771Z').fromNow());
+
         10. Persist the bugs in the server
         11. Implement 'Projects' module
         12. Implement Routing

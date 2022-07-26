@@ -31,7 +31,7 @@
                 [ngClass]="{ closed : bug.isClosed }"
             >{{ bug.name | trimText:30 }}</span>
             <small>[{{bug.id}}]</small>
-            <div class="datetime">[createdAt]</div>
+            <div class="datetime">[{{bug.createdAt | elapsed}}]</div>
             <button (click)="onRemove(bug)">Remove</button>
         </li>
     </ol>
