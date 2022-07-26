@@ -12,14 +12,17 @@ export class BugsComponent{
     bugs : Bug[] = [];
     sortAttr : string = '';
     sortDesc : boolean = false;
-    
+
+    newBugName : string = '';
+
     constructor(private bugOperations : BugOperationsService){
         this.bugs = this.bugOperations.getAll();
     }
 
-    onAddNew(newBugName : string){
-        const newBug = this.bugOperations.createNew(newBugName);
-        this.bugs.push(newBug);
+    onAddNew(){
+        const newBug = this.bugOperations.createNew(this.newBugName);
+        //this.bugs.push(newBug);
+        this.bugs = [...this.bugs, newBug];
     }
 
     onRemove(bugToRemove : Bug){

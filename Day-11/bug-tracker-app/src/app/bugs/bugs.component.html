@@ -17,8 +17,9 @@
 </section>
 <section class="edit">
     <label for="">Bug Name :</label>
-    <input type="text" #txtNewBugName>
-    <button (click)="onAddNew(txtNewBugName.value)">Add New</button>
+    <input type="text" (input)="newBugName = $any($event.target).value">
+    <span> [ {{newBugName.length}} ] </span>
+    <button (click)="onAddNew()">Add New</button>
 </section>
 <section class="list">
     <ol>
