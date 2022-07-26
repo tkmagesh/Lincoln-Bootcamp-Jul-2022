@@ -27,11 +27,13 @@ export class BugsComponent{
 
     onRemove(bugToRemove : Bug){
         this.bugOperations.remove(bugToRemove);
-        this.bugs.splice(this.bugs.indexOf(bugToRemove), 1)
+        //this.bugs.splice(this.bugs.indexOf(bugToRemove), 1)
+        this.bugs = this.bugs.filter(bug => bug.id !== bugToRemove.id);
     }
 
     onToggle(bugToToggle : Bug){
-        this.bugOperations.toggle(bugToToggle);
+        const toggledBug = this.bugOperations.toggle(bugToToggle);
+        this.bugs = this.bugs.map(bug => bug.id === bugToToggle.id ? toggledBug : bug);
     }
 
     onRemoveClosed(){
@@ -44,6 +46,7 @@ export class BugsComponent{
 
     //TO BE FIXED
     getClosedCount() : number {
+        console.log('getClosedCount triggered');
         //return this.bugs.filter(bug => bug.isClosed).length
         return this.bugs.reduce((result, bug) => bug.isClosed ? result + 1 : result, 0)
     }
