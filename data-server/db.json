@@ -1,12 +1,6 @@
 {
   "bugs": [
     {
-      "id": 3,
-      "name": "User actions not recognised",
-      "isClosed": false,
-      "createdAt": "2021-09-16T12:52:46.704Z"
-    },
-    {
       "id": 6,
       "name": "Application not responding",
       "isClosed": true,
@@ -23,6 +17,12 @@
       "name": "Router is not routing",
       "isClosed": false,
       "createdAt": "2022-02-18T11:24:02.322Z"
+    },
+    {
+      "id": 9,
+      "name": "JSON server is not responsive frequently",
+      "isClosed": true,
+      "createdAt": "2022-06-27T12:52:46.704Z"
     }
   ],
   "projects": [

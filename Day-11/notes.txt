@@ -69,3 +69,14 @@ Refactoring the trimText, sort & elapsed pipes into a module (utils)
 
     Import the utils module in the app module
         Use the pipes from the utils module
+
+
+
+Synchronous Vs. Asynchronous Operation
+
+Synchronous
+    An operation that is initiated and waited for its completion
+
+Asynchronous
+    An operation that is initiated but NOT waited for its completion
+
