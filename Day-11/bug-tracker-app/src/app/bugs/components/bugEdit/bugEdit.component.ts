@@ -13,20 +13,26 @@ export class BugEditComponent{
     newBugName : string = '';
 
     //placeholder for all the even subscriptions from the parent component
+    /* 
     @Output()
     public bugAdded : EventEmitter<Bug> = new EventEmitter<Bug>()
-
+    */
     constructor(private bugOperations : BugOperationsService){
 
     }
 
     onAddNew(){
+
+        this.bugOperations.createNew(this.newBugName);
+        
+        /* 
         const newBug = this.bugOperations.createNew(this.newBugName);
 
         //emitting the event (thereby calling all the subscribers with the data)
-        this.bugAdded.emit(newBug);
+        this.bugAdded.emit(newBug); 
+        */
 
-        //this.bugs = [...this.bugs, newBug];
+        
     }
 
 }
