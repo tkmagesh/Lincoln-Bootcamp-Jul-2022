@@ -1,0 +1,42 @@
+{
+  "bugs": [
+    {
+      "id": 3,
+      "name": "User actions not recognised",
+      "isClosed": false,
+      "createdAt": "2021-09-16T12:52:46.704Z"
+    },
+    {
+      "id": 6,
+      "name": "Application not responding",
+      "isClosed": true,
+      "createdAt": "2022-02-18T09:16:15.098Z"
+    },
+    {
+      "id": 7,
+      "name": "Server communication failure",
+      "isClosed": false,
+      "createdAt": "2022-02-18T09:53:42.905Z"
+    },
+    {
+      "id": 8,
+      "name": "Router is not routing",
+      "isClosed": false,
+      "createdAt": "2022-02-18T11:24:02.322Z"
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "name": "Bug Tracker"
+    },
+    {
+      "id": 2,
+      "name": "Project Management"
+    },
+    {
+      "id": 3,
+      "name": "Time Tracker"
+    }
+  ]
+}
