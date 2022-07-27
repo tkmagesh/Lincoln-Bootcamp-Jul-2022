@@ -1,0 +1,12 @@
+<section class="sort">
+    <label for="">Order By :</label>
+    <select (change)="onSortAttrChange($any($event.target).value)">
+        <option value="">---Select----</option>
+        <option value="id">Id</option>
+        <option value="name">Name</option>
+        <option value="isClosed">Status</option>
+        <option value="createdAt">Created</option>
+    </select>
+    <label for="">Descending ? :</label>
+    <input type="checkbox" (change)="onSortOrderChange($any($event.target).checked)">
+</section>

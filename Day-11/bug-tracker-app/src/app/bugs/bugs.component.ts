@@ -34,27 +34,7 @@ export class BugsComponent{
         this.bugs = [...this.bugs, newBug];
     }
 
-    onRemove(bugToRemove : Bug){
-        this.bugOperations.remove(bugToRemove);
-        //this.bugs.splice(this.bugs.indexOf(bugToRemove), 1)
-        this.bugs = this.bugs.filter(bug => bug.id !== bugToRemove.id);
-    }
-
-    onToggle(bugToToggle : Bug){
-        const toggledBug = this.bugOperations.toggle(bugToToggle);
-        this.bugs = this.bugs.map(bug => bug.id === bugToToggle.id ? toggledBug : bug);
-    }
-
-    onRemoveClosed(){
-        /* for (let index = this.bugs.length-1 ; index >= 0; index--){
-            if (this.bugs[index].isClosed){
-                this.onRemove(this.bugs[index]);
-            }
-        } */
-        this.bugs
-            .filter(bug => bug.isClosed)
-            .forEach(closedBug => this.onRemove(closedBug))
-    }
+    
 
     //TO BE FIXED
     getClosedCount() : number {
