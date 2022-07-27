@@ -47,17 +47,27 @@
         return p;
     }
 
-    function addAsyncPromiseClient(){
+    /* function addAsyncPromiseClient(){
         console.log(`[@client] invoking the service`)
         var p = addAsyncPromise(100,200)
         var p2 = p.then(function(result){
             console.log('[@client] result = ', result);
             return result * 2;
         });
+    } */
+
+    async function addAsyncPromiseClient(){
+        console.log(`[@client] invoking the service`)
+        let result = await addAsyncPromise(100,200)
+        console.log(`[@client] result = ${result}`)
+        let divideResult = await divideAsyncPromise(result, 7);
+        console.log(`[@client] dividing ${result} by 7, divideResult = ${divideResult}`)
+
     }
 
     window['addAsyncPromiseClient'] = addAsyncPromiseClient;
 
+    
     function divideAsyncPromise(x,y){
         console.log(`   [@service] processing ${x} and ${y}`);
         let p = new Promise(function(resolveFn, rejectFn){
@@ -65,7 +75,7 @@
                 if (y === 0){
                     return rejectFn(new Error('cannot divide by zero'))
                 }
-                let result = x + y
+                let result = x / y
                 console.log(`   [@service] returning result`);
                 resolveFn(result);
             }, 5000);
@@ -73,13 +83,20 @@
         return p;
     }
 
+    /* 
+
     function divideAsyncPromiseClient(){
-        divideAsyncPromise(100,7)
+        divideAsyncPromise(100,0)
         .then(result => console.log(`result = ${result}`))
-        .catch(err => console.log('Error : ', err))
+        .catch(err => {
+            console.log('Error : ', err);
+            return 'something';
+        })
+        .then(r => console.log('r = ', r));
     }
 
-    window['divideAsyncPromiseClient'] = divideAsyncPromiseClient;
+    window['divideAsyncPromiseClient'] = divideAsyncPromiseClient; 
+    */
 
 })();
 //Promise Chaining
