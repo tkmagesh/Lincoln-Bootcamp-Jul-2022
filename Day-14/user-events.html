@@ -7,22 +7,52 @@
     <title>Document</title>
     <script>
         (function(){
-            function doWork(){
-                for(var i=0; i < 10000; i++)
-                    for(var j=0; j < 2000; j++)
-                        for(var k=0; k < 1000; k++){
+            function doWork(onComplete, onProgress){
+                var totalIterations = 1000,
+                    currentIteration = 0;
 
-                        }
+                function oneIteration(){
+                    for(var i=0; i < (10000/totalIterations); i++)
+                        for(var j=0; j < 5000; j++)
+                            for(var k=0; k < 1000; k++){
+
+                            }
+                    ++currentIteration;
+                    if (currentIteration % 10 === 0) {
+                        var percentCompletion = (currentIteration/totalIterations) * 100;
+                        onProgress(percentCompletion);
+                    }
+                    if (currentIteration < totalIterations){
+                        setTimeout(oneIteration)
+                    } else {
+                        console.log('Job Done');
+                        onComplete()
+                    }
+                }
+
+                setTimeout(oneIteration);
             }
 
             function displayMessage(msg){
-                document.getElementById('divMessages').innerHTML += msg + '<br/>';
+                var divMessagesDOM = document.getElementById('divMessages');
+                divMessagesDOM.innerHTML += msg + '<br/>'; 
             }
 
             function onBtnDoWorkClick(){
-                displayMessage('work started');
-                doWork();
-                displayMessage('work completed');
+                displayMessage('work started'); //dom updated, NO screen repaint
+                setTimeout(triggerWork)
+            }
+
+            function triggerWork(){
+                doWork(onWorkCompletion, onWorkProgress);
+            }
+
+            function onWorkCompletion(){
+                 displayMessage('work completed');
+            };
+
+            function onWorkProgress(percentCompletion){
+                document.getElementById('workProgress').value = percentCompletion;
             }
 
             function onDocumentLoad(){
@@ -37,6 +67,9 @@
 <body>
     <input type="text" name="" id="">
     <button id="btnDoWork">Do Work</button>
+    <div>
+        <progress id="workProgress" min="0" max="100" value="0"></progress>
+    </div>
     <div id="divMessages"></div>
 </body>
 </html>
