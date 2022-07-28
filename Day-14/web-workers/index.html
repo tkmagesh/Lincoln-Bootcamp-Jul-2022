@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        (function(){
+            var worker = new Worker('work.js');
+
+            worker.addEventListener('message', evtArg => {
+                if (evtArg.data === 'completed'){
+                    displayMessage('work completed');
+                }
+                if (evtArg.data.type === 'progress'){
+                    document.getElementById('workProgress').value = evtArg.data.percentCompleted;
+                }
+            });
+
+            function displayMessage(msg){
+                var divMessagesDOM = document.getElementById('divMessages');
+                divMessagesDOM.innerHTML += msg + '<br/>'; 
+            }
+
+            function onBtnDoWorkClick(){
+                displayMessage('work started'); //dom updated, NO screen repaint
+                worker.postMessage('start');
+            }
+
+            
+
+            /* function onWorkProgress(percentCompletion){
+                document.getElementById('workProgress').value = percentCompletion;
+            } */
+
+            function onDocumentLoad(){
+                var btnDoWork = document.getElementById('btnDoWork');
+                btnDoWork.addEventListener('click', onBtnDoWorkClick);
+            }
+            window.addEventListener('load', onDocumentLoad);
+        })();
+
+    </script>
+</head>
+<body>
+    <input type="text" name="" id="">
+    <button id="btnDoWork">Do Work</button>
+    <div>
+        <progress id="workProgress" min="0" max="100" value="0"></progress>
+    </div>
+    <div id="divMessages"></div>
+</body>
+</html>
