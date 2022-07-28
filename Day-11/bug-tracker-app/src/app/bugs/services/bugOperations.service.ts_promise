@@ -15,26 +15,38 @@ export class BugOperationsService{
 
     }
 
-    async getAll() {
-        this.bugs = await this.bugApi.getAll()
+    getAll() {
+        this.bugApi
+            .getAll()
+            .then(bugs => this.bugs = bugs);
     }
 
-    async createNew(newBugName : string) {
+    createNew(newBugName : string) {
         const newBugData : Bug = {
             id : 0,
             name : newBugName,
             isClosed : false,
             createdAt : new Date()
         }
-        const newBug = await this.bugApi.save(newBugData)
-        this.bugs = [...this.bugs, newBug];
-            
+        //this.bugStorage.save(newBug);
+        //refactor the following to the bugApi service
+        this.bugApi
+            .save(newBugData)
+            .then(newBug => {
+                this.bugs = [...this.bugs, newBug];
+            })
     }
 
-    async toggle(bugToToggle : Bug){
+    toggle(bugToToggle : Bug){
         let toggledBugData = { ...bugToToggle, isClosed : !bugToToggle.isClosed } ;
-        const toggledBug = await this.bugApi.save(toggledBugData)
-        this.bugs = this.bugs.map(bug => bug.id === bugToToggle.id ? toggledBug : bug);
+        //this.bugStorage.save(toggledBug);
+        //refactor the following to the bugApi service
+        this.bugApi
+            .save(toggledBugData)
+            .then(toggledBug => {
+                this.bugs = this.bugs.map(bug => bug.id === bugToToggle.id ? toggledBug : bug);
+            })
+        
     }
 
     remove(bugToRemove : Bug){
