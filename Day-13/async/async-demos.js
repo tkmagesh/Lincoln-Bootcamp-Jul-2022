@@ -42,7 +42,7 @@
                 let result = x + y
                 console.log(`   [@service] returning result`);
                 resolveFn(result);
-            }, 5000);
+            }, Math.random() * 10000);
         });
         return p;
     }
@@ -56,6 +56,8 @@
         });
     } */
 
+    window['addAsyncPromise'] = addAsyncPromise;
+
     async function addAsyncPromiseClient(){
         console.log(`[@client] invoking the service`)
         let result = await addAsyncPromise(100,200)
@@ -65,7 +67,7 @@
 
     }
 
-    window['addAsyncPromiseClient'] = addAsyncPromiseClient;
+    //window['addAsyncPromiseClient'] = addAsyncPromiseClient;
 
     
     function divideAsyncPromise(x,y){
@@ -78,11 +80,12 @@
                 let result = x / y
                 console.log(`   [@service] returning result`);
                 resolveFn(result);
-            }, 5000);
+            }, Math.random() * 10000);
         });
         return p;
     }
 
+    window['divideAsyncPromise'] = divideAsyncPromise
     /* 
 
     function divideAsyncPromiseClient(){
@@ -126,5 +129,52 @@ addAsyncPromise(100,200)
     })
     .then(function(x){
         console.log('x = ', x);
+    }) 
+*/
+
+
+//synchronizing promises
+
+//Option-0
+/* 
+const addResult = await addAsyncPromise(100,200);
+console.log('addResult = ', addResult);
+const divideResult = await divideAsyncPromise(100,7);
+console.log('divideResult = ', divideResult); 
+*/
+
+
+//Option-1
+/* 
+addAsyncPromise(100, 200)
+    .then(addResult => {
+        console.log('addResult = ', addResult);
+        divideAsyncPromise(100,7)
+            .then(divideResult => {
+                console.log('divideResult = ', divideResult);
+            })
+    }) 
+*/
+
+
+//Option-2
+/* 
+addAsyncPromise(100, 200)
+    .then(addResult => {
+        console.log('addResult = ', addResult);
+    })
+divideAsyncPromise(100,7)
+    .then(divideResult => {
+        console.log('divideResult = ', divideResult);
+    })
+ */
+//Option-3
+/* 
+const addPromise = addAsyncPromise(100,200);
+const dividePromise = divideAsyncPromise(100,7);
+Promise.all([addPromise, dividePromise])
+    .then(([addResult, divideResult]) => {
+        console.log('divideResult = ', divideResult);
+        console.log('addResult = ', addResult);
     }) 
 */
