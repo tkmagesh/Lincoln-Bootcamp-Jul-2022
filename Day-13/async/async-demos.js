@@ -168,6 +168,7 @@ divideAsyncPromise(100,7)
         console.log('divideResult = ', divideResult);
     })
  */
+
 //Option-3
 /* 
 const addPromise = addAsyncPromise(100,200);
@@ -178,3 +179,13 @@ Promise.all([addPromise, dividePromise])
         console.log('addResult = ', addResult);
     }) 
 */
+
+//Option-4
+/* 
+const addPromise = addAsyncPromise(100,200);
+const dividePromise = divideAsyncPromise(100,7);
+const [addResult, divideResult] = await Promise.all([addPromise, dividePromise])
+console.log('divideResult = ', divideResult);
+console.log('addResult = ', addResult); 
+*/
+    
