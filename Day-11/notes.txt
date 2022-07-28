@@ -80,3 +80,22 @@ Synchronous
 Asynchronous
     An operation that is initiated but NOT waited for its completion
 
+
+To use the inbuilt HttpClient Api
+    import the 'HttpClientModule' in the module
+        import { HttpClientModule } from '@angular/common/http';
+
+    Add the HttpClientModule to the imports array of the module
+        imports: [
+            BrowserModule,
+            HttpClientModule
+        ]
+
+    Inject the HttpClient into the constructor of the component / service
+        constructor(private http: HttpClient) { }
+
+    Use the HttpClient to make a request
+        this.http.get('https://jsonplaceholder.typicode.com/users')
+            .subscribe(response => {
+                console.log(response);
+            });

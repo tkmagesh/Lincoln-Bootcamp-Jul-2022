@@ -57,8 +57,8 @@ pgm
 Application where a mouse / trackpad is a database
 
 Browser (Asynchronous)
-    1. Ajax (Asynchronous JavaScript and XML)
-    2. WebSockets 
-    3. Server Sent Events
-    5. Timer Events (setInterval, setTimeout)
-    4. User Events
+    1. Ajax (Asynchronous JavaScript and XML) (single)
+    2. WebSockets (sequence)
+    3. Server Sent Events (sequence)
+    5. Timer Events (setInterval, setTimeout) (sequence)
+    4. User Events (sequence)

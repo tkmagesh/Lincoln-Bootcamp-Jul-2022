@@ -15,6 +15,8 @@ const observableObj = new Observable((subscribe = (subscribedOberver) => {
     }
 }))
 
+/* 
+//DEPRECATED
 observableObj.subscribe(
     val => console.log(val), 
     err => {
@@ -22,4 +24,19 @@ observableObj.subscribe(
     },
     () => console.log('all data received')
 );
+*/
+
+
+const observer = {
+    next(val){
+        console.log(val);
+    },
+    error(err){
+        console.log('error from observable : ', err)
+    },
+    complete(){
+        console.log('all data received')
+    }
+};
+observableObj.subscribe(observer);
 
