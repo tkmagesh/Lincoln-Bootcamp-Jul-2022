@@ -37,15 +37,9 @@ export class BugOperationsService{
         this.bugs = this.bugs.map(bug => bug.id === bugToToggle.id ? toggledBug : bug);
     }
 
-    remove(bugToRemove : Bug){
-        //this.bugStorage.remove(bugToRemove);
-        //refactor the following to the bugApi service
-        this.bugApi
-            .remove(bugToRemove)
-            .then(() => {
-                this.bugs = this.bugs.filter(bug => bug.id !== bugToRemove.id);
-            });
-        
+    async remove(bugToRemove : Bug){
+        await this.bugApi.remove(bugToRemove)
+        this.bugs = this.bugs.filter(bug => bug.id !== bugToRemove.id);
     }
 
     removeClosed(){
