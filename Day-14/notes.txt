@@ -1,0 +1,64 @@
+Observable
+
+Observable = inverse of Enumerable (generator in JS)
+    Enumerable  = lazy iterable
+
+Iterable
+let nos = {
+    [Symbol.iterator]() {
+        let i = 0;
+        return {
+            next(){
+                if (i < 10) {
+                    let result = { done : false, value : i * 10 };
+                    i++
+                    return result;
+                }
+                return { done : true, value : undefined }
+            }
+        }
+    }
+}
+let iter = nos[Symbol.iterator]()
+iter.next()
+
+
+//Generator (lazy iterable OR Enumerable)
+function *genNos(){
+    yield 10;
+    yield 20;
+    yield 30;
+    yield 40;
+    return 50;
+}
+var iter = genNos()
+iter.next()
+
+
+Event Driven Applications
+
+emp.dat
+    id, firstName, lastName, salary, departmentId, doj .......
+
+pgm
+    let totalSalary = 0,
+        empCount = 0;
+    open the file
+    while (!EOF){
+        let line = readLine();
+        parse the line
+        totalSalary += emp.salary;
+        empCount++;
+    }
+    let avg = totalSalary / empCount
+    close the file
+    return avg
+
+Application where a mouse / trackpad is a database
+
+Browser (Asynchronous)
+    1. Ajax (Asynchronous JavaScript and XML)
+    2. WebSockets 
+    3. Server Sent Events
+    5. Timer Events (setInterval, setTimeout)
+    4. User Events

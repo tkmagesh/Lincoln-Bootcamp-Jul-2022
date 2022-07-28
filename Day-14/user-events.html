@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        (function(){
+            function doWork(){
+                for(var i=0; i < 10000; i++)
+                    for(var j=0; j < 2000; j++)
+                        for(var k=0; k < 1000; k++){
+
+                        }
+            }
+
+            function displayMessage(msg){
+                document.getElementById('divMessages').innerHTML += msg + '<br/>';
+            }
+
+            function onBtnDoWorkClick(){
+                displayMessage('work started');
+                doWork();
+                displayMessage('work completed');
+            }
+
+            function onDocumentLoad(){
+                var btnDoWork = document.getElementById('btnDoWork');
+                btnDoWork.addEventListener('click', onBtnDoWorkClick);
+            }
+            window.addEventListener('load', onDocumentLoad);
+        })();
+
+    </script>
+</head>
+<body>
+    <input type="text" name="" id="">
+    <button id="btnDoWork">Do Work</button>
+    <div id="divMessages"></div>
+</body>
+</html>
