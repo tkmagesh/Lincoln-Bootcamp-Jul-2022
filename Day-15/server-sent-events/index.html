@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Sent Events</title>
+    <script>
+        (function(){
+            var source;
+
+
+            function onServerMessage(eventArg){
+                document.getElementById('divMessages').innerHTML += eventArg.data + '<br/>'
+            }
+            function onBtnStopClick(){
+                source.close()
+                source = null;
+            }
+            function onBtnStartClick(){
+                source = new EventSource('stream');
+                source.addEventListener('message', onServerMessage);
+            }
+            function onDocumentLoad(){
+                document.getElementById('btnStart').addEventListener('click', onBtnStartClick);
+                document.getElementById('btnStop').addEventListener('click', onBtnStopClick);
+            }
+            window.addEventListener('load', onDocumentLoad);
+        })();
+    </script>
+<body>
+    <h1>Server Sent Events</h1>
+    <button id="btnStart">Start</button>
+    <button id="btnStop">Stop</button>
+    <div id="divMessages"></div>
+</body>
+</html>

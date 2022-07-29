@@ -62,3 +62,20 @@ Browser (Asynchronous)
     3. Server Sent Events (sequence)
     5. Timer Events (setInterval, setTimeout) (sequence)
     4. User Events (sequence)
+
+HTTP 
+    - stateless
+
+Server Sent Events
+    Server
+        HTTP Headers
+            content-type : text/event-stream
+            connection : keep-alive
+
+        event:<event-name>\n
+        data:<data>\n\n 
+
+    Browser
+        EventSource
+            
+
