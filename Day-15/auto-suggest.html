@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script>
+        function onTxtSearchKeyUp(evt){
+            var searchTerm = document.getElementById('txtSearch').value
+            document.getElementById('divMessages').innerText = searchTerm;
+        }
+        
+        function onDocumentLoad(){
+            var txtSearch = document.getElementById('txtSearch');
+            txtSearch.addEventListener('keyup', onTxtSearchKeyUp);
+        }
+        window.addEventListener('load', onDocumentLoad);
+    </script>
+</head>
+<body>
+    <input type="text" name="" id="txtSearch">
+    <div id="divMessages"></div>
+</body>
+</html>
