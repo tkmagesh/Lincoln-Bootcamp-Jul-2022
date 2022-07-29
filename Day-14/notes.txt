@@ -79,3 +79,9 @@ Server Sent Events
         EventSource
             
 
+Web Sockets
+    Server (node.js)
+        socket.io
+
+    Browser
+        WebSocket
