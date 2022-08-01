@@ -29,10 +29,19 @@ setTimeout(() => {
     startSubject.next('start');
 }, 2000);
 
+/* 
 interval$
     .pipe(skipUntil(startSubject))
     .pipe(takeUntil(stopSubject))
-    .subscribe(no => console.log('no : ', no))
+    .subscribe(no => console.log('no : ', no)) 
+*/
+
+interval$
+    .pipe(
+        skipUntil(startSubject),
+        takeUntil(stopSubject)
+    )
+    .subscribe(no => console.log('no : ', no)) 
 
 setTimeout(() => {
     stopSubject.next('stop')
