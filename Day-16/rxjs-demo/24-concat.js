@@ -1,7 +1,7 @@
-const { concat, of, Subject } = require('rxjs');
+const { concat, of, BehaviorSubject } = require('rxjs');
 const { delay } =require('rxjs/operators')
 
-const httpRequest$ = new Subject();
+const httpRequest$ = new BehaviorSubject();
 
 const firstObs$ = of('btn click').pipe(delay(2000));
 
@@ -11,4 +11,4 @@ concat(firstObs$, httpRequest$).subscribe(val => {
 
 setTimeout(() => {
     httpRequest$.next('Response from server');
-}, 3000)
+}, 1000)
