@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Autosuggest</title>
+        <script src="https://unpkg.com/rxjs@%5E7/dist/bundles/rxjs.umd.min.js"></script>
+    </head>
+<body>
+    <input type="text" name="" id="txtSearch">
+    <div id="divStatus"></div>
+    <script>
+        const { fromEvent } = rxjs;
+        const { debounceTime } = rxjs.operators;
+        const txtSearch = document.getElementById('txtSearch');
+        const divStatus = document.getElementById('divStatus');
+        const txtSearchKeyUp$ = fromEvent(txtSearch, 'keyup');
+        txtSearchKeyUp$
+            .pipe(debounceTime(500))
+            .subscribe(evt => divStatus.innerText = `request sent : ${evt.target.value}`)
+    </script>
+</body>
+</html>

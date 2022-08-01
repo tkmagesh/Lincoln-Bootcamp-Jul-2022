@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    <script src="https://unpkg.com/rxjs@%5E7/dist/bundles/rxjs.umd.min.js"></script>
+   
+</head>
+<body>
+    <h3>Timer</h3>
+    <button id="btnStart">Start</button>
+    <button id="btnStop">Stop</button>
+    <div id="divTime"></div>
+    <script>
+        const { fromEvent, interval } = rxjs;
+        const { map, takeUntil } = rxjs.operators;
+
+        const interval$ = interval(100);
+
+        const divTime = document.getElementById('divTime');
+        const btnStart = document.getElementById('btnStart');
+        const btnStop = document.getElementById('btnStop');
+
+        const btnStop$ = fromEvent(btnStop, 'click');
+
+        fromEvent(btnStart, 'click')
+            .subscribe(() => {
+                interval$
+                    .pipe(
+                        map(time => (time/10)),
+                        takeUntil(btnStop$)
+                    )
+                    .subscribe(val => divTime.innerText = val);
+                    
+            })
+    </script>
+</body>
+</html>
