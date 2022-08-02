@@ -5,8 +5,9 @@
             <!-- <input type="text" (input)="newBugName = $any($event.target).value"> -->
             <input type="text" name="bugName" required minlength="10" [(ngModel)]="newBugName" #newBugNameControl="ngModel">
             <span> [ {{newBugName.length}} ] </span>
-            <div class="error" *ngIf="(newBugNameControl.touched || newBugNameControl.dirty) && newBugNameControl.invalid">Bug name cannot be empty!</div>
-            <div class="error">Bug name should be a minimum of 10 characters</div>
+            <div class="error" *ngIf="(newBugNameControl.touched || newBugNameControl.dirty) && newBugNameControl.errors?.['required']">Bug name cannot be empty!</div>
+            <div class="error" *ngIf="(newBugNameControl.touched || newBugNameControl.dirty) && newBugNameControl.errors?.['minlength']">Bug name should be a minimum of 10 characters</div>
+           <!--  
             <div>
                 <div>isValid : {{newBugNameControl.valid}}</div>
                 <div>isInvalid : {{newBugNameControl.invalid}}</div>
@@ -15,7 +16,8 @@
                 <div>pristine : {{newBugNameControl.pristine}}</div>
                 <div>dirty : {{newBugNameControl.dirty}}</div>
                 <div>{{newBugNameControl.errors | json}}</div>
-            </div>
+            </div> 
+        -->
         </div>
         <div>
             <label for="">Description :</label>
