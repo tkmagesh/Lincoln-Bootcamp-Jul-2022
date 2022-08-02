@@ -1,17 +1,24 @@
 <section class="edit">
-    <div>
-        <label for="">Bug Name :</label>
-        <input type="text" (input)="newBugName = $any($event.target).value">
-        <span> [ {{newBugName.length}} ] </span>
-        <div class="error">Bug name cannot be empty!</div>
-    </div>
-    <div>
-        <label for="">Description :</label>
-        <input type="text" name="" id="">
-        <div class="error">Bug description cannot be empty!</div>
-    </div>
-    <button (click)="onAddNew()">Add New</button>
-    
+    <form #newBugFormGroup="ngForm">
+        <div>
+            <label for="">Bug Name :</label>
+            <!-- <input type="text" (input)="newBugName = $any($event.target).value"> -->
+            <input type="text" name="bugName" required [(ngModel)]="newBugName">
+            <span> [ {{newBugName.length}} ] </span>
+            <div class="error">Bug name cannot be empty!</div>
+        </div>
+        <div>
+            <label for="">Description :</label>
+            <input type="text" name="bugDesc" [(ngModel)]="newBugDesc">
+            <div class="error">Bug description cannot be empty!</div>
+            <div class="error">Bug description cannot be less than 10 characters!</div>
+        </div>
+        <button (click)="onAddNew()">Add New</button>
+        <div>
+            <div>Values : {{newBugFormGroup.value | json}}</div>
+            <div>Valid : {{newBugFormGroup.valid}}</div>
+        </div>
+    </form>
 </section>
 
 <!-- 

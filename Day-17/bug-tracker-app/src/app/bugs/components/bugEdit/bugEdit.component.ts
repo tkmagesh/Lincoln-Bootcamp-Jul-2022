@@ -11,7 +11,7 @@ import { BugOperationsService } from "../../services/bugOperations.service";
 export class BugEditComponent{
 
     newBugName : string = '';
-
+    newBugDesc : string = '';
     //placeholder for all the even subscriptions from the parent component
     /* 
     @Output()
