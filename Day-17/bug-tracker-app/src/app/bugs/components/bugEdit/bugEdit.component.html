@@ -1,0 +1,32 @@
+<section class="edit">
+    <div>
+        <label for="">Bug Name :</label>
+        <input type="text" (input)="newBugName = $any($event.target).value">
+        <span> [ {{newBugName.length}} ] </span>
+        <div class="error">Bug name cannot be empty!</div>
+    </div>
+    <div>
+        <label for="">Description :</label>
+        <input type="text" name="" id="">
+        <div class="error">Bug description cannot be empty!</div>
+    </div>
+    <button (click)="onAddNew()">Add New</button>
+    
+</section>
+
+<!-- 
+    Bug Name
+    1. Display the error when the user tabs out (blur)
+    2. Remove the error when the data is valid
+
+    Bug Description
+    1. Display the error when the user tabs out (blur)
+    2. Remove the error when the data is valid
+
+    The 'Add New' button should be 'disabled' when either of the text box is empty (invalid)
+    It should automatically be enabled when the text boxes are valid
+    
+
+    When the component is rendered, no error messages should be displayed
+    Only when the user attempts focus on the textbox but leaves without entering the data, do the validation and display the error message
+ -->

@@ -1,0 +1,13 @@
+<!-- BugStats component -->
+<app-bug-stats [data]="bugOperations.bugs"></app-bug-stats>
+
+<!-- BugSort -->
+<app-bug-sort (sortAttrChange)="sortAttr=$event" (sortOrderChange)="sortDesc=$event"></app-bug-sort>
+
+
+<!-- BugEdit -->
+<app-bug-edit></app-bug-edit>
+
+
+<!-- BugList -->
+<app-bug-list [bugs]="bugOperations.bugs | sort:sortAttr:sortDesc"></app-bug-list>
