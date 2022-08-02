@@ -5,16 +5,16 @@
             
             <input type="text" name="bugName" formControlName="newBugName">
             
-            <span> [ {{newBugForm.get('newBugName')?.value?.length}} ] </span>
+            <span> [ {{newBugName?.value?.length}} ] </span>
             <div 
                 class="error" 
-                *ngIf="(newBugForm.get('newBugName')?.touched || newBugForm.get('newBugName')?.dirty) && newBugForm.get('newBugName')?.errors?.['required']"
+                *ngIf="(newBugName?.touched || newBugName?.dirty) && newBugName?.errors?.['required']"
             >
                 Bug name cannot be empty!
             </div>
             <div 
                 class="error" 
-                *ngIf="(newBugForm.get('newBugName')?.touched || newBugForm.get('newBugName')?.dirty) && newBugForm.get('newBugName')?.errors?.['minlength']"
+                *ngIf="(newBugName?.touched || newBugName?.dirty) && newBugName?.errors?.['minlength']"
             >
                 Bug name should be a minimum of 10 characters
             </div>
@@ -36,7 +36,7 @@
             <!-- <div class="error" *ngIf="(bugDescControl.touched || bugDescControl.dirty) && bugDescControl.invalid">Bug description cannot be empty!</div> -->
             
         </div>
-        <button (click)="onAddNew()" >Add New</button>
+        <button (click)="onAddNew()" [disabled]="newBugForm.invalid" >Add New</button>
         <div>
             <div>Values : {{newBugForm.value | json}}</div>
             <div>Valid : {{newBugForm.valid}}</div>

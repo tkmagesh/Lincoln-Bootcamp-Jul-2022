@@ -22,6 +22,14 @@ export class BugEditComponent{
         
     }
 
+    get newBugName(){
+        return this.newBugForm.get('newBugName')
+    }
+
+    get newBugDesc(){
+        return this.newBugForm.get('newBugDesc')
+    }
+
     onAddNew(){
         if (this.newBugForm.valid){
             this.bugOperations.createNew(this.newBugForm.value.newBugName || '');
