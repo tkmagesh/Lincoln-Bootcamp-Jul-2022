@@ -23,7 +23,9 @@ export class BugEditComponent{
     }
 
     onAddNew(){
-        //this.bugOperations.createNew(this.newBugName);
+        if (this.newBugForm.valid){
+            this.bugOperations.createNew(this.newBugForm.value.newBugName || '');
+        }
     }
 
 }
