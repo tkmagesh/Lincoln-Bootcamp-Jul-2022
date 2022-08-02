@@ -16,8 +16,8 @@
     <app-calculator-2 *ngIf="userChoice == 'Calculator-2'"></app-calculator-2> 
     <app-products *ngIf="userChoice == 'Products'"></app-products> 
 -->
-<!-- 
-    <div [ngSwitch]="userChoice">
+
+<div [ngSwitch]="userChoice">
     <app-spinner *ngSwitchCase="'Spinner'"></app-spinner>
     <app-greeter *ngSwitchCase="'Greeter'"></app-greeter>
     <app-calculator *ngSwitchCase="'Calculator'"></app-calculator>
@@ -26,7 +26,7 @@
     <app-salary-calculator *ngSwitchCase="'SalaryCalculator'"></app-salary-calculator>
     <div *ngSwitchDefault>Make a choice:</div>
 </div> 
--->
 
-<app-salary-calculator></app-salary-calculator>
-<app-salary-calculator></app-salary-calculator>
+
+<!-- <app-salary-calculator></app-salary-calculator>
+<app-salary-calculator></app-salary-calculator> -->

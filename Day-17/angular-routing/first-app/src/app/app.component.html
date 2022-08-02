@@ -1,0 +1,11 @@
+<h1>{{ title }} app is running!</h1>
+<button (click)="onChangeTitle()">Change Title</button>
+<hr/>
+<span> [ <a [routerLink]="['/spinner']">Spinner</a> ] </span>
+<span> [ <a [routerLink]="['/greeter']">Greeter</a> ] </span>
+<span> [ <a [routerLink]="['/products']">Products</a> ] </span>
+<span> [ <a [routerLink]="['/calculator']">Calculator</a> ] </span>
+<hr />
+
+
+<router-outlet></router-outlet>

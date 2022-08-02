@@ -1,0 +1,8 @@
+<div>
+    <h3>Greeter</h3>
+    <hr>
+    <label for="">User Name :</label>
+    <input type="text" #txtUserName>
+    <button (click)="onGreetClick(txtUserName.value)">Greet</button>
+    <div>{{message}}</div>
+</div>
