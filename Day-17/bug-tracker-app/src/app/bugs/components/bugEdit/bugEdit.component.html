@@ -1,34 +1,45 @@
 <section class="edit">
-    <form #newBugFormGroup="ngForm">
+    <form [formGroup]="newBugForm">
         <div>
             <label for="">Bug Name :</label>
-            <!-- <input type="text" (input)="newBugName = $any($event.target).value"> -->
-            <input type="text" name="bugName" required minlength="10" [(ngModel)]="newBugName" #newBugNameControl="ngModel">
-            <span> [ {{newBugName.length}} ] </span>
-            <div class="error" *ngIf="(newBugNameControl.touched || newBugNameControl.dirty) && newBugNameControl.errors?.['required']">Bug name cannot be empty!</div>
-            <div class="error" *ngIf="(newBugNameControl.touched || newBugNameControl.dirty) && newBugNameControl.errors?.['minlength']">Bug name should be a minimum of 10 characters</div>
-           <!--  
-            <div>
-                <div>isValid : {{newBugNameControl.valid}}</div>
-                <div>isInvalid : {{newBugNameControl.invalid}}</div>
-                <div>touched : {{newBugNameControl.touched}}</div>
-                <div>untouched : {{newBugNameControl.untouched}}</div>
-                <div>pristine : {{newBugNameControl.pristine}}</div>
-                <div>dirty : {{newBugNameControl.dirty}}</div>
-                <div>{{newBugNameControl.errors | json}}</div>
-            </div> 
-        -->
+            
+            <input type="text" name="bugName" formControlName="newBugName">
+            
+            <span> [ {{newBugForm.get('newBugName')?.value?.length}} ] </span>
+            <div 
+                class="error" 
+                *ngIf="(newBugForm.get('newBugName')?.touched || newBugForm.get('newBugName')?.dirty) && newBugForm.get('newBugName')?.errors?.['required']"
+            >
+                Bug name cannot be empty!
+            </div>
+            <div 
+                class="error" 
+                *ngIf="(newBugForm.get('newBugName')?.touched || newBugForm.get('newBugName')?.dirty) && newBugForm.get('newBugName')?.errors?.['minlength']"
+            >
+                Bug name should be a minimum of 10 characters
+            </div>
+            
+           <!--  <div>
+                <div>isValid : {{newBugForm.get('newBugName')?.valid}}</div>
+                <div>isInvalid : {{newBugForm.get('newBugName')?.invalid}}</div>
+                <div>touched : {{newBugForm.get('newBugName')?.touched}}</div>
+                <div>untouched : {{newBugForm.get('newBugName')?.untouched}}</div>
+                <div>pristine : {{newBugForm.get('newBugName')?.pristine}}</div>
+                <div>dirty : {{newBugForm.get('newBugName')?.dirty}}</div>
+                <div>{{newBugForm.get('newBugName')?.errors | json}}</div>
+            </div>  -->
+       
         </div>
         <div>
             <label for="">Description :</label>
-            <input type="text" name="bugDesc" [(ngModel)]="newBugDesc">
-            <div class="error">Bug description cannot be empty!</div>
-            <div class="error">Bug description cannot be less than 10 characters!</div>
+            <input type="text" name="bugDesc" formControlName="newBugDesc">
+            <!-- <div class="error" *ngIf="(bugDescControl.touched || bugDescControl.dirty) && bugDescControl.invalid">Bug description cannot be empty!</div> -->
+            
         </div>
-        <button (click)="onAddNew()" [disabled]="!newBugFormGroup.valid">Add New</button>
+        <button (click)="onAddNew()" >Add New</button>
         <div>
-            <div>Values : {{newBugFormGroup.value | json}}</div>
-            <div>Valid : {{newBugFormGroup.valid}}</div>
+            <div>Values : {{newBugForm.value | json}}</div>
+            <div>Valid : {{newBugForm.valid}}</div>
         </div>
     </form>
 </section>

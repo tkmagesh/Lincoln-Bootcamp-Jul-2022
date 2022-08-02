@@ -1,0 +1,64 @@
+<section class="edit">
+    <form #newBugFormGroup="ngForm">
+        <div>
+            <label for="">Bug Name :</label>
+            <!-- <input type="text" (input)="newBugName = $any($event.target).value"> -->
+            <input type="text" name="bugName" required minlength="10" [(ngModel)]="newBugName" #newBugNameControl="ngModel">
+            <span> [ {{newBugName.length}} ] </span>
+            <div class="error" *ngIf="(newBugNameControl.touched || newBugNameControl.dirty) && newBugNameControl.errors?.['required']">Bug name cannot be empty!</div>
+            <div class="error" *ngIf="(newBugNameControl.touched || newBugNameControl.dirty) && newBugNameControl.errors?.['minlength']">Bug name should be a minimum of 10 characters</div>
+           <!--  
+            <div>
+                <div>isValid : {{newBugNameControl.valid}}</div>
+                <div>isInvalid : {{newBugNameControl.invalid}}</div>
+                <div>touched : {{newBugNameControl.touched}}</div>
+                <div>untouched : {{newBugNameControl.untouched}}</div>
+                <div>pristine : {{newBugNameControl.pristine}}</div>
+                <div>dirty : {{newBugNameControl.dirty}}</div>
+                <div>{{newBugNameControl.errors | json}}</div>
+            </div> 
+        -->
+        </div>
+        <div>
+            <label for="">Description :</label>
+            <input type="text" name="bugDesc" required [(ngModel)]="newBugDesc" #bugDescControl="ngModel">
+            <div class="error" *ngIf="(bugDescControl.touched || bugDescControl.dirty) && bugDescControl.invalid">Bug description cannot be empty!</div>
+            
+        </div>
+        <button (click)="onAddNew()" [disabled]="!newBugFormGroup.valid">Add New</button>
+        <div>
+            <div>Values : {{newBugFormGroup.value | json}}</div>
+            <div>Valid : {{newBugFormGroup.valid}}</div>
+            <div>Errors : {{newBugFormGroup.errors | json}}</div>
+        </div>
+    </form>
+</section>
+
+<!-- 
+    Bug Name
+    1. Display the error when the user tabs out (blur)
+    2. Remove the error when the data is valid
+
+    Bug Description
+    1. Display the error when the user tabs out (blur)
+    2. Remove the error when the data is valid
+
+    The 'Add New' button should be 'disabled' when either of the text box is empty (invalid)
+    It should automatically be enabled when the text boxes are valid
+    
+
+    When the component is rendered, no error messages should be displayed
+    Only when the user attempts focus on the textbox but leaves without entering the data, do the validation and display the error message
+ -->
+
+ <!-- 
+    min
+    max
+    minLength
+    maxLength
+    required
+    email
+    pattern
+
+
+  -->

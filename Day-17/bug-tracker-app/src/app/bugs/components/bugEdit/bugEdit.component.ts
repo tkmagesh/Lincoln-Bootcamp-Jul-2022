@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from "@angular/core";
 import { Bug } from "../../models/bug.model";
 import { BugOperationsService } from "../../services/bugOperations.service";
-
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 
 @Component({
     selector : 'app-bug-edit',
@@ -10,29 +10,20 @@ import { BugOperationsService } from "../../services/bugOperations.service";
 })
 export class BugEditComponent{
 
-    newBugName : string = '';
-    newBugDesc : string = '';
-    //placeholder for all the even subscriptions from the parent component
-    /* 
-    @Output()
-    public bugAdded : EventEmitter<Bug> = new EventEmitter<Bug>()
-    */
-    constructor(private bugOperations : BugOperationsService){
+    newBugForm = new FormGroup({
+        newBugName : new FormControl('', [
+            Validators.required,
+            Validators.minLength(10)
+        ]),
+        newBugDesc : new FormControl('')
+    })
 
+    constructor(private bugOperations : BugOperationsService){
+        
     }
 
     onAddNew(){
-
-        this.bugOperations.createNew(this.newBugName);
-        
-        /* 
-        const newBug = this.bugOperations.createNew(this.newBugName);
-
-        //emitting the event (thereby calling all the subscribers with the data)
-        this.bugAdded.emit(newBug); 
-        */
-
-        
+        //this.bugOperations.createNew(this.newBugName);
     }
 
 }

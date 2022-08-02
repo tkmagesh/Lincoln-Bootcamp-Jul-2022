@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { UtilsModule } from "../utils/utils.module";
 import { BugsComponent } from "./bugs.component";
@@ -28,7 +28,8 @@ import { ClosedCountPipe } from "./pipes/closedCount.pipe";
         CommonModule,
         UtilsModule,
         HttpClientModule,
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule
     ],
     exports : [
         BugsComponent
