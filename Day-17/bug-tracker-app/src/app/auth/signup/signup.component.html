@@ -1,0 +1,24 @@
+<form [formGroup]="signupForm">
+    <h3>Sign Up</h3>
+    <div class="field">
+        <label for="">User Name :</label>
+        <input type="text" name="userName" id="" formControlName="userName">
+    </div>
+    <div class="field">
+        <label for="">Password :</label>
+        <input type="password" name="password" formControlName="password">
+    </div>
+    <div class="field">
+        <label for="">Confirm Password :</label>
+        <input type="password" name="confirmPassword" formControlName="confirmPassword">
+        <div *ngIf="signupForm.errors && signupForm.errors?.['mismatch']">Passwords do not match</div>
+    </div>
+    <div>
+        value : {{signupForm.value | json}}
+    </div>
+    <div>
+        error : {{signupForm.errors | json}}
+    </div>
+
+    <input type="submit">
+</form>
