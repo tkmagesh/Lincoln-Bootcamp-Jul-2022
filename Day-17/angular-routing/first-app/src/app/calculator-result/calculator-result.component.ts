@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 import { CalculatorService } from "../calculator-app/calculator.service";
 
 
@@ -9,32 +10,12 @@ import { CalculatorService } from "../calculator-app/calculator.service";
 export class CalculatorResultComponent{
 
     result : number = 0;
-
-    constructor(public calculatorService : CalculatorService){
-        this.calculatorService
-            .operation$
-            .subscribe(operationData => {
-                this.performOperation(operationData)
-            })
+    
+    constructor(private router : ActivatedRoute){
+        this.router.params.subscribe(params => {
+            console.log(params);
+        })
     }
 
-    performOperation(operationData : {n1 : number, n2 : number, operation: string}){
-        switch (operationData.operation) {
-            case 'add':
-                this.result = operationData.n1 + operationData.n2
-                break;
-             case 'subtract':
-                this.result = operationData.n1 - operationData.n2
-                break;
-             case 'multiply':
-                this.result = operationData.n1 * operationData.n2
-                break;
-             case 'divide':
-                this.result = operationData.n1 / operationData.n2
-                break;
-        
-            default:
-                break;
-        }
-    }
+   
 }

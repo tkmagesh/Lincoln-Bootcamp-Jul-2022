@@ -9,37 +9,32 @@ import { CalculatorService } from "../calculator-app/calculator.service";
 })
 export class CalculatorComponent{
     
-    n1 : number = 0;
-    n2 : number = 0;
 
     constructor(
+        public calculatorService : CalculatorService,
         private router : Router
     ){
 
     }
-    /* 
-    onDummyClick(event : Event){
-        console.log((event.target as HTMLButtonElement).innerText)
-    } 
-    */
+   
 
     onAddClick(){
-
-        //this.router.navigate(['calculator-result'])
-
-        //this.router.navigateByUrl('calculator-result/add')
-        this.router.navigate(['calculator-result', 'add', 100, 200],)
+        this.calculatorService.notifyOpetation('add')
+        this.router.navigate(['calculator-result'])
     }
 
-    onSubtractClick(){        
+    onSubtractClick(){
+        this.calculatorService.notifyOpetation('subtract')
         this.router.navigate(['calculator-result'])
     }
 
     onMultiplyClick(){
+        this.calculatorService.notifyOpetation('multiply')
         this.router.navigate(['calculator-result'])
     }
 
     onDivideClick(){
+        this.calculatorService.notifyOpetation('divide')
         this.router.navigate(['calculator-result'])
     }
 }

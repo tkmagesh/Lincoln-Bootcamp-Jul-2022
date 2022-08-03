@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Subject } from "rxjs";
+import { BehaviorSubject, Subject } from "rxjs";
 
 @Injectable({
     providedIn : 'root'
@@ -7,7 +7,7 @@ import { Subject } from "rxjs";
 export class CalculatorService{
     public n1 : number = 0;
     public n2 : number = 0;
-    public operation$ : Subject<{n1 : number, n2 : number, operation: string}> = new Subject()
+    public operation$ : BehaviorSubject<{n1 : number, n2 : number, operation: string}> = new BehaviorSubject({n1 : 0, n2 : 0, operation : ''})
 
     notifyOpetation(operation : string){
         this.operation$.next({

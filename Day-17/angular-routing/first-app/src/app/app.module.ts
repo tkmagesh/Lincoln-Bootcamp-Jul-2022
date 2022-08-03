@@ -21,7 +21,8 @@ let routes : Routes = [
   {path : 'greeter', component : GreeterComponent},
   {path : 'products', component : ProductsComponent},
   {path : 'calculator', component : CalculatorComponent},
-  {path : 'calculator-result', component : CalculatorResultComponent},
+  /* {path : 'calculator-result', component : CalculatorResultComponent}, */
+  {path : 'calculator-result/:operation/:n1/:n2', component : CalculatorResultComponent},
   {path : '', redirectTo:'/spinner', pathMatch : 'full'},
   {path : '**', component : NotFoundComponent}
 ]
