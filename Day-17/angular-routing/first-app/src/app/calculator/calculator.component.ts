@@ -28,19 +28,20 @@ export class CalculatorComponent{
         //this.router.navigate(['calculator-result'])
 
         //this.router.navigateByUrl('calculator-result/add')
-        this.router.navigate(['calculator-result', 'add'], { queryParams : { n1 : 100, n2 : 200}})
-    }
+        this.router.navigate(['calculator-result', 'add'], { queryParams : { n1 : this.n1, n2 : this.n2}})
+        // => /calculator-result/add?n1=100&n2=200
+    }       
 
     onSubtractClick(){        
-        this.router.navigate(['calculator-result'])
+        this.router.navigate(['calculator-result', 'subtract'], { queryParams : { n1 : this.n1, n2 : this.n2}})
     }
 
     onMultiplyClick(){
-        this.router.navigate(['calculator-result'])
+        this.router.navigate(['calculator-result', 'multiply'], { queryParams : { n1 : this.n1, n2 : this.n2}})
     }
 
     onDivideClick(){
-        this.router.navigate(['calculator-result'])
+        this.router.navigate(['calculator-result', 'divide'], { queryParams : { n1 : this.n1, n2 : this.n2}})
     }
 }
 
