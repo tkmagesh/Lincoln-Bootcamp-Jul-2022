@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Route, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
+import { LoggedInGuard } from './auth/loggedInGuard';
+import { LoginComponent } from './auth/login.component';
 import { Calculator2Component } from './calculator-2/calculator-2.component';
 import { CalculatorAppComponent } from './calculator-app/calculator-app.component';
 import { CalculatorResultComponent } from './calculator-result/calculator-result.component';
@@ -19,7 +21,15 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { TestComponent } from './test/test.component';
 
 let routes : Routes = [
-  {path : 'spinner', component : SpinnerComponent},
+  {
+    path : 'login',
+    component : LoginComponent
+  },
+  {
+    path : 'spinner', 
+    component : SpinnerComponent, 
+    canActivate : [LoggedInGuard]
+  },
   {path : 'greeter', component : GreeterComponent},
   {
       path : 'products', 
@@ -45,6 +55,7 @@ let routes : Routes = [
   declarations: [
     /* declare the all the UI entities (Components, Directives & Pipes) that a part of this module */
     AppComponent
+    , LoginComponent
     , SpinnerComponent
     , GreeterComponent
     , CalculatorComponent
