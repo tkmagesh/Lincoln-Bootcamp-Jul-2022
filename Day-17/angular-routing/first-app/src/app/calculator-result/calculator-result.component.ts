@@ -13,7 +13,10 @@ export class CalculatorResultComponent{
     
     constructor(private router : ActivatedRoute){
         this.router.params.subscribe(params => {
-            console.log(params);
+            console.log('route params', params);
+        });
+        this.router.queryParams.subscribe(queryParams => {
+            console.log('query params = ', queryParams)
         })
     }
 

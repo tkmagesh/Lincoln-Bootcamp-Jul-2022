@@ -28,7 +28,7 @@ export class CalculatorComponent{
         //this.router.navigate(['calculator-result'])
 
         //this.router.navigateByUrl('calculator-result/add')
-        this.router.navigate(['calculator-result', 'add', 100, 200],)
+        this.router.navigate(['calculator-result', 'add'], { queryParams : { n1 : 100, n2 : 200}})
     }
 
     onSubtractClick(){        
