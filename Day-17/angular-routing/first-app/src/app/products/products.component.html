@@ -5,7 +5,7 @@
 <button (click)="onAdd(txtProductName.value)">Add</button>
 <ul>
     <li *ngFor="let product of productsService.list">
-        <a [routerLink]="['details', product.name]">{{product.name}}</a>
+        <a [routerLink]="['.', product.name]">{{product.name}}</a>
         <button (click)="onRemove(product)"> X </button>
     </li>
 </ul>

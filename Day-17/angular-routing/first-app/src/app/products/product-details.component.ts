@@ -12,7 +12,7 @@ export class ProductDetailsComponent{
     product? : Product;
 
     constructor(private route : ActivatedRoute, private productsService : ProductsService){
-        this.route.params.subscribe(params => {
+        this.route.parent?.params.subscribe(params => {
             const productName = params['productName'];
             this.product = this.productsService.list.find(product => product.name === productName)
         })
