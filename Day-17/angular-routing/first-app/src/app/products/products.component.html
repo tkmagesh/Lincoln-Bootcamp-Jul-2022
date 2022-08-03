@@ -4,12 +4,10 @@
 <input type="text" #txtProductName>
 <button (click)="onAdd(txtProductName.value)">Add</button>
 <ul>
-    <li *ngFor="let productName of products">
-        <span>{{productName}}</span>
-        <button (click)="onRemove(productName)"> X </button>
+    <li *ngFor="let product of productsService.list">
+        <a [routerLink]="['details', product.name]">{{product.name}}</a>
+        <button (click)="onRemove(product)"> X </button>
     </li>
-    <!-- <li>
-        <span>Product - 2</span>
-        <button> X </button>
-    </li> -->
 </ul>
+
+<router-outlet></router-outlet>  <!-- components for the child routes to be displayed here -->

@@ -1,17 +1,21 @@
 import { Component } from "@angular/core";
+import { Product, ProductsService } from "./products.service";
 
 @Component({
     selector : 'app-products',
     templateUrl : 'products.component.html'
 })
 export class ProductsComponent {
-    products : string[] = [];
+    
+    constructor(public productsService : ProductsService){
 
-    onAdd(newProductName : string){
-        this.products.push(newProductName)
     }
 
-    onRemove(productToRemove : string){
-        this.products.splice(this.products.indexOf(productToRemove), 1)
+    onAdd(newProductName : string){
+        this.productsService.addNew(newProductName)
+    }
+
+    onRemove(productToRemove : Product){
+        this.productsService.remove(productToRemove)
     }
 }

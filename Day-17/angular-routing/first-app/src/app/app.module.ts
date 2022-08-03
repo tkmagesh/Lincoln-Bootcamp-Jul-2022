@@ -11,6 +11,7 @@ import { DirectivesComponent } from './directives/directives.component';
 import { GreeterComponent } from './greeter/greeter.component';
 import { NotFoundComponent } from './not-found.component';
 import { PipesComponent } from './pipes/pipes.component';
+import { ProductDetailsComponent } from './products/product-details.component';
 import { ProductsComponent } from './products/products.component';
 import { SalaryCalculatorComponent } from './salary-calculator/salaryCalculator.component';
 import { SpinnerComponent } from './spinner/spinner.component';
@@ -19,7 +20,13 @@ import { TestComponent } from './test/test.component';
 let routes : Routes = [
   {path : 'spinner', component : SpinnerComponent},
   {path : 'greeter', component : GreeterComponent},
-  {path : 'products', component : ProductsComponent},
+  {
+      path : 'products', 
+      component : ProductsComponent,
+      children : [
+        { path : 'details/:productName', component : ProductDetailsComponent}
+      ]
+  },
   {path : 'calculator', component : CalculatorComponent},
   /* {path : 'calculator-result', component : CalculatorResultComponent}, */
   {path : 'calculator-result/:operation', component : CalculatorResultComponent},
@@ -39,6 +46,7 @@ let routes : Routes = [
     , Calculator2Component
     , DirectivesComponent
     , ProductsComponent
+    , ProductDetailsComponent
     , PipesComponent
     , SalaryCalculatorComponent
     , NotFoundComponent, TestComponent
