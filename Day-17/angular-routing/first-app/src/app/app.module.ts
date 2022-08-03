@@ -30,10 +30,11 @@ let routes : Routes = [
     component : SpinnerComponent, 
     canActivate : [LoggedInGuard]
   },
-  {path : 'greeter', component : GreeterComponent},
+  {path : 'greeter', component : GreeterComponent,  canActivate : [LoggedInGuard]},
   {
       path : 'products', 
       component : ProductsComponent,
+      canActivate : [LoggedInGuard],
       children : [
         { 
           path : ':productName', 

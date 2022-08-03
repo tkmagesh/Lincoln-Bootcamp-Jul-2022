@@ -15,8 +15,7 @@ export class LoggedInGuard implements CanActivate{
         if (this.userService.LoggedIn){
             return true;
         }
-        //this.userService.urlAttempted = route.url;
-        this.router.navigate(['/login'])
+        this.router.navigate(['/login'], { queryParams : { returnUrl : state.url}})
         return false;
     }
 }

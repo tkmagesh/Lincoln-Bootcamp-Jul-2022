@@ -6,8 +6,8 @@ import { UrlSegment } from "@angular/router";
 })
 export class UserService{
     private _isLoggedIn = false;
-    public urlAttempted : UrlSegment[] = [];
-    
+    public urlAttempted : string = '';
+
     public Login(){
         //authentication
         this._isLoggedIn = true;

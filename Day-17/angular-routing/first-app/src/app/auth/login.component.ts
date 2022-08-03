@@ -7,13 +7,12 @@ import { UserService } from "./user.service";
     templateUrl : 'login.component.html'
 })
 export class LoginComponent{
-    constructor(private userService : UserService, private router : Router){
+    constructor(private userService : UserService, private router : Router, private route : ActivatedRoute){
 
     }
 
     loginClick(){
         this.userService.Login()
-        //this.router.navigate(this.userService.urlAttempted)
-        this.router.navigate(['/spinner'])
+        this.router.navigateByUrl(this.route.snapshot.queryParams['returnUrl'])
     }
 }
