@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { Router } from "@angular/router";
 import { CalculatorService } from "../calculator-app/calculator.service";
 
 
@@ -9,7 +10,10 @@ import { CalculatorService } from "../calculator-app/calculator.service";
 export class CalculatorComponent{
     
 
-    constructor(public calculatorService : CalculatorService){
+    constructor(
+        public calculatorService : CalculatorService,
+        private router : Router
+    ){
 
     }
     /* 
@@ -20,18 +24,22 @@ export class CalculatorComponent{
 
     onAddClick(){
         this.calculatorService.notifyOpetation('add')
+        this.router.navigate(['calculator-result'])
     }
 
     onSubtractClick(){
         this.calculatorService.notifyOpetation('subtract')
+        this.router.navigate(['calculator-result'])
     }
 
     onMultiplyClick(){
         this.calculatorService.notifyOpetation('multiply')
+        this.router.navigate(['calculator-result'])
     }
 
     onDivideClick(){
         this.calculatorService.notifyOpetation('divide')
+        this.router.navigate(['calculator-result'])
     }
 }
 
