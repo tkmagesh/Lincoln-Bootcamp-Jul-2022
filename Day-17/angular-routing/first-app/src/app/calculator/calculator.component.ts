@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { CalculatorService } from "../calculator-app/calculator.service";
 
 
 @Component({
@@ -6,10 +7,11 @@ import { Component } from "@angular/core";
     templateUrl : 'calculator.component.html'
 })
 export class CalculatorComponent{
-    result : number = 0;
-    n1 : number = 0;
-    n2 : number = 0;
+    
 
+    constructor(public calculatorService : CalculatorService){
+
+    }
     /* 
     onDummyClick(event : Event){
         console.log((event.target as HTMLButtonElement).innerText)
@@ -17,19 +19,19 @@ export class CalculatorComponent{
     */
 
     onAddClick(){
-        this.result = this.n1 + this.n2
+        this.calculatorService.notifyOpetation('add')
     }
 
     onSubtractClick(){
-        this.result = this.n1 - this.n2
+        this.calculatorService.notifyOpetation('subtract')
     }
 
     onMultiplyClick(){
-        this.result = this.n1 * this.n2
+        this.calculatorService.notifyOpetation('multiply')
     }
 
     onDivideClick(){
-        this.result = this.n1 / this.n2
+        this.calculatorService.notifyOpetation('divide')
     }
 }
 
