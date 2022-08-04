@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class DatetimeService {
   getCurrent(): Date {
-    throw new Error('Method not implemented.');
+    return new Date()
   }
 
   constructor() { }

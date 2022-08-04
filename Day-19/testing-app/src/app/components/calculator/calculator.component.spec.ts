@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 
 import { CalculatorComponent } from './calculator.component';
 
-fdescribe('CalculatorComponent', () => {
+describe('CalculatorComponent', () => {
   let component: CalculatorComponent;
   let fixture: ComponentFixture<CalculatorComponent>;
 
