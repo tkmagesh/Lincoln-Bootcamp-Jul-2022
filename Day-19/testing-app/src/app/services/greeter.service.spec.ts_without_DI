@@ -1,21 +1,18 @@
-import { TestBed } from '@angular/core/testing';
+
 import { GreeterService } from "./greeter.service";
 import { DatetimeService } from './datetime.service';
 
 describe('Greeter Service', () => {
   let greeterService : GreeterService;
   let datetimeService : DatetimeService;
-
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers : [
-        GreeterService,
-        DatetimeService
-      ]
-    });
-
-    datetimeService = TestBed.inject(DatetimeService)
-    greeterService = TestBed.inject(GreeterService)
+     /* datetimeService = {
+      getCurrent() : Date {
+        return new Date();
+      }
+    } */
+    datetimeService = new DatetimeService();
+    greeterService = new GreeterService(datetimeService);
   });
 
   it('should greet the user with Good Morning when greeted before 12', () => {
@@ -50,7 +47,7 @@ describe('Greeter Service', () => {
 })
 
 /* 
-
+import { TestBed } from '@angular/core/testing';
 
 import { GreeterService } from './greeter.service';
 
