@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { TrimTextPipe } from './pipes/trim-text.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TrimTextPipe
   ],
   imports: [
     BrowserModule
