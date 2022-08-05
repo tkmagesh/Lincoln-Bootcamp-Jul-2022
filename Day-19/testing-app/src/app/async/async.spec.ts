@@ -1,4 +1,7 @@
-import { fakeAsync, flush, flushMicrotasks } from "@angular/core/testing";
+import { fakeAsync, flush, flushMicrotasks, tick } from "@angular/core/testing";
+import { of } from "rxjs";
+import {delay, switchMap } from 'rxjs/operators';
+
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000
 
@@ -77,5 +80,23 @@ fdescribe('Async Tests', () => {
         }))
     });
         
+    describe('testing observables', () => {
+        it('should assert on the observables', fakeAsync(() => {
+            let test = false;
+
+            const test$ = of(test).pipe(
+                delay(2000),
+                switchMap(test => of(true))
+            );
+
+            test$.subscribe(val => {
+                console.log('val = ', val)
+                test = val;
+            })
+
+            tick(2000);
+            expect(test).toBeTrue();
+        }))
+    })
     
 })
