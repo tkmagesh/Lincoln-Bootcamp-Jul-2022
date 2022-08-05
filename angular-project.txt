@@ -1,0 +1,19 @@
+
+
+Add the projects module to the bug tracker app
+Project
+    Id
+    Name
+    Description
+    CommencementDate
+
+
+Associate the bugs with projects
+    One to many relationship (between project and bugs)
+        One project can have many bugs
+    One to One relation (between bug and the project)
+        Every bug is associated with a project
+
+Validation
+Routing
+Tests
