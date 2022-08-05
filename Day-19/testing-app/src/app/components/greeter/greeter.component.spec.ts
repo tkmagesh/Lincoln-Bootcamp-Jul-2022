@@ -4,7 +4,7 @@ import { GreeterService } from 'src/app/services/greeter.service';
 
 import { GreeterComponent } from './greeter.component';
 
-fdescribe('GreeterComponent', () => {
+describe('GreeterComponent', () => {
   let component: GreeterComponent;
   let fixture: ComponentFixture<GreeterComponent>;
 

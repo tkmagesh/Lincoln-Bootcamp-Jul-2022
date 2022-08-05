@@ -5,7 +5,7 @@ import {delay, switchMap } from 'rxjs/operators';
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000
 
-fdescribe('Async Tests', () => {
+describe('Async Tests', () => {
     describe('Testing callbacks', () => {
         function addAsync(x : number,y : number, callback : (result : number) => void) {
             setTimeout(() => {
