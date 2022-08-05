@@ -1,0 +1,10 @@
+<h3>Products</h3>
+<hr>
+<div>
+    <span>Count : </span>
+    <span>0</span>
+</div>
+<button id="btnLoadProducts" (click)="loadProductsClick()">Load Products</button>
+<ul>
+    <li *ngFor="let product of products">{{product.name}}</li>
+</ul>

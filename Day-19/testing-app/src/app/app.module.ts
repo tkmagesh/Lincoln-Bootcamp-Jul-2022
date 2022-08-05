@@ -7,13 +7,15 @@ import { TrimTextPipe } from './pipes/trim-text.pipe';
 import { CalculatorComponent } from './components/calculator/calculator.component';
 import { FormsModule } from '@angular/forms';
 import { GreeterComponent } from './components/greeter/greeter.component';
+import { ProductsComponent } from './components/products/products.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TrimTextPipe,
     CalculatorComponent,
-    GreeterComponent
+    GreeterComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
