@@ -3,7 +3,7 @@ import { ProductsApiService } from "./productsApi.service"
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { products as mockProducts} from './products-mock-data';
 
-fdescribe('Products API service', () => {
+describe('Products API service', () => {
 
     let httpTestingController : HttpTestingController,
         productsApiService : ProductsApiService;

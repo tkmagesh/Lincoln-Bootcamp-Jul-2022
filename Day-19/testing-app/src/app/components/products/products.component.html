@@ -2,9 +2,9 @@
 <hr>
 <div>
     <span>Count : </span>
-    <span>0</span>
+    <span id="spanCount">{{products.length}}</span>
 </div>
 <button id="btnLoadProducts" (click)="loadProductsClick()">Load Products</button>
-<ul>
+<ul id="productsList">
     <li *ngFor="let product of products">{{product.name}}</li>
 </ul>
