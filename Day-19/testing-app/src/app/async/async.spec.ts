@@ -1,4 +1,4 @@
-import { fakeAsync, flush } from "@angular/core/testing";
+import { fakeAsync, flush, flushMicrotasks } from "@angular/core/testing";
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000
 
@@ -40,13 +40,42 @@ fdescribe('Async Tests', () => {
             });
             
             flush() //wait for all the async operations to complete before the assertions are executed
-            
+
             expect(test1).toBeTrue()
             expect(test2).toBeTrue()
         }))
     })
 
-    
+    describe('Testing promises', () => {
+        it('should test after resolving a promise', fakeAsync(() => {
+            let test1 = false;
+
+            let promise = new Promise((resolveFn, rejectFn) => {
+                test1 = true
+                resolveFn(100)
+            })
+
+            expect(test1).toBeTrue();
+        }));
+
+        it('should test promises & timeout', fakeAsync(() => {
+            let counter = 0;
+            Promise
+                .resolve()
+                .then(() => {
+                    counter = 10;
+                    setTimeout(() => {
+                        counter += 1;
+                    }, 2000);
+                })
+
+            expect(counter).toBe(0);
+            flushMicrotasks() // wait for the promise to be resolved / rejected
+            expect(counter).toBe(10);
+            flush();
+            expect(counter).toBe(11);
+        }))
+    });
         
     
 })
