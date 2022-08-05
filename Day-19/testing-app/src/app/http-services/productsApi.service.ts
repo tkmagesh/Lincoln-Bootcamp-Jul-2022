@@ -15,4 +15,14 @@ export class ProductsApiService{
         return this.http
             .get<Product[]>('http://localhost:3000/products')
     }
+
+    save(productData : Product) : Observable<Product> {
+        if (productData.id === 0){
+            return this.http
+                .post<Product>('http://localhost:3000/products', productData)
+        } else {
+            return this.http
+                .put<Product>(`http://localhost:3000/products/${productData.id}`, productData)
+        }
+    }
 }
