@@ -1,0 +1,47 @@
+Language
+    Data Types
+    Constructs
+    Functions
+    Collection Types (Tuples, Lists, Sets, Dictionaries)
+    Pythonic Programming (List comprehension)
+    Error Handling
+
+Object Object Programming
+Functional Programming
+Multithreading & Multiprocessing
+Database Programming
+Testing
+Flask
+
+
+Python?
+    Interpreted
+    Loosely typed
+
+DataTypes
+    Integer
+    Float
+    String
+    Boolean
+
+Assignment:1
+Build an interactive calculator
+
+    Enter your choice
+    1. Add
+    2. Subtract
+    3. Multiply
+    4. Divide
+    5. Exit
+
+    if choice is 5
+        exit
+    if choice < 1 or > 5
+        print "Invalid choice"
+        display the menu again
+
+    if choice is 1 to 4
+        accept two numbers
+        perform the operation
+        print the result
+        display the menu again
