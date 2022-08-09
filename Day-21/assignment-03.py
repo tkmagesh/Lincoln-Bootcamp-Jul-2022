@@ -13,6 +13,4 @@ word_size_max_occurances = max(word_lenths, key=word_lenths.count)
 max_occurances = word_lenths.count(word_size_max_occurances)
 print(word_size_max_occurances,  max_occurances)
 
-
-
 # find the size of the word with maximum occurances
