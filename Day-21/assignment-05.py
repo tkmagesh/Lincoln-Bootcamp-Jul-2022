@@ -4,38 +4,48 @@ add = lambda x, y: x + y
 subtract = lambda x, y: x - y
 multiply = lambda x, y: x * y
 divide = lambda x, y: x / y
+power = lambda x, y : x ** y
 
-operations = { '1' : add, '2' : subtract, '3' : multiply, '4' : divide }
+operations = { }
 
 def get_operands():
     n1 = int(input("Enter value 1 : "))
     n2 = int(input("Enter value 2 : "))
     return n1, n2
 
+def do_operation(op):
+    n1, n2 = get_operands()
+    result = op(n1, n2)
+    print(result)
+
+def op_exit():
+    exit()
+
+def load_operations():
+    operations['1'] = {'menu': 'Add', 'operation' : lambda : do_operation(add)} 
+    operations['2'] = {'menu': 'Subtract', 'operation': lambda : do_operation(subtract)}
+    operations['3'] = {'menu': 'Multiply', 'operation': lambda : do_operation(multiply)}
+    operations['4'] = {'menu': 'Divide', 'operation': lambda : do_operation(divide)}
+    operations['5'] = {'menu': 'Power', 'operation': lambda : do_operation(power)}
+    operations['6'] = {'menu' : 'Modulus', 'operation': lambda: do_operation(lambda x,y : x % y)}
+    operations['7'] = {'menu' :'Exit', 'operation' : op_exit}
+
 def get_user_choice():
-    print("""
-1. Add
-2. Subtract
-3. Multiply
-4. Divide
-5. Exit
-    """)
+    for op in operations:
+        print(f"{op}. {operations[op]['menu']}")
     user_choice = input("Enter you choice : ")
     return user_choice
 
 
 def run():
+    load_operations()
     while True:
         user_choice = get_user_choice()
-        if user_choice == '5':
-            break
         if user_choice not in operations:
             print("invalid choice")
             continue
-        n1, n2 = get_operands()
-        result = operations[user_choice](n1, n2)
-        print(result)
-    print("Thank you")
+        operations[user_choice]['operation']()
+    
 
 
 run()
