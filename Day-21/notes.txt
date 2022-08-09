@@ -45,3 +45,6 @@ Build an interactive calculator
         perform the operation
         print the result
         display the menu again
+
+Assignment:02
+    Write a program that accepts a number from the user and prints if the given number is prime number or not.
