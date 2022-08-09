@@ -8,17 +8,11 @@ str = 'Qui labore Lorem ullamco esse adipisicing ad eu cupidatat commodo ea ulla
 """
 
 words = str.split(' ')
-words_count_by_size = {}
+word_lenths = [len(word) for word in words]
+word_size_max_occurances = max(word_lenths, key=word_lenths.count)
+max_occurances = word_lenths.count(word_size_max_occurances)
+print(word_size_max_occurances,  max_occurances)
 
-for word in words:
-    word_size = len(word)
-    """
-    if word_size not in words_count_by_size:
-        words_count_by_size[word_size] = 0
-    """
-    words_count_by_size.setdefault(word_size, 0)
-    words_count_by_size[word_size] += 1
 
-print(words_count_by_size)
 
 # find the size of the word with maximum occurances
