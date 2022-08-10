@@ -38,10 +38,12 @@ reduce(lambda x, y: x + y, tens, 1000)
 nos = [3,1,2,5,6,4,9,8]
 #find the count of odd and even numbers using the reduce function
 def update_even_odd_count(result, no):
+    print('prev result -> ', result, 'no -> ', no)
     if no % 2 == 0:
         result['even'] += 1
     else:
         result['odd'] += 1
+    print('current result -> ', result)
     return result
 
 
