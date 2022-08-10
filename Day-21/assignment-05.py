@@ -10,13 +10,11 @@ is_odd = lambda x : x % 2 != 0
 
 operations = { }
 
-def get_operands():
-    n1 = int(input("Enter value 1 : "))
-    n2 = int(input("Enter value 2 : "))
-    return n1, n2
+def get_operands(no_operands):
+    return (int(input(f"Enter value {i+1} : ")) for i in range(no_operands))
 
-def do_operation(op):
-    data = get_operands()
+def do_operation(op, no_operands):
+    data = get_operands(no_operands)
     result = op(*data)
     print(result)
 
@@ -24,15 +22,15 @@ def op_exit():
     exit()
 
 def load_operations():
-    operations['1'] = {'menu': 'Add', 'operation' : lambda : do_operation(add)} 
-    operations['2'] = {'menu': 'Subtract', 'operation': lambda : do_operation(subtract)}
-    operations['3'] = {'menu': 'Multiply', 'operation': lambda : do_operation(multiply)}
-    operations['4'] = {'menu': 'Divide', 'operation': lambda : do_operation(divide)}
-    operations['5'] = {'menu': 'Power', 'operation': lambda : do_operation(power)}
-    operations['6'] = {'menu' : 'Modulus', 'operation': lambda: do_operation(lambda x,y : x % y)}
-    operations['7'] = {'menu' : 'Check Even', 'operation': lambda: do_operation(lambda x,y : x % y)}
-    operations['8'] = {'menu' : 'Check Odd', 'operation': lambda: do_operation(lambda x,y : x % y)}
-    operations['8'] = {'menu' :'Exit', 'operation' : op_exit}
+    operations['1'] = {'menu': 'Add', 'operation' : lambda : do_operation(add, 2)} 
+    operations['2'] = {'menu': 'Subtract', 'operation': lambda : do_operation(subtract, 2)}
+    operations['3'] = {'menu': 'Multiply', 'operation': lambda : do_operation(multiply, 2)}
+    operations['4'] = {'menu': 'Divide', 'operation': lambda : do_operation(divide, 2)}
+    operations['5'] = {'menu': 'Power', 'operation': lambda : do_operation(power, 2)}
+    operations['6'] = {'menu' : 'Modulus', 'operation': lambda: do_operation(lambda x,y : x % y, 2)}
+    operations['7'] = {'menu' : 'Check Even', 'operation': lambda: do_operation(is_even, 1)}
+    operations['8'] = {'menu' : 'Check Odd', 'operation': lambda: do_operation(is_odd, 1)}
+    operations['9'] = {'menu' :'Exit', 'operation' : op_exit}
 
 def get_user_choice():
     for op in operations:
