@@ -5,6 +5,8 @@ subtract = lambda x, y: x - y
 multiply = lambda x, y: x * y
 divide = lambda x, y: x / y
 power = lambda x, y : x ** y
+is_even = lambda x : x % 2 == 0
+is_odd = lambda x : x % 2 != 0
 
 operations = { }
 
@@ -14,8 +16,8 @@ def get_operands():
     return n1, n2
 
 def do_operation(op):
-    n1, n2 = get_operands()
-    result = op(n1, n2)
+    data = get_operands()
+    result = op(*data)
     print(result)
 
 def op_exit():
@@ -28,7 +30,9 @@ def load_operations():
     operations['4'] = {'menu': 'Divide', 'operation': lambda : do_operation(divide)}
     operations['5'] = {'menu': 'Power', 'operation': lambda : do_operation(power)}
     operations['6'] = {'menu' : 'Modulus', 'operation': lambda: do_operation(lambda x,y : x % y)}
-    operations['7'] = {'menu' :'Exit', 'operation' : op_exit}
+    operations['7'] = {'menu' : 'Check Even', 'operation': lambda: do_operation(lambda x,y : x % y)}
+    operations['8'] = {'menu' : 'Check Odd', 'operation': lambda: do_operation(lambda x,y : x % y)}
+    operations['8'] = {'menu' :'Exit', 'operation' : op_exit}
 
 def get_user_choice():
     for op in operations:
