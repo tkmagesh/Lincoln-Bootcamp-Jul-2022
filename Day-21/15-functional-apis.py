@@ -23,3 +23,17 @@ list1 = [2,3,4]
 list2 = [4,2,3]
 list(map(lambda x, y: x * y, list1, list2))
 
+#reduce
+
+import functools
+functools.reduce("""  """)
+
+from functools import reduce
+reduce("""  """)
+
+tens = [10,20,30,40,50]
+reduce(lambda x,y: x + y, tens)
+
+nos = [3,1,2,5,6,4,9,8]
+#find the count of odd and even numbers using the reduce function
+
