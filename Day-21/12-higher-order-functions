@@ -1,3 +1,4 @@
+""" 
 #functions can be assigned to variables
 def fn():
     print('fn')
@@ -28,3 +29,18 @@ def adder(x):
 
 adder_with_10 = adder(10)
 print(adder_with_10(20))
+"""
+
+def log(fn):
+    def log_fn():
+        print('invocation started')
+        fn()
+        print('invocation completed')
+    return log_fn
+
+
+def fn():
+    print('fn invoked')
+
+logged_fn = log(fn)
+logged_fn()
