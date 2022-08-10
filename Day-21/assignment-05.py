@@ -22,14 +22,19 @@ def op_exit():
     exit()
 
 def load_operations():
-    operations['1'] = {'menu': 'Add', 'operation' : lambda : do_operation(add, 2)} 
-    operations['2'] = {'menu': 'Subtract', 'operation': lambda : do_operation(subtract, 2)}
-    operations['3'] = {'menu': 'Multiply', 'operation': lambda : do_operation(multiply, 2)}
-    operations['4'] = {'menu': 'Divide', 'operation': lambda : do_operation(divide, 2)}
-    operations['5'] = {'menu': 'Power', 'operation': lambda : do_operation(power, 2)}
-    operations['6'] = {'menu' : 'Modulus', 'operation': lambda: do_operation(lambda x,y : x % y, 2)}
-    operations['7'] = {'menu' : 'Check Even', 'operation': lambda: do_operation(is_even, 1)}
-    operations['8'] = {'menu' : 'Check Odd', 'operation': lambda: do_operation(is_odd, 1)}
+    operations['1'] = {'menu': 'Add', 'operation' : lambda : do_operation(add, operands=2)} 
+    operations['2'] = {'menu': 'Subtract',
+                       'operation': lambda: do_operation(subtract, operands=2)}
+    operations['3'] = {'menu': 'Multiply',
+                       'operation': lambda: do_operation(multiply, operands=2)}
+    operations['4'] = {'menu': 'Divide',
+                       'operation': lambda: do_operation(divide, operands=2)}
+    operations['5'] = {'menu': 'Power',
+                       'operation': lambda: do_operation(power, operands=2)}
+    operations['6'] = {'menu': 'Modulus', 'operation': lambda: do_operation(
+        lambda x, y: x % y, operands=2)}
+    operations['7'] = {'menu' : 'Check Even', 'operation': lambda: do_operation(is_even)}
+    operations['8'] = {'menu' : 'Check Odd', 'operation': lambda: do_operation(is_odd)}
     operations['9'] = {'menu' :'Exit', 'operation' : op_exit}
 
 def get_user_choice():
