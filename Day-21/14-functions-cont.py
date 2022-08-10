@@ -16,3 +16,12 @@ def add(x, y, *args):
 
 data = [10,20,30,40,50,60]
 add(*data)
+
+
+def fn(**kwargs):
+    print(kwargs)
+    print(type(kwargs))
+
+
+def fn(x,y, *args, **kwargs):
+    pass

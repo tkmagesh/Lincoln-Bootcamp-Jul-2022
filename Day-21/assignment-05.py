@@ -13,7 +13,8 @@ operations = { }
 def get_operands(no_operands):
     return (int(input(f"Enter value {i+1} : ")) for i in range(no_operands))
 
-def do_operation(op, no_operands):
+def do_operation(op, **kwargs):
+    no_operands = kwargs.setdefault('operands', 1)
     data = get_operands(no_operands)
     result = op(*data)
     print(result)
