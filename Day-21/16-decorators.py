@@ -72,7 +72,7 @@ def debug(func):
     return wrapper_debug
 
 @debug
-def add(x, y):
+def add(x, y, **kwargs):
     return x + y
 
 
