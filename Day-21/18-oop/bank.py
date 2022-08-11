@@ -1,11 +1,14 @@
 
+from functools import reduce
 
 class BankAccount:
 
     def __init__(self, name, initial_balance):
 
         self.name = name  
-        self.__balance = initial_balance  # __ makes the attribute private
+        self.__transactions = tuple()
+        #self.__balance = initial_balance  # __ makes the attribute private
+        self.deposit(initial_balance)
         print('a new bank account is created')
 
     def who_am_i(self):
@@ -13,23 +16,31 @@ class BankAccount:
 
     def deposit(self, amount):
         if amount > 0:
-            self.__balance += amount
+            self.__transactions += (('deposit', amount),)
         else:
             print('Cannot deposit negative amount')
 
     def withdraw(self, amount):
-        if amount <= self.__balance:
-            self.__balance -= amount
+        if amount <= self.balance:
+            self.__transactions += (('withdraw', amount),)
         else:
-            print('Cannot withdraw more than the balance')
+            print('Cannot withdraw more than the balance') 
+       
+
+    
+    def history(self):
+        print(self.__transactions) 
+   
 
     @property
     def balance(self):
-        return self.__balance
+        return reduce(lambda result, txn: (result + txn[1]) if txn[0] == 'deposit' else (result - txn[1]), self.__transactions, 0)
 
+    """ 
     @balance.setter
     def balance(self, amount):
-        self.__balance = amount 
+        self.__balance = amount  
+    """
 
     #dunder methods
     def __str__(self):
@@ -42,9 +53,15 @@ class BankAccount:
     def __eq__(self, other):
         return (self.name == other.name) and (self.balance == other.balance)
 
+    
     def __add__(self, other):
         return BankAccount(f"{self.name} {other.name}", self.balance + other.balance)
 
+    def __len__(self):
+        return len(self.__transactions)
+
+    def __getitem__(self, key):
+        return self.__transactions[key]
 
 """ class BankAccount:
 
@@ -82,19 +99,13 @@ class BankAccount:
  """
 
 if (__name__ == '__main__'):
-    account = BankAccount('Magesh')
-    """ 
-    account.who_am_i()
-    #print(f"account balance of {account.name} = {account.get_balance()}")
-    print(f"account balance of {account.name} = {account.balance}")
+    account = BankAccount('Magesh', 1000)
     account.deposit(100)
+    account.withdraw(50)
     account.deposit(200)
-    # print(f"account balance of {account.name} = {account.get_balance()}")
-    print(f"account balance of {account.name} = {account.balance}")
-    account.balance = 1000
-    account.withdraw(400)
-    # print(f"account balance of {account.name} = {account.get_balance()}")
-    print(f"account balance of {account.name} = {account.balance}") 
-    """
-    print(account.balance)
-    account.balance = 1000
+    account.history()
+    print(f"balance = {account.balance}")
+    print(f"# of transactions = ", len(account))
+
+    print(f"transaction[0] = {account[0]}")
+    print(f"transaction[1:3] = {account[1:3]}")
