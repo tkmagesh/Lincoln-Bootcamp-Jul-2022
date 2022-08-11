@@ -7,7 +7,7 @@ class BankAccount:
 
     def __init__(self, name, initial_balance):
         self.name = name  
-        self.__transactions = tuple()
+        self._transactions = tuple()
         #self.__balance = initial_balance  # __ makes the attribute private
         self.deposit(initial_balance)
         print('a new bank account is created')
@@ -18,23 +18,23 @@ class BankAccount:
 
     def deposit(self, amount):
         if amount > 0:
-            self.__transactions += (('deposit', amount),)
+            self._transactions += (('deposit', amount),)
         else:
             print('Cannot deposit negative amount')
 
     def withdraw(self, amount):
         if amount <= self.balance:
-            self.__transactions += (('withdraw', amount),)
+            self._transactions += (('withdraw', amount),)
         else:
             print('Cannot withdraw more than the balance') 
        
     def history(self):
-        print(self.__transactions) 
+        print(self._transactions) 
    
 
     @property
     def balance(self):
-        return reduce(lambda result, txn: (result + txn[1]) if txn[0] == 'deposit' else (result - txn[1]), self.__transactions, 0)
+        return reduce(lambda result, txn: (result + txn[1]) if txn[0] == 'deposit' else (result - txn[1]), self._transactions, 0)
 
     """ 
     @balance.setter
@@ -58,10 +58,10 @@ class BankAccount:
         return BankAccount(f"{self.name} {other.name}", self.balance + other.balance)
 
     def __len__(self):
-        return len(self.__transactions)
+        return len(self._transactions)
 
     def __getitem__(self, key):
-        return self.__transactions[key]
+        return self._transactions[key]
 
     @classmethod
     def get_account_count(cls):
@@ -74,7 +74,11 @@ class CheckingAccount(BankAccount):
         print('a new checking account is created')
         super().__init__(name, initial_balance)
         self.cheques = cheques 
-   
+    
+    #overriding the base class (BankAccount) behavior
+    def withdraw(self, amount):        
+        self._transactions += (('withdraw', amount),)
+        
 
  
 if (__name__ == '__main__'):
@@ -94,10 +98,11 @@ if (__name__ == '__main__'):
     print(f"balance = {account.balance}")
     print(f"# of accounts = {BankAccount.get_account_count()}")
     """
-    ca = CheckingAccount('Flower Depot', 100, 25)
-    """ 
+    ca = CheckingAccount('Flower Depot', 100, 25) 
     ca.deposit(1000)
-    ca.withdraw(500)
+    ca.withdraw(5000)
     ca.history()
     print(f"balance = {ca.balance}") 
-    """
+
+    
+    
