@@ -1,7 +1,7 @@
 
 from functools import reduce
 
-class BankAccount:
+class BankAccount(object):
 
     __account_count = 0 #class member OR static member
 
@@ -10,7 +10,7 @@ class BankAccount:
         self._transactions = tuple()
         #self.__balance = initial_balance  # __ makes the attribute private
         self.deposit(initial_balance)
-        print('a new bank account is created')
+        print('a bank account is initialized')
         self.__class__.__account_count += 1
 
     def who_am_i(self):
@@ -82,7 +82,7 @@ class CheckingAccount(BankAccount):
 
  
 if (__name__ == '__main__'):
-    """ 
+    
     account = BankAccount('Magesh', 1000)
     account.deposit(100)
     account.withdraw(50)
@@ -90,19 +90,24 @@ if (__name__ == '__main__'):
     account.history()
     print(f"balance = {account.balance}")
     print(f"# of transactions = ", len(account))
-
+    
+    """ 
     print(f"transaction[0] = {account[0]}")
     print(f"transaction[1:3] = {account[1:3]}")
 
     account2 = BankAccount('Alex', 10000)
     print(f"balance = {account.balance}")
-    print(f"# of accounts = {BankAccount.get_account_count()}")
+    print(f"# of accounts = {BankAccount.get_account_count()}") 
     """
+   
+    """ 
     ca = CheckingAccount('Flower Depot', 100, 25) 
     ca.deposit(1000)
     ca.withdraw(5000)
     ca.history()
-    print(f"balance = {ca.balance}") 
+    print(f"balance = {ca.balance}")  
+    """
+    
 
     
     
