@@ -1,0 +1,39 @@
+
+
+CSVStorage class
+    initialization
+        check for the existence of the "given" file and create it if it doesn't exist
+
+    get_transaction
+    save_transaction
+
+BankAccount class
+    initialization
+        instantiated with an instance of the CSVStorage class
+        load all the transactions from the storage
+
+    deposit
+        do the business logic
+        save the the transaction
+
+    withdraw
+        do the business logic
+        save the the transaction
+
+    get_balance
+        calculate the balance from the in memory transactions that already loaded during the initialization
+
+
+menu
+    initialization
+        instantiated with an instance of the BankAccount class
+        display the menu and get the user's choice
+        call the appropriate method based on the user's choice
+        display the menu again and get the user's choice
+        repeat until the user chooses to quit
+    
+app.py
+    create an instance of the CSVStorage
+    create an instance of the BankAccount (with the CSVStorage as an argument)
+    create an instance of the menu (with the BankAccount as an argument)
+    menu.run()
