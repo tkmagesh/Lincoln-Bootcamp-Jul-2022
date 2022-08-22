@@ -63,3 +63,26 @@ SQLAlchemy Statement (Core)
     from sqlalchemy import MetaData, Table
     metadata = MetaData()
     author_table = Table("author", metadata, autoload_with=engine)
+    from sqlalchemy import select
+    stmt = select(author_table)
+    result = conn.execute(stmt)
+
+    stmt2 = select(author_table).where(author_table.c.first_name == "Isaac")
+    result = conn.execute(stmt2)
+    print(result.all())
+
+    #insert
+    from sqlalchemy import insert
+    stmt3 = insert(author_table).values(first_name="Haruki", last_name="Murakami")
+    conn.execute(stmt3)
+
+    #inserting multiple rows
+    insert_stmt = insert(author_table)
+    conn.execute(insert_stmt, 
+        [{"first_name" : "f1", "last_name" : "l1"}, {"first_name" : "f2", "last_name" : "l2"}]
+    )
+
+    #update
+    from sqlalchemy import update
+    update_stmt = update(author_table).where(author_table.c.first_name=="f1").values(first_name="Barry", last_name="Schwartz")
+    conn.execute(update_stmt)
