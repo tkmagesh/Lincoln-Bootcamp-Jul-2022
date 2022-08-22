@@ -86,3 +86,7 @@ SQLAlchemy Statement (Core)
     from sqlalchemy import update
     update_stmt = update(author_table).where(author_table.c.first_name=="f1").values(first_name="Barry", last_name="Schwartz")
     conn.execute(update_stmt)
+
+    #delete
+    from sqlalchemy import delete
+    delete_stmt = delete(author_table).where(author_table.c.author_id == 13)
