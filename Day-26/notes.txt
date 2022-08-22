@@ -19,3 +19,47 @@ Connecting to SQLite from python
 
     #executing a select query
     result = conn.execute(text("select * from author"))
+
+    #print the results
+    print(result.all())
+
+    for row in result:
+        print(f"{row.last_name}, {row.first_name}")
+
+    for _, first_name, last_name in result:
+        print(first_name, last_name)
+
+    #results as a dictionary
+    for dict_row in result.mappings():
+        print(dict_row)
+
+    #Inserting data
+    conn.execute(text("insert into author (first_name, last_name) values ('John', 'Doe')"))
+    conn.execute(
+        text("insert into author (first_name, last_name) values (:fn, :ln)"), 
+        [{"fn": "Jane", "ln": "Doe"}]
+    )
+
+
+
+    #Transactions
+    txn = conn.begin()
+
+    #Commiting the transaction
+    txn.commit()
+
+    #Rolling back the transaction
+    txn.rollback()
+
+    #Prepared statements
+    stmt = text("select last_name from author where last_name > :ln")
+    stmt = stmt.bindparams(ln="C")
+    result = conn.execute(stmt)
+
+SQLAlchemy Statement (Core)
+    from sqlalchemy import create_engine
+    engine = create_engine("sqlite:///./books.db", echo=True, future=True)
+    conn = engine.connect()
+    from sqlalchemy import MetaData, Table
+    metadata = MetaData()
+    author_table = Table("author", metadata, autoload_with=engine)
