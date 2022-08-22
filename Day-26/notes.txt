@@ -1,0 +1,21 @@
+SQL (RDBMS)
+
+
+Installing SQL Alchemy
+    python3 -m pip install SQLAlchemy
+
+Virtual Environments
+   
+Connecting to SQLite from python
+
+    #import the sqlite3 library
+    from sqlalchemy import create_engine, text
+
+    #create an engine to the database
+    engine = create_engine("sqlite:///./books.db", echo=True)
+
+    #create a connection to the engine
+    conn = engine.connect()
+
+    #executing a select query
+    result = conn.execute(text("select * from author"))
