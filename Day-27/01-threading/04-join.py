@@ -9,11 +9,11 @@ def myfunc(name):
 if __name__ == '__main__':
     print('main started')
     
-    t1 = threading.Thread(target=myfunc, args=['Thread-1'], daemon=True)
+    t1 = threading.Thread(target=myfunc, args=['Thread-1'])
     t1.start()
-    t2 = threading.Thread(target=myfunc, args=['Thread-2'], daemon=True)
+    t2 = threading.Thread(target=myfunc, args=['Thread-2'])
     t2.start()
-    t3 = threading.Thread(target=myfunc, args=['Thread-3'], daemon=True)
+    t3 = threading.Thread(target=myfunc, args=['Thread-3'])
     t3.start() 
    
     
