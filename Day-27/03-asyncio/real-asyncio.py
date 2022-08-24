@@ -6,11 +6,12 @@ import asyncio
 async def worker(name, n, session):
     print(f'worker-{name}')
     url = f'https://qrng.anu.edu.au/API/jsonI.php?length={n}&type=uint16'
-    response = await session.request(method='GET', url=url)
-    response_str = await response.text()
-    result = json.loads(response_str)
-    values = result['data']
-    return sum(values)
+    # response = await session.request(method='GET', url=url)
+    async with session.request(method='GET', url=url) as response:
+        response_str = await response.text()
+        result = json.loads(response_str)
+        values = result['data']
+        return sum(values)
 
 async def main():
     async with aiohttp.ClientSession() as session:
