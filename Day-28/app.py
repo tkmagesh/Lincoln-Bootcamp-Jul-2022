@@ -42,4 +42,12 @@ def save_new_bug():
     bugs.append(new_bug)
     return new_bug, 201
 
+@app.route('/bugs/<int:id>')
+def get_a_bug(id):
+    for bug in bugs:
+        if bug['id'] == id:
+            return bug
+    return {"message" : "bug not found"}, 404
+
+
 app.run(port=8080, debug=True)
