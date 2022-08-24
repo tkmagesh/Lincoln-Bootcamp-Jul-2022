@@ -1,5 +1,5 @@
-from crypt import methods
-from flask import Flask, render_template, jsonify
+
+from flask import Flask, render_template, jsonify, request
 
 app = Flask(__name__)
 
@@ -32,6 +32,14 @@ def get_bugs():
 
 @app.route('/bugs', methods=['POST'])
 def save_new_bug():
-    return 'A new bug is created'
+    request_data = request.get_json()
+    new_bug_id = max(bug['id'] for bug in bugs) + 1
+    new_bug = {
+        'id' : new_bug_id,
+        'name' : request_data['name'],
+        'isClosed' : request_data['isClosed']
+    }
+    bugs.append(new_bug)
+    return new_bug, 201
 
 app.run(port=8080, debug=True)
