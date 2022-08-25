@@ -8,13 +8,14 @@ from datetime import date
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///./bug-tracker.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 app.config['BUNDLE_ERRORS'] = True #global setting for all the reqparsers in the app
 
 db = SQLAlchemy(app)
 api = Api(app)
 
 
-class Bug(db.Model):
+class BugModel(db.Model):
     
     __tablename__ = 'bugs'
 
@@ -25,6 +26,11 @@ class Bug(db.Model):
 
     def __repr__(self):
         return '<Bug %r>' % self.name
+
+    @classmethod
+    def get_all(cls):
+        return cls.query.all()
+
 
 
 #_new_bug_parser = reqparse.RequestParser(bundle_errors=True)
@@ -56,7 +62,7 @@ _bug_parser.replace_argument('isClosed',
 class Bugs(Resource):
 
     def get(self): # <- will be invoked when a GET request is made for '/bugs'
-        return { 'bugs' : [] }
+        return BugModel.get_all()
 
     def post(self):
         data = _new_bug_parser.parse_args()
