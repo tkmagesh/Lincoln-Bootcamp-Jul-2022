@@ -2,7 +2,7 @@
 from flask import Flask, jsonify
 from flask_restful import Api, Resource, reqparse, inputs
 from flask_sqlalchemy import SQLAlchemy
-from datetime import date
+from datetime import datetime
 
 
 app = Flask(__name__)
@@ -22,7 +22,7 @@ class BugModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
     is_closed = db.Column(db.Boolean, nullable=False)
-    created_at = db.Column(db.DateTime, default=date.today())
+    created_at = db.Column(db.DateTime, default=datetime.today())
 
     def __repr__(self):
         return '<Bug %r>' % self.name
@@ -43,7 +43,43 @@ class BugModel(db.Model):
     def get_all(cls):
         return cls.query.all()
 
+    @classmethod
+    def get_by_id(cls, id):
+        return cls.query.filter_by(id = id).first()
 
+
+class UserModel(db.Model):
+    __tablename__ = 'users'
+
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80))
+    password = db.Column(db.String(80))
+
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
+
+    def json(self):
+        return {
+            'id': self.id,
+            'username': self.username
+        }
+
+    @classmethod
+    def find_by_username(cls, username):
+        return cls.query.filter_by(username=username).first()
+
+    @classmethod
+    def find_by_id(cls, _id):
+        return cls.query.filter_by(id=_id).first()
+
+    def save_to_db(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def delete_from_db(self):
+        db.session.delete(self)
+        db.session.commit()
 
 #_new_bug_parser = reqparse.RequestParser(bundle_errors=True)
 _new_bug_parser = reqparse.RequestParser()
@@ -83,6 +119,7 @@ class Bugs(Resource):
 
     def post(self):
         new_bug = _new_bug_parser.parse_args()
+        #new_bug_model = BugModel(name = new_bug['name'], is_closed = new_bug['is_closed'])
         new_bug_model = BugModel(**new_bug)
         new_bug_model.save()
         return jsonify(new_bug_model.to_json())
@@ -90,15 +127,20 @@ class Bugs(Resource):
 class Bug(Resource):
 
     def get(self, id):
-        return f'Bug-{id} will be returned'
+        bug_from_db = BugModel.get_by_id(id)  # data from db
+        return jsonify(bug_from_db.to_json())
 
     def put(self, id):
-        bug_to_update = _bug_parser.parse_args()
-        print(bug_to_update)
-        return f'Bug-{bug_to_update["id"]} will be updated'
+        bug_to_update = _bug_parser.parse_args() #data from user (postman)
+        bug_from_db = BugModel.get_by_id(id) # data from db
+        bug_from_db.name = bug_to_update['name'] #updating the data from the db
+        bug_from_db.is_closed = bug_to_update['is_closed'] #updating the data from the db
+        bug_from_db.save() #save the data back to the db
+        return jsonify(bug_from_db.to_json())
 
     def delete(self, id):
         return f'Bug-{id} will be removed'
+
 
 
 api.add_resource(Bugs, '/bugs')
