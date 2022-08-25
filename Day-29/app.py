@@ -35,6 +35,9 @@ class BugModel(db.Model):
             'created_at' : self.created_at
         }
 
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
 
     @classmethod
     def get_all(cls):
@@ -81,8 +84,7 @@ class Bugs(Resource):
     def post(self):
         new_bug = _new_bug_parser.parse_args()
         new_bug_model = BugModel(**new_bug)
-        db.session.add(new_bug_model)
-        db.session.commit()
+        new_bug_model.save()
         return jsonify(new_bug_model.to_json())
 
 class Bug(Resource):
