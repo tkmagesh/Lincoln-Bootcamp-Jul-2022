@@ -1,11 +1,33 @@
-from xmlrpc.client import Boolean
+
 from flask import Flask
-from flask_restful import Api, Resource, reqparse
+from flask_restful import Api, Resource, reqparse, inputs
+from flask_sqlalchemy import SQLAlchemy
+from datetime import date
+
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///./bug-tracker.sqlite3'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['BUNDLE_ERRORS'] = True #global setting for all the reqparsers in the app
 
+db = SQLAlchemy(app)
 api = Api(app)
 
+
+class Bug(db.Model):
+    
+    __tablename__ = 'bugs'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), nullable=False)
+    is_closed = db.Column(db.Boolean, nullable=False)
+    created_at = db.Column(db.DateTime, default=date.today())
+
+    def __repr__(self):
+        return '<Bug %r>' % self.name
+
+
+#_new_bug_parser = reqparse.RequestParser(bundle_errors=True)
 _new_bug_parser = reqparse.RequestParser()
 _new_bug_parser.add_argument('name', 
                             type=str, 
@@ -13,7 +35,7 @@ _new_bug_parser.add_argument('name',
                             required=True
                             )
 _new_bug_parser.add_argument('isClosed',
-                            type=Boolean,
+                            type=inputs.boolean,
                             default=False
                             )
 
@@ -23,6 +45,11 @@ _bug_parser.add_argument('id',
                          required=True,
                          help='Invalid data'
                          )
+_bug_parser.replace_argument('isClosed',
+                            type=inputs.boolean,
+                            required=True,
+                            help = 'Invalid data'
+                            )
 
 
 
@@ -43,6 +70,7 @@ class Bug(Resource):
 
     def put(self, id):
         bug_to_update = _bug_parser.parse_args()
+        print(bug_to_update)
         return f'Bug-{bug_to_update["id"]} will be updated'
 
     def delete(self, id):
