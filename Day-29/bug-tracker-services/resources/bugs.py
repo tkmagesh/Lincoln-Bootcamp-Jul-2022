@@ -1,5 +1,7 @@
 from flask import  jsonify
 from flask_restful import  Resource, reqparse, inputs
+from flask_jwt_extended import jwt_required
+
 from models.bugs import BugModel
 
 new_bug_parser = reqparse.RequestParser()
@@ -16,9 +18,11 @@ new_bug_parser.add_argument('is_closed',
 
 class Bugs(Resource):
 
+    @jwt_required()
     def get(self):  # <- will be invoked when a GET request is made for '/bugs'
         return jsonify([bug.to_json() for bug in BugModel.get_all()])
 
+    @jwt_required()
     def post(self):
         new_bug = new_bug_parser.parse_args()
         #new_bug_model = BugModel(name = new_bug['name'], is_closed = new_bug['is_closed'])

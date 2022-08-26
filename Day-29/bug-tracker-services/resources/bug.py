@@ -1,5 +1,7 @@
 from flask import jsonify
 from flask_restful import Resource, reqparse, inputs
+from flask_jwt_extended import jwt_required
+
 from models.bugs import BugModel
 from resources.bugs import new_bug_parser
 
@@ -21,10 +23,12 @@ _bug_parser.replace_argument('created_at',
                              )
 class Bug(Resource):
 
+    @jwt_required()
     def get(self, id):
         bug_from_db = BugModel.get_by_id(id)  # data from db
         return jsonify(bug_from_db.to_json())
 
+    @jwt_required()
     def put(self, id):
         bug_to_update = _bug_parser.parse_args()  # data from user (postman)
         bug_from_db = BugModel.get_by_id(id)  # data from db
@@ -35,5 +39,6 @@ class Bug(Resource):
         bug_from_db.save()  # save the data back to the db
         return jsonify(bug_from_db.to_json())
 
+    @jwt_required()
     def delete(self, id):
         return f'Bug-{id} will be removed'
