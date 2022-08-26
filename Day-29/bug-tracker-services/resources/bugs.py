@@ -1,6 +1,6 @@
 from flask import  jsonify
 from flask_restful import  Resource, reqparse, inputs
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 from models.bugs import BugModel
 
@@ -20,6 +20,8 @@ class Bugs(Resource):
 
     @jwt_required()
     def get(self):  # <- will be invoked when a GET request is made for '/bugs'
+        identity = get_jwt_identity()
+        print(identity) # => user id
         return jsonify([bug.to_json() for bug in BugModel.get_all()])
 
     @jwt_required()
