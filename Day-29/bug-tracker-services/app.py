@@ -18,6 +18,11 @@ api = Api(app)
 app.config['JWT_SECRET_KEY'] = 'lincoln'
 jwt = JWTManager(app)
 
+@jwt.additional_claims_loader
+def add_claims_to_jwt(identity):
+    if identity == 1:
+        return { 'is_admin' : True }
+    return { 'is_admin' : False }
 
 @jwt.invalid_token_loader # we have to keep the argument here, since it's passed in by the caller internally
 def invalid_token_callback(error):

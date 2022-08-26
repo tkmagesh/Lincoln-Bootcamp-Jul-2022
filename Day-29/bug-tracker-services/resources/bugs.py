@@ -22,6 +22,7 @@ class Bugs(Resource):
     def get(self):  # <- will be invoked when a GET request is made for '/bugs'
         identity = get_jwt_identity()
         print(identity) # => user id
+        
         return jsonify([bug.to_json() for bug in BugModel.get_all()])
 
     @jwt_required()

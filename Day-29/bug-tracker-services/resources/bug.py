@@ -1,6 +1,6 @@
 from flask import jsonify
 from flask_restful import Resource, reqparse, inputs
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required, get_jwt
 
 from models.bugs import BugModel
 from resources.bugs import new_bug_parser
@@ -41,4 +41,8 @@ class Bug(Resource):
 
     @jwt_required()
     def delete(self, id):
+        #get the user info from the claim
+        claims = get_jwt()
+        if not claims['is_admin']:
+            return {'message' : 'Admin privilege required'}, 401
         return f'Bug-{id} will be removed'
