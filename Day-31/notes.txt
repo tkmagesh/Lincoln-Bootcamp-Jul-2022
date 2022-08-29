@@ -1,0 +1,61 @@
+Cloud?
+    multiple systems combined together to act as one system
+        CPU + Memory + Storage
+
+    Resources on demand
+        Elasiticity
+
+
+Data Center with resources that can be used?
+
+Infrastructure Investment
+    Physical Servers
+        Application Servers
+        Database Servers
+        Directory Servers
+        Storage Servers
+        Print Servers
+    
+    Network
+        ?
+
+    Staff
+        ?
+
+    Real Estate
+        ?
+
+    Electricity
+        ?    
+
+    Internet Connectivity
+
+
+Cloud Service Model
+    IaaS (Infrastructure As A Service)
+        Virtualization
+        Servers
+        Storage
+        Networking
+    PaaS (Platform As a Service)
+        IaaS +
+        Runtime
+        Middlewares
+        OS
+    SaaS (Software As a Service)
+        PaaS +
+        Data
+        Application
+
+    Cloud Deployment Model
+        Private (OpenStack)
+        Public (AWS, GC, Azure)
+        Hybrid ( [Fully Owned / Private Cloud] + Public)
+
+    
+
+Content Delivery Network
+
+Application
+    dynamic resources => process data and return dynamic result
+    static resources => html, css, js, ico, jpg
