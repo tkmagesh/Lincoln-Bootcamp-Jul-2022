@@ -44,7 +44,7 @@ After=network.target
 User=ec2-user
 Group=ec2-user
 WorkingDirectory=/home/ec2-user/myapp
-ExecStart=/home/ec2-user/myapp/venv/bin/python3 /home/ec2-user/myapp.py
+ExecStart=/home/ec2-user/myapp/venv/bin/python3 /home/ec2-user/myapp/app.py
 [Install]
 WantedBy=multi-user.target
 
