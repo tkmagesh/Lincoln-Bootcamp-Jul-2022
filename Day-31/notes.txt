@@ -59,3 +59,17 @@ Content Delivery Network
 Application
     dynamic resources => process data and return dynamic result
     static resources => html, css, js, ico, jpg
+
+
+ssh ec2-user@<ip-address> -i <key-file-name>
+
+ssh ec2-user@3.84.187.97 -i dev-server-key.cer
+
+#!/bin/bash
+sudo su
+yum update -y
+yum install httpd -y
+systemctl start httpd
+cd /var/www/html
+wget https://html5up.net/paradigm-shift/download --no-check-certificate
+unzip download
