@@ -87,6 +87,17 @@ Resources:
   HandleDeliveryTopic:
     Type: AWS::SNS::Topic
 
+  HandleDeliveryFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ordersapi/
+      Handler: delivery.delivery_handler
+      Events:
+        SNSTopic:
+          Type: SNS
+          Properties:
+            Topic: !Ref HandleDeliveryTopic
+
   OrdersTable:
     Type: AWS::Serverless::SimpleTable
     Properties:

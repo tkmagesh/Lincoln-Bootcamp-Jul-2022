@@ -22,8 +22,10 @@ def process_handler(event, context):
         sns_client.publish(
             TopicArn=topic,
             Message=json.dumps({ 
-                'message ' : 'process the delivery for the order ', 
-                'id' : each_order['id']
+                'default' : json.dumps({
+                    'message ' : 'process the delivery for the order ', 
+                    'id' : each_order['id']
+                })
             }),
             MessageStructure='json'
         )
