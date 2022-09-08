@@ -43,7 +43,43 @@ Resources:
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref OrdersTable
-            
+
+  ReadOrderFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: ordersapi/
+      Handler: read.read_handler
+      Events:
+        CreateOrder:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /orders/{id}
+            Method: get
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref OrdersTable
+
+  ProcessOrdersFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: orderapi/
+      Handler: process.process_handler
+      Events:
+        ProcessOrdersEvent:
+          Type: S3
+          Properties:
+            Bucket : !Ref ProcessOrdersBucket
+            Events: s3:ObjectCreated:*
+      Policies:
+        - S3ReadPolicy:
+            BucketName: !Sub ${AWS::StackName}-${AWS::AccountId}-${AWS::Region}
+
+
+  ProcessOrdersBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub ${AWS::StackName}-${AWS::AccountId}-${AWS::Region}
+
   OrdersTable:
     Type: AWS::Serverless::SimpleTable
     Properties:
