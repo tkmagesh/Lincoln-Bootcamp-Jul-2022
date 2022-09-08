@@ -2,14 +2,18 @@ import json
 import boto3
 import os
 
+""" 
 dynamodb = boto3.resource('dynamodb')
 table_name = os.environ.get('ORDERS_TABLE')
+"""
+
+s3 = boto3.client('s3')
 
 def process_handler(event, context):
-    order = json.loads(event['body'])    
-    orders_table = dynamodb.Table(table_name)
-    orders_table.put_item(TableName=table_name, Item=order)
-    return {
-        'statusCode' : 201,
-        'body' : json.dumps({'message' : f'order [id = {order["id"]}] created'})
-    }
+    bucket_name = event['Records'][0]['s3']['bucket']['name']
+    file_key = event['Records'][0]['s3']['object']['key']
+    obj = s3.get_object(Bucket=bucket_name, Key=file_key)
+    file_content = obj['Body'].read().decode("utf-8")
+    orders_to_process = json.loads(file_content)
+    for each_order in orders_to_process:
+        print('processing : ', json.dumps(each_order))

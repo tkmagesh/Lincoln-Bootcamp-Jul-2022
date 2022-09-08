@@ -62,7 +62,7 @@ Resources:
   ProcessOrdersFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: orderapi/
+      CodeUri: ordersapi/
       Handler: process.process_handler
       Events:
         ProcessOrdersEvent:
@@ -97,4 +97,7 @@ Outputs:
   OrderApi:
     Description: "API Gateway endpoint URL for Prod stage for Hello World function"
     Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/orders/"
+  OrdersBucket:
+    Description: "Bucket where the orders are expected to be dropped"
+    Value: !Sub ${AWS::StackName}-${AWS::AccountId}-${AWS::Region}
   
