@@ -97,6 +97,13 @@ Resources:
           Type: SNS
           Properties:
             Topic: !Ref HandleDeliveryTopic
+      Environment:
+        Variables:
+          RECORD_DELIVERY_QUEUE: !Ref RecordDeliveryQueue
+      Policies:
+        - SQSSendMessagePolicy:
+            QueueName: !GetAtt RecordDeliveryQueue.QueueName
+
 
 
   RecordDeliveryQueue:

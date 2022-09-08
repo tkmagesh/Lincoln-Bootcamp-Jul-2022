@@ -1,16 +1,16 @@
 [
     {
-        "id" : 2,
+        "id" : 200,
         "name" : "Pencil",
         "cost" : 5
     },
     {
-        "id" : 3,
+        "id" : 300,
         "name" : "Marker",
         "cost" : 50
     },
     {
-        "id" : 4,
+        "id" : 400,
         "name" : "Notebook",
         "cost" : 20
     }
