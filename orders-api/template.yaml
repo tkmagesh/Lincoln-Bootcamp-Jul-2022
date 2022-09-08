@@ -98,6 +98,22 @@ Resources:
           Properties:
             Topic: !Ref HandleDeliveryTopic
 
+
+  RecordDeliveryQueue:
+    Type: AWS::SQS::Queue
+
+  RecordDeliveryFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ordersapi/
+      Handler: record_delivery.record_handler
+      Events:
+        RecordEvent:
+          Type: SQS
+          Properties:
+            Queue: !GetAtt RecordDeliveryQueue.Arn
+            BatchSize: 10
+
   OrdersTable:
     Type: AWS::Serverless::SimpleTable
     Properties:
