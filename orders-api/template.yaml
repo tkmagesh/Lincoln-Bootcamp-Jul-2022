@@ -73,12 +73,19 @@ Resources:
       Policies:
         - S3ReadPolicy:
             BucketName: !Sub ${AWS::StackName}-${AWS::AccountId}-${AWS::Region}
-
+        - SNSPublishMessagePolicy:
+            TopicName: !GetAtt HandleDeliveryTopic.TopicName
+      Environment:
+        Variables:
+          HANDLE_ORDER_TOPIC : !Ref HandleDeliveryTopic  
 
   ProcessOrdersBucket:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: !Sub ${AWS::StackName}-${AWS::AccountId}-${AWS::Region}
+
+  HandleDeliveryTopic:
+    Type: AWS::SNS::Topic
 
   OrdersTable:
     Type: AWS::Serverless::SimpleTable
